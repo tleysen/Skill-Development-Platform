@@ -1,0 +1,66 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="informat">
+<head>
+    <link rel="shortcut icon" type="image/png" href="/images/logo2.png">
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <!-- SPELLS -->
+    <!-- load angular and angular route via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="js/hello.js"></script>
+    <!-- WYSIWYG -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.0/tinymce.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-tinymce/0.0.18/tinymce.min.js"></script>
+
+    <title>CVO Crescendo</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+<body ng-controller="mainController">
+
+<!-- HEADER AND NAVBAR -->
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+
+                </a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                <li><a href="#about"><i class="glyphicon glyphicon-education"></i> Overview</a></li>
+                <li><a href="#configuration"><i class="glyphicon glyphicon-cog"></i> Configuratie</a></li>
+                <li><a href="#logout"><i class="glyphicon glyphicon-off"></i> Uitloggen</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<div id="main">
+    <div ng-view></div>
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="js/datatable.js"></script>
+</body>
+</html>
