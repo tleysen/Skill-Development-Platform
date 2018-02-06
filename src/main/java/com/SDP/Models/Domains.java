@@ -1,5 +1,8 @@
 package com.SDP.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,23 +13,10 @@ public class Domains {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    @Getter @Setter Integer id;
 
-    private String name;
+    @Getter @Setter private String name;
 
-    public Integer getId() {
-        return id;
-    }
+    @Getter @Setter private boolean type;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
