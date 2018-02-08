@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class Scores {
@@ -12,12 +13,12 @@ public class Scores {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Getter @Setter private Integer id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="iddomains")
 
     @Getter @Setter private Domains domain;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="idusers")
 
     @Getter @Setter private Users user;
@@ -25,4 +26,8 @@ public class Scores {
     @Getter @Setter private int points;
 
     @Getter @Setter private String remarks;
+
+    @Getter @Setter private Date date;
+
+
 }
