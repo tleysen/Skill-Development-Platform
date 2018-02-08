@@ -1,0 +1,35 @@
+<!-- users.html -->
+<div class="container" ng-controller="usersController">
+    <div class="col-8 row justify-content-center">
+        <div class="jumbotron">
+            <h2>Gebruikers:</h2>
+            <div class="well well-sm">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">Birth date</th>
+                        <th scope="col">Hiring date</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <a href="domains.html">
+                    <tr ng-click="loadDomains" ng-repeat="u in users">
+                        <th scope="row">{{u.id}}</th>
+                        <td class="col-lg-4">{{u.lastname}}</td>
+                        <td class="col-lg-4">{{u.sex}}</td>
+                        <td class="col-lg-4">{{u.birth_date}}</td>
+                        <td class="col-lg-4">{{u.hiring_date}}</td>
+                        <td class="col-lg-4">{{u.name}}</td>
+                    </tr>
+                    </a>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

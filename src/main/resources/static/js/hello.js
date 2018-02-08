@@ -10,9 +10,14 @@ sdp.config(function($routeProvider) {
         })
 
         // route for the about page
-        .when('/about', {
-            templateUrl : 'pages/about.html',
-            controller  : 'aboutController'
+        .when('/users', {
+            templateUrl : 'pages/users.html',
+            controller  : 'usersController'
+        })
+
+        .when('/domains', {
+            templateUrl : 'pages/domains.html',
+            controller  : 'mainController'
         })
 
         // route for the contact page
@@ -57,5 +62,25 @@ sdp.controller('mainController', function($scope,$http) {
             $scope.type = "Others";
         }
     }
+});
 
+    sdp.controller('usersController', function($scope,$http) {
+
+        var state;
+
+        // create a message to display in our view
+        $scope.message = 'Everyone come and see how good I look!';
+        $http({
+            method: 'GET',
+            url: '/req/allusers'
+        }).then(function (success) {
+            $scope.users = success.data;
+
+        }, function (error) {
+            $scope.users = error;
+        });
+
+        $scope.loadDomains = function () {
+            window.location.replace("/domains");
+        };
 });

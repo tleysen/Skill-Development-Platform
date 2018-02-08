@@ -6,46 +6,44 @@
     <!-- SCROLLS -->
     <!-- load bootstrap and fontawesome via CDN -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
 
     <!-- SPELLS -->
     <!-- load angular and angular route via CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
     <script src="js/hello.js"></script>
-    <!-- WYSIWYG -->
+
+
+    <!-- FONTS -->
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
 
     <title>SDP</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style type="text/css">
-        [ng\:cloak], [ng-cloak], .ng-cloak {
-            display: none !important;
-        }
-    </style>
 
 </head>
 <body ng-controller="mainController">
 
-<!-- HEADER AND NAVBAR -->
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-
-                </a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                <li><a href="#about"><i class="glyphicon glyphicon-education"></i> Overview</a></li>
-                <li><a href="#configuration"><i class="glyphicon glyphicon-cog"></i> Configuratie</a></li>
-                <li><a href="#logout"><i class="glyphicon glyphicon-off"></i> Uitloggen</a></li>
-            </ul>
+<!-- NAVBAR -->
+<nav>
+    <div class="sidebar">
+        <div class="sidebar-block">
+            <a href="#!/home" class="custom-link"><i class="fa fa-home"></i></a>
         </div>
-    </nav>
-</header>
+        <div class="sidebar-block">
+            <a href="#!/users" class="custom-link"><i class="fa fa-users"></i></a>
+        </div>
+        <div class="sidebar-block">
+            <a href="#!/graph" class="custom-link"><i class="fa fa-signal"></i></a>
+        </div>
+        <div class="sidebar-block">
+            <a href="#!/domains" class="custom-link"><i class="fa fa-th-list"></i></a>
+        </div>
 
+    </div>
+</nav>
 <!-- MAIN CONTENT AND INJECTED VIEWS -->
 <div id="main">
     <div ng-view></div>
