@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name="functionsdomains")
 public class FunctionsDomains {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +26,6 @@ public class FunctionsDomains {
     @Getter
     @Setter
     private Domains domain;
+
+
 }

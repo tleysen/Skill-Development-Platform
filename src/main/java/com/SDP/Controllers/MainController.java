@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping(path="/req") // This means URL's start with /XXX (after Application path)
 public class MainController {
+
     @Autowired
     private EmployeesRepository employeesRepository;
     @Autowired
@@ -26,13 +27,15 @@ public class MainController {
     private FunctionsDomainsRepository functionsDomainsRepository;
     @Autowired
     private FunctionsRepository functionsRepository;
+
     private CourseRecommendation courseRecommendation;
     private Courses recommended_course;
     private Employees selectedEmployee;
     private Functions employeesFunction;
     private List<FunctionsDomains> listDomainsInFunction;
     private List<Domains> domainsList;
-    private int domainid;
+
+    private int functionid;
 
 
     //@GetMapping(path="/add") // Map ONLY GET Requests
@@ -61,10 +64,10 @@ public class MainController {
     List<FunctionsDomains> getFDS(){
         selectedEmployee = employeesRepository.findById(1);
         employeesFunction = selectedEmployee.getFunction();
-        domainid = employeesFunction.getId();
+        functionid = employeesFunction.getId();
 
         //ERROR, Table 'skill_development_db.functions_domains' doesn't exist
-        listDomainsInFunction = functionsDomainsRepository.findAllById(domainid);
+        listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(functionid);
 
         return listDomainsInFunction;
     }

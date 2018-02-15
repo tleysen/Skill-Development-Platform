@@ -11,5 +11,5 @@ public interface FunctionsDomainsRepository extends CrudRepository<FunctionsDoma
 
     List<FunctionsDomains> findAllByFunctionEquals(Functions function);
 
-    List<FunctionsDomains> findAllById(int id);
+    List<FunctionsDomains> findAllByFunction_Id(int id);
 }

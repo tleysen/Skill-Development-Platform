@@ -25,6 +25,8 @@ public class Domains {
     @Setter
     private boolean type;
 
-
+    @Getter
+    @Setter
+    private int priority;
 
 }
