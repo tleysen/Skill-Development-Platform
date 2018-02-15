@@ -22,4 +22,7 @@ public class Functions {
     @Setter
     private String name;
 
+    public Integer getId() {
+        return id;
+    }
 }

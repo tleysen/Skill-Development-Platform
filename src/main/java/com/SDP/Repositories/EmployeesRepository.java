@@ -1,6 +1,7 @@
 package com.SDP.Repositories;
 
 import com.SDP.Models.Employees;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 // CRUD refers Create, Read, Update, Delete
 
 public interface EmployeesRepository extends CrudRepository<Employees, Long> {
-    Employees findOne(int id);
+    Employees findById(int id);
 }
