@@ -10,24 +10,36 @@ import java.sql.Date;
 public class Scores {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Getter @Setter private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    @Setter
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="iddomains")
+    @JoinColumn(name = "iddomains")
 
-    @Getter @Setter private Domains domain;
+    @Getter
+    @Setter
+    private Domains domain;
 
     @ManyToOne
-    @JoinColumn(name="idusers")
+    @JoinColumn(name = "idemployees")
 
-    @Getter @Setter private Users user;
+    @Getter
+    @Setter
+    private Employees employee;
 
-    @Getter @Setter private int points;
+    @Getter
+    @Setter
+    private int points;
 
-    @Getter @Setter private String remarks;
+    @Getter
+    @Setter
+    private String remarks;
 
-    @Getter @Setter private Date date;
+    @Getter
+    @Setter
+    private Date date;
 
 
 }

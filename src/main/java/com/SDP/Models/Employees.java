@@ -7,15 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
-public class Domains {
-
+public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
-    Integer id;
+    private Integer id;
 
     @Getter
     @Setter
@@ -23,8 +24,19 @@ public class Domains {
 
     @Getter
     @Setter
-    private boolean type;
+    private String lastname;
 
+    @Getter
+    @Setter
+    private Date birth_date;
+
+    @Getter
+    @Setter
+    private Date hiring_date;
+
+    @Getter
+    @Setter
+    private String sex;
 
 
 }

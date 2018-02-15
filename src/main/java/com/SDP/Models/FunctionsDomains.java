@@ -3,28 +3,26 @@ package com.SDP.Models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Domains {
-
+public class FunctionsDomains {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
     Integer id;
 
+    @JoinColumn(name = "idfunctions")
+    @OneToOne
     @Getter
     @Setter
-    private String name;
+    private Functions function;
 
+
+    @JoinColumn(name = "iddomains")
+    @OneToOne
     @Getter
     @Setter
-    private boolean type;
-
-
-
+    private Domains domain;
 }

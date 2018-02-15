@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
-public class Domains {
+public class Functions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +21,5 @@ public class Domains {
     @Getter
     @Setter
     private String name;
-
-    @Getter
-    @Setter
-    private boolean type;
-
-
 
 }
