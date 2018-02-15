@@ -10,5 +10,5 @@ import java.util.List;
 // CRUD refers Create, Read, Update, Delete
 
 public interface EmployeesRepository extends CrudRepository<Employees, Long> {
-    List<Employees> findById(int id);
+    Employees findOne(int id);
 }

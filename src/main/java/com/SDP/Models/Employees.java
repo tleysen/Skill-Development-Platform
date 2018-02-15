@@ -37,9 +37,13 @@ public class Employees {
 
     @ManyToOne
     @JoinColumn(name = "idfunction")
-    @Getter
-    @Setter
     Functions function;
 
+    public Functions getFunction() {
+        return function;
+    }
 
+    public void setFunction(Functions function) {
+        this.function = function;
+    }
 }
