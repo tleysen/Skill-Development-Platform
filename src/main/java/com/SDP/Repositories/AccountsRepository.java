@@ -1,4 +1,7 @@
 package com.SDP.Repositories;
 
-public interface AccountsRepository {
+import com.SDP.Models.Accounts;
+import org.springframework.data.repository.CrudRepository;
+
+public interface AccountsRepository extends CrudRepository<Accounts, Long> {
 }

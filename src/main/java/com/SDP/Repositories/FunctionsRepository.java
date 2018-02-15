@@ -1,4 +1,7 @@
 package com.SDP.Repositories;
 
-public interface FunctionsRepository {
+import com.SDP.Models.Functions;
+import org.springframework.data.repository.CrudRepository;
+
+public interface FunctionsRepository extends CrudRepository<Functions, Long> {
 }
