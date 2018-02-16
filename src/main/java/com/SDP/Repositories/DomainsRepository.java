@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface DomainsRepository extends CrudRepository<Domains, Long> {
 
-    List<Domains> findById(int id);
+    Domains findById(int id);
 }

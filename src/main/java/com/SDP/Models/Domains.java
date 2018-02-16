@@ -29,4 +29,7 @@ public class Domains {
     @Setter
     private int priority;
 
+    public String getName() {
+        return name;
+    }
 }

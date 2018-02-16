@@ -47,4 +47,11 @@ public class Employees {
         this.function = function;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 }

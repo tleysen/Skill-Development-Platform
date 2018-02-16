@@ -5,10 +5,7 @@ import com.SDP.Models.*;
 import com.SDP.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,16 +14,25 @@ import java.util.List;
 @RequestMapping(path="/req") // This means URL's start with /XXX (after Application path)
 public class MainController {
 
+    //------------------------------------------------------------------------------------------------------------------
+    //*****                                     REPOSITORIES                                                       *****
+    //------------------------------------------------------------------------------------------------------------------
+
+
     @Autowired
     private EmployeesRepository employeesRepository;
     @Autowired
-    private DomainsRepository domainRepository;
+    private DomainsRepository domainsRepository;
     @Autowired
     private ScoresRepository scoreRepository;
     @Autowired
     private FunctionsDomainsRepository functionsDomainsRepository;
     @Autowired
     private FunctionsRepository functionsRepository;
+
+    //------------------------------------------------------------------------------------------------------------------
+    //*****                                     VARIABLES                                                          *****
+    //------------------------------------------------------------------------------------------------------------------
 
     private CourseRecommendation courseRecommendation;
     private Courses recommended_course;
@@ -38,18 +44,9 @@ public class MainController {
     private int functionid;
 
 
-    //@GetMapping(path="/add") // Map ONLY GET Requests
-    //public @ResponseBody String addNewUser (@RequestParam String name
-    //		, @RequestParam String email) {
-    //	// @ResponseBody means the returned String is the response, not a view name
-    //	// @RequestParam means it is a parameter from the GET or POST request
-//
-    //	Employees n = new Employees();
-    //	n.setName(name);
-    //	n.setLastname(email);
-    //	userRepository.save(n);
-    //	return "Saved";
-    //}
+    //------------------------------------------------------------------------------------------------------------------
+    //*****                                     PARAMLESS GET'S                                                    *****
+    //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping(path = "/allusers")
     public @ResponseBody
@@ -61,21 +58,20 @@ public class MainController {
 
     @GetMapping(path = "/testurl")
     public @ResponseBody
-    List<FunctionsDomains> getFDS(){
+    List<FunctionsDomains> getFDS() {
         selectedEmployee = employeesRepository.findById(1);
         employeesFunction = selectedEmployee.getFunction();
         functionid = employeesFunction.getId();
-
-        //ERROR, Table 'skill_development_db.functions_domains' doesn't exist
         listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(functionid);
 
+        //ITTERATIE OVER FUNCTDOMEIN -> DOMEIN
         return listDomainsInFunction;
     }
 
     @GetMapping(path = "/alldomains")
     public @ResponseBody
     Iterable<Domains> getAllDomains() {
-        return domainRepository.findAll();
+        return domainsRepository.findAll();
     }
 
     @GetMapping(path = "/allscores")
@@ -84,17 +80,49 @@ public class MainController {
         return scoreRepository.findAll();
     }
 
-    //@GetMapping(path = "/userbyid")
-    //public @ResponseBody
-    //Employees getUsersById(@RequestParam int id) {
-    //    return employeesRepository.findOne(1);
-//
-    //}
+    //------------------------------------------------------------------------------------------------------------------
+    //*****                                     PARAMETER GET'S                                                    *****
+    //------------------------------------------------------------------------------------------------------------------
 
-    @GetMapping(path = "/domainsbyid")
+    @RequestMapping(value = "/userbyid/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    Iterable<Domains> getDomainsById(@RequestParam int id) {
-        return domainRepository.findById(id);
+    Employees getUserById(
+            @PathVariable("id") String id) {
+        return employeesRepository.findById(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/functionbyid/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Functions getFunctionById(
+            @PathVariable("id") String id) {
+        return functionsRepository.findById(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/domainbyid/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Domains getDomainById(
+            @PathVariable("id") String id) {
+        return domainsRepository.findById(Integer.parseInt(id));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    //****                                     PARAMETER POST'S                                                    *****
+    //------------------------------------------------------------------------------------------------------------------
+
+    @GetMapping(path = "/addEmployee")
+    public @ResponseBody
+    String addNewEmployee(@RequestParam String name
+            , @RequestParam String lastname) {
+
+        selectedEmployee = employeesRepository.findById(1);
+        employeesFunction = selectedEmployee.getFunction();
+
+        Employees n = new Employees();
+        n.setName(name);
+        n.setLastname(lastname);
+        n.setFunction(employeesFunction);
+        employeesRepository.save(n);
+        return "Saved";
     }
 
 
