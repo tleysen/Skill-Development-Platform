@@ -40,6 +40,7 @@ public class MainController {
     private Functions employeesFunction;
     private List<FunctionsDomains> listDomainsInFunction;
     private List<Domains> domainsList;
+    private List<Employees> employeesList;
 
     private int functionid;
 
@@ -58,14 +59,19 @@ public class MainController {
 
     @GetMapping(path = "/testurl")
     public @ResponseBody
-    List<FunctionsDomains> getFDS() {
-        selectedEmployee = employeesRepository.findById(1);
-        employeesFunction = selectedEmployee.getFunction();
-        functionid = employeesFunction.getId();
-        listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(functionid);
+    Employees getFDS() {
 
-        //ITTERATIE OVER FUNCTDOMEIN -> DOMEIN
-        return listDomainsInFunction;
+        selectedEmployee = courseRecommendation.searchCourseForEmployeeId(1);
+
+        //selectedEmployee = employeesRepository.findById(1);
+        //employeesFunction = selectedEmployee.getFunction();
+        //functionid = employeesFunction.getId();
+        //listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(functionid);
+//
+        ////ITTERATIE OVER FUNCTDOMEIN -> DOMEIN
+        //return listDomainsInFunction;
+
+        return selectedEmployee;
     }
 
     @GetMapping(path = "/alldomains")
@@ -124,6 +130,5 @@ public class MainController {
         employeesRepository.save(n);
         return "Saved";
     }
-
 
 }
