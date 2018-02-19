@@ -32,4 +32,8 @@ public class Domains {
     public String getName() {
         return name;
     }
+
+    public Integer getId() {
+        return id;
+    }
 }

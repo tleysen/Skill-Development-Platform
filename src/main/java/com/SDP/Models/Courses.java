@@ -25,8 +25,4 @@ public class Courses {
     @Setter
     Domains domain;
 
-    @Getter
-    @Setter
-    Date completiondate;
-
 }

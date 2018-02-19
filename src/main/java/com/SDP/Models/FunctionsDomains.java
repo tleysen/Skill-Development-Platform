@@ -27,5 +27,7 @@ public class FunctionsDomains {
     @Setter
     private Domains domain;
 
-
+    public Domains getDomain() {
+        return domain;
+    }
 }

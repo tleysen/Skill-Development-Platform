@@ -3,6 +3,7 @@ package com.SDP.Controllers;
 import com.SDP.BLL.CourseRecommendation;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
+import org.hibernate.context.spi.CurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.List;
 public class MainController {
 
     //------------------------------------------------------------------------------------------------------------------
-    //*****                                     REPOSITORIES                                                       *****
+    //*****                                     INSTANCES                                                          *****
     //------------------------------------------------------------------------------------------------------------------
 
 
@@ -29,12 +30,14 @@ public class MainController {
     private FunctionsDomainsRepository functionsDomainsRepository;
     @Autowired
     private FunctionsRepository functionsRepository;
+    @Autowired
+    private CourseRecommendation courseRecommendation;
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     VARIABLES                                                          *****
     //------------------------------------------------------------------------------------------------------------------
 
-    private CourseRecommendation courseRecommendation;
+
     private Courses recommended_course;
     private Employees selectedEmployee;
     private Functions employeesFunction;
@@ -54,24 +57,6 @@ public class MainController {
     Iterable<Employees> getAllUsers() {
         // This returns a JSON or XML with the users
         return employeesRepository.findAll();
-    }
-
-
-    @GetMapping(path = "/testurl")
-    public @ResponseBody
-    Employees getFDS() {
-
-        selectedEmployee = courseRecommendation.searchCourseForEmployeeId(1);
-
-        //selectedEmployee = employeesRepository.findById(1);
-        //employeesFunction = selectedEmployee.getFunction();
-        //functionid = employeesFunction.getId();
-        //listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(functionid);
-//
-        ////ITTERATIE OVER FUNCTDOMEIN -> DOMEIN
-        //return listDomainsInFunction;
-
-        return selectedEmployee;
     }
 
     @GetMapping(path = "/alldomains")
@@ -110,6 +95,19 @@ public class MainController {
             @PathVariable("id") String id) {
         return domainsRepository.findById(Integer.parseInt(id));
     }
+
+    @GetMapping(path = "/domainbyemployeeid/{id}")
+    public @ResponseBody
+    List<Domains> getFDSE(@PathVariable("id") String id) {
+        return courseRecommendation.GetDomainsForEmployeeId(Integer.parseInt(id));
+    }
+
+    @GetMapping(path = "/coursesbydomainid/{id}")
+    public @ResponseBody
+    List<Courses> getCoursesForDomain(@PathVariable("id") String id) {
+        return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****

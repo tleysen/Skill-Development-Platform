@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name="employeecourses")
@@ -27,4 +28,21 @@ public class EmployeeCourses {
     @Setter
     private Employees employee;
 
+    Date completion_date;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Courses getCourse() {
+        return course;
+    }
+
+    public Employees getEmployee() {
+        return employee;
+    }
+
+    public Date getCompletion_date() {
+        return completion_date;
+    }
 }
