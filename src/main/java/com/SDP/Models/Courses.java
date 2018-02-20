@@ -25,4 +25,16 @@ public class Courses {
     @Setter
     Domains domain;
 
+    @Override
+    public String toString() {
+        return "Courses{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", domain=" + domain +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
 }

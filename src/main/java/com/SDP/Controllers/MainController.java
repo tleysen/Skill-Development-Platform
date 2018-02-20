@@ -108,6 +108,12 @@ public class MainController {
         return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
     }
 
+    @GetMapping(path = "/recommendCourse/{id}")
+    public @ResponseBody
+    String getCoursesForEmp(@PathVariable("id") String id) {
+        return courseRecommendation.RecommendCourseByPriority(Integer.parseInt(id));
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****
@@ -128,5 +134,6 @@ public class MainController {
         employeesRepository.save(n);
         return "Saved";
     }
+
 
 }

@@ -54,4 +54,8 @@ public class Employees {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public Integer getId() {
+        return id;
+    }
 }

@@ -13,21 +13,15 @@ public class Domains {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     Integer id;
 
-    @Getter
-    @Setter
     private String name;
 
-    @Getter
-    @Setter
-    private boolean type;
+    private int type;
 
-    @Getter
-    @Setter
     private int priority;
+
+
 
     public String getName() {
         return name;
@@ -35,5 +29,9 @@ public class Domains {
 
     public Integer getId() {
         return id;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
