@@ -9,7 +9,5 @@ import java.util.List;
 public interface FunctionsDomainsRepository extends CrudRepository<FunctionsDomains, Long> {
 
 
-    List<FunctionsDomains> findAllByFunctionEquals(Functions function);
-
     List<FunctionsDomains> findAllByFunction_Id(int id);
 }

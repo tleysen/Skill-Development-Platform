@@ -37,15 +37,9 @@ public class MainController {
     //*****                                     VARIABLES                                                          *****
     //------------------------------------------------------------------------------------------------------------------
 
-
-    private Courses recommended_course;
     private Employees selectedEmployee;
     private Functions employeesFunction;
-    private List<FunctionsDomains> listDomainsInFunction;
-    private List<Domains> domainsList;
-    private List<Employees> employeesList;
 
-    private int functionid;
 
 
     //------------------------------------------------------------------------------------------------------------------
@@ -98,7 +92,7 @@ public class MainController {
 
     @GetMapping(path = "/domainbyemployeeid/{id}")
     public @ResponseBody
-    List<Domains> getFDSE(@PathVariable("id") String id) {
+    List<Domains> getDomainsForEmployeeId(@PathVariable("id") String id) {
         return courseRecommendation.GetDomainsForEmployeeId(Integer.parseInt(id));
     }
 

@@ -2,10 +2,7 @@ package com.SDP.BLL;
 
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class CourseRecommendation {
     private DomainsRepository domainsRepository;
 
 
-    private List<FunctionsDomains> listDomainsInFunction = new ArrayList<FunctionsDomains>();
+    private List<FunctionsDomains> functionsDomainsList = new ArrayList<FunctionsDomains>();
     private List<Domains> domainsList = new ArrayList<Domains>();
     private List<String> domainsIdList = new ArrayList<String>();
     private List<Courses> coursesList = new ArrayList<Courses>();
@@ -50,12 +47,12 @@ public class CourseRecommendation {
     private Iterable<Employees> allEmployeesIterable;
     private Iterable<EmployeeCourses> allCoursesIterable;
 
-    private boolean
 
 
-    public void Init(){
 
-        listDomainsInFunction.clear();
+    private void Init(){
+
+        functionsDomainsList.clear();
         domainsIdList.clear();
         domainsList.clear();
         coursesList.clear();
@@ -65,13 +62,13 @@ public class CourseRecommendation {
 
     }
 
-    public List<Domains> CoupledDomainsByFunctionid(int id){
+    private List<Domains> CoupledDomainsByFunctionid(int id){
 
         Init();
 
-        listDomainsInFunction = functionsDomainsRepository.findAllByFunction_Id(id);
+        functionsDomainsList = functionsDomainsRepository.findAllByFunction_Id(id);
 
-        for (FunctionsDomains functiondomain : listDomainsInFunction) {
+        for (FunctionsDomains functiondomain : functionsDomainsList) {
             domainid = functiondomain.getDomain().getId().toString();
             domainsIdList.add(counter, domainid);
             counter++;
@@ -96,15 +93,13 @@ public class CourseRecommendation {
         allCoursesIterable = employeeCoursesRepository.findAll();
         allCoursesIterable.forEach(allCoursesList::add);
 
+
         for (EmployeeCourses course : allCoursesList) {
             if (course.getCourse().getId() == course_id && course.getEmployee().getId() == employee_id) {
                 return true;
-                break;
-            } else {
-                return false;
-                break;
             }
         }
+        return false;
     }
 
     public String RecommendCourseByPriority(int employee_id){
@@ -141,7 +136,7 @@ public class CourseRecommendation {
 
     }
 
-    public List<Courses> GetCoursesForDomain(int id){
+    private List<Courses> GetCoursesForDomain(int id){
 
         Init();
 
@@ -151,7 +146,6 @@ public class CourseRecommendation {
     }
 
     public List<Domains> GetDomainsForEmployeeId(int id){
-
         Init();
 
         selectedEmployee = employeesRepository.findById(id);
