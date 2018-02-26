@@ -10,9 +10,9 @@ sdp.config(function($routeProvider) {
         })
 
         // route for the about page
-        .when('/users', {
-            templateUrl : 'pages/users.html',
-            controller  : 'usersController'
+        .when('/employees', {
+            templateUrl : 'pages/employees.html',
+            controller  : 'employeesController'
         })
 
         .when('/domains', {
@@ -64,7 +64,7 @@ sdp.controller('mainController', function($scope,$http) {
     }
 });
 
-    sdp.controller('usersController', function($scope,$http) {
+    sdp.controller('employeesController', function($scope, $http) {
 
         var state;
 

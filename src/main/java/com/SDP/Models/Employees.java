@@ -11,28 +11,16 @@ import java.util.List;
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     private Integer id;
 
-    @Getter
-    @Setter
     private String name;
 
-    @Getter
-    @Setter
     private String lastname;
 
-    @Getter
-    @Setter
     private Date birth_date;
 
-    @Getter
-    @Setter
     private Date hiring_date;
 
-    @Getter
-    @Setter
     private String sex;
 
     @ManyToOne
@@ -41,6 +29,26 @@ public class Employees {
 
     public Functions getFunction() {
         return function;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public Date getBirth_date() {
+        return birth_date;
+    }
+
+    public Date getHiring_date() {
+        return hiring_date;
+    }
+
+    public String getSex() {
+        return sex;
     }
 
     public void setFunction(Functions function) {
@@ -64,7 +72,7 @@ public class Employees {
                 ", birth_date=" + birth_date +
                 ", hiring_date=" + hiring_date +
                 ", sex='" + sex + '\'' +
-                ", function=" + function +
+                ", function=" + function.toString() +
                 '}';
     }
 

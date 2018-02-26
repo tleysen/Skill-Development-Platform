@@ -49,8 +49,9 @@ public class MainController {
     @GetMapping(path = "/allusers")
     public @ResponseBody
     Iterable<Employees> getAllUsers() {
-        // This returns a JSON or XML with the users
+        System.out.println(employeesRepository.findAll());
         return employeesRepository.findAll();
+
     }
 
     @GetMapping(path = "/alldomains")
