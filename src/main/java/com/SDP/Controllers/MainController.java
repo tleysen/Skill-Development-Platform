@@ -1,6 +1,7 @@
 package com.SDP.Controllers;
 
 import com.SDP.BLL.CourseRecommendation;
+import com.SDP.BLL.Settings;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
 import org.hibernate.context.spi.CurrentSessionContext;
@@ -32,6 +33,8 @@ public class MainController {
     private FunctionsRepository functionsRepository;
     @Autowired
     private CourseRecommendation courseRecommendation;
+    @Autowired
+    private Settings appSettings;
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     VARIABLES                                                          *****
@@ -64,6 +67,10 @@ public class MainController {
     Iterable<Scores> getAllScores() {
         return scoreRepository.findAll();
     }
+
+    @GetMapping(path = "/datapw")
+    public @ResponseBody
+    String getDataPw(){ return appSettings.getDbpw(); }
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMETER GET'S                                                    *****

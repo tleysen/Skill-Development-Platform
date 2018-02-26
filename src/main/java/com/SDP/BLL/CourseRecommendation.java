@@ -109,7 +109,6 @@ public class CourseRecommendation {
         domainsList = GetDomainsForEmployeeId(employee_id);
 
 
-
         for(Domains domain : domainsList) {
             if(selectedDomain == null || domain.getPriority() > selectedDomain.getPriority()){
                 selectedDomain = domain;

@@ -11,18 +11,12 @@ public class Courses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     Integer id;
 
-    @Getter
-    @Setter
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "iddomain")
-    @Getter
-    @Setter
     Domains domain;
 
     @Override
