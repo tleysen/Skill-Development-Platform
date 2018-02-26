@@ -20,43 +20,40 @@
     <script src="js/hello.js"></script>
 
 
-    <!-- FONTS -->
 
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 
-    <title>SDP</title>
+    <title>Vibe</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body ng-controller="mainController">
 
-<!-- NAVBAR -->
-<nav>
-    <div class="sidebar">
-        <div class="sidebar-block">
-            <a href="#!/home" class="custom-link"><i class="fa fa-home"></i></a>
-        </div>
-        <div class="sidebar-block">
-            <a href="#!/users" class="custom-link"><i class="fa fa-users"></i></a>
-        </div>
-        <div class="sidebar-block">
-            <a href="#!/graph" class="custom-link"><i class="fa fa-signal"></i></a>
-        </div>
-        <div class="sidebar-block">
-            <a href="#!/domains" class="custom-link"><i class="fa fa-th-list"></i></a>
-        </div>
-
-    </div>
-</nav>
-<!-- MAIN CONTENT AND INJECTED VIEWS -->
-<div id="main">
-    <div ng-view></div>
-
-    <!-- angular templating -->
-    <!-- this is where content will be injected -->
+<!-- BANNER -->
+<div class="banner">
+    <div class="centered-text-banner"><h1>Vibe.</h1></div>
+    <img src="img/banner.jpeg" alt="banner" width="100%">
 
 </div>
+<div class="banner-border">
+    <!-- <div class="circle">
+        test
+    </div> -->
+</div>
+
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+<div class="container">
+    <div id="main" class ="jumbotron">
+        <div ng-view></div>
+    </div>
+</div>
 </body>
-<script src="js/charting.js"></script>
 </html>

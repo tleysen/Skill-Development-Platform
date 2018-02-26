@@ -2,26 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcc6123b-fdc5-40d8-a7af-9c0709ec454a" name="Default" comment="- Bugfixes&#10;- Testing push straight out of IDE">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/banner.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/PropertiesController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/index1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/BLL/CourseRecommendation.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/BLL/CourseRecommendation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Models/Domains.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Models/Domains.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Models/EmployeeCourses.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Models/EmployeeCourses.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Models/Employees.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Models/Employees.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Models/Functions.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Models/Functions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Models/FunctionsDomains.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Models/FunctionsDomains.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Domains.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Domains.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Models/EmployeeCourses.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Models/EmployeeCourses.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Employees.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Employees.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Functions.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Models/Functions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Models/FunctionsDomains.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Models/FunctionsDomains.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/pages/home.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/style.css" afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" />
@@ -50,21 +30,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+            <state relative-caret-position="425">
+              <caret line="54" column="27" lean-forward="true" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="365">
+              <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -170,8 +150,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/index1.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/pages/home.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/sketch.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/style.css" />
       </list>
     </option>
   </component>
@@ -472,12 +452,12 @@
       <workItem from="1519207496977" duration="1198000" />
       <workItem from="1519288504110" duration="2953000" />
       <workItem from="1519303574885" duration="1270000" />
-      <workItem from="1519632320705" duration="12445000" />
+      <workItem from="1519632320705" duration="13670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94196000" />
+    <option name="totallyTimeSpent" value="95421000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -954,10 +934,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/style.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="54" column="27" lean-forward="true" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -970,10 +950,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+        <state relative-caret-position="365">
+          <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding />
         </state>
       </provider>
