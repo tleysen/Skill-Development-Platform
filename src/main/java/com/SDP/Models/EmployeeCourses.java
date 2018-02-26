@@ -45,4 +45,14 @@ public class EmployeeCourses {
     public Date getCompletion_date() {
         return completion_date;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeCourses{" +
+                "id=" + id +
+                ", course=" + course +
+                ", employee=" + employee +
+                ", completion_date=" + completion_date +
+                '}';
+    }
 }

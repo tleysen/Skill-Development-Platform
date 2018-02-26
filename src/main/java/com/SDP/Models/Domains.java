@@ -34,4 +34,14 @@ public class Domains {
     public int getPriority() {
         return priority;
     }
+
+    @Override
+    public String toString() {
+        return "Domains{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", priority=" + priority +
+                '}';
+    }
 }

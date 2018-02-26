@@ -27,6 +27,8 @@ public class FunctionsDomains {
     @Setter
     private Domains domain;
 
+    private int priority;
+
     public Domains getDomain() {
         return domain;
     }

@@ -55,7 +55,22 @@ public class Employees {
         this.lastname = lastname;
     }
 
+    @Override
+    public String toString() {
+        return "Employees{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birth_date=" + birth_date +
+                ", hiring_date=" + hiring_date +
+                ", sex='" + sex + '\'' +
+                ", function=" + function +
+                '}';
+    }
+
     public Integer getId() {
         return id;
+
+
     }
 }

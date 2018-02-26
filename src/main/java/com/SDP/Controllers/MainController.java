@@ -31,10 +31,7 @@ public class MainController {
     private FunctionsDomainsRepository functionsDomainsRepository;
     @Autowired
     private FunctionsRepository functionsRepository;
-    @Autowired
-    private CourseRecommendation courseRecommendation;
-    @Autowired
-    private Settings appSettings;
+
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     VARIABLES                                                          *****
@@ -68,10 +65,6 @@ public class MainController {
         return scoreRepository.findAll();
     }
 
-    @GetMapping(path = "/datapw")
-    public @ResponseBody
-    String getDataPw(){ return appSettings.getDbpw(); }
-
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMETER GET'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
@@ -95,24 +88,6 @@ public class MainController {
     Domains getDomainById(
             @PathVariable("id") String id) {
         return domainsRepository.findById(Integer.parseInt(id));
-    }
-
-    @GetMapping(path = "/domainbyemployeeid/{id}")
-    public @ResponseBody
-    List<Domains> getDomainsForEmployeeId(@PathVariable("id") String id) {
-        return courseRecommendation.GetDomainsForEmployeeId(Integer.parseInt(id));
-    }
-
-    @GetMapping(path = "/coursesbydomainid/{id}")
-    public @ResponseBody
-    List<Courses> getCoursesForDomain(@PathVariable("id") String id) {
-        return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
-    }
-
-    @GetMapping(path = "/recommendCourse/{id}")
-    public @ResponseBody
-    String getCoursesForEmp(@PathVariable("id") String id) {
-        return courseRecommendation.RecommendCourseByPriority(Integer.parseInt(id));
     }
 
 

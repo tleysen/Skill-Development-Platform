@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -46,6 +47,7 @@ public class CourseRecommendation {
     private Courses checkCourse;
     private Iterable<Employees> allEmployeesIterable;
     private Iterable<EmployeeCourses> allCoursesIterable;
+    private int[][] idMatrix;
 
 
 
@@ -58,6 +60,7 @@ public class CourseRecommendation {
         coursesList.clear();
         employeeCoursesList.clear();
         followedCoursesList.clear();
+        allCoursesList.clear();
         counter = 0;
 
     }
@@ -87,30 +90,31 @@ public class CourseRecommendation {
 
     }
 
-
     public boolean checkIfCourseFollowed(int employee_id, int course_id) {
+
+        Init();
 
         allCoursesIterable = employeeCoursesRepository.findAll();
         allCoursesIterable.forEach(allCoursesList::add);
-
 
         for (EmployeeCourses course : allCoursesList) {
             if (course.getCourse().getId() == course_id && course.getEmployee().getId() == employee_id) {
                 return true;
             }
         }
+        System.out.println("false");
         return false;
     }
 
-    public String RecommendCourseByPriority(int employee_id){
+    public String RecommendCourseByPriority(int employee_id) {
 
         Init();
 
         domainsList = GetDomainsForEmployeeId(employee_id);
 
 
-        for(Domains domain : domainsList) {
-            if(selectedDomain == null || domain.getPriority() > selectedDomain.getPriority()){
+        for (Domains domain : domainsList) {
+            if (selectedDomain == null || domain.getPriority() > selectedDomain.getPriority()) {
                 selectedDomain = domain;
             }
 
@@ -118,15 +122,13 @@ public class CourseRecommendation {
 
         coursesForDomainList = GetCoursesForDomain(selectedDomain.getId());
 
-        if(coursesForDomainList.size() > 1) {
+        if (coursesForDomainList.size() > 1) {
             int rnd = rand.nextInt(coursesForDomainList.size());
             recommendedCourse = coursesForDomainList.get(rnd);
-        }
-        else if(coursesForDomainList.size() == 1) {
+        } else if (coursesForDomainList.size() == 1) {
 
             recommendedCourse = coursesForDomainList.get(0);
-        }
-        else {
+        } else {
             return "No courses found";
         }
 
