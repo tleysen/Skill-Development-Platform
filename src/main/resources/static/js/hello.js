@@ -67,9 +67,9 @@ sdp.controller('mainController', function($scope,$http) {
     sdp.controller('employeesController', function($scope, $http) {
 
         var state;
+        var data;
+        var recently_hired = false;
 
-        // create a message to display in our view
-        $scope.message = 'Everyone come and see how good I look!';
         $http({
             method: 'GET',
             url: '/req/allusers'
@@ -80,7 +80,5 @@ sdp.controller('mainController', function($scope,$http) {
             $scope.users = error;
         });
 
-        $scope.loadDomains = function () {
-            window.location.replace("/domains");
-        };
+
 });

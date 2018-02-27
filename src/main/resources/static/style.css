@@ -17,7 +17,18 @@
     height: 150px;
     width: 100%;
     overflow: hidden;
-    background-color: gold;
+    background-image: url("img/pink dust.png");
+}
+
+.banner-border{
+    height: 5px;
+    width: 100%;
+    background: linear-gradient(0deg, #FFDA40, #320600);
+    background: linear-gradient(0deg, rgba(255, 218, 64, 0), rgba(0, 6, 0, 1));
+}
+
+body{
+    background-image: url("img/vertical-waves.png");
 }
 
 
@@ -44,14 +55,20 @@
 .custom-navbar{
     height: 50px;
     width: auto;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 15px auto 15px auto;
+    padding-left: 10px;
 }
 
 .navbar-button{
     border-bottom: 1px solid darkgray;
-    padding: 15px 25px 15px 25px;
+    padding: 10px 25px 3px 25px;
     min-width: 100px;
-    margin: auto 0 auto auto;
     text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .navbar-button-right{
@@ -64,12 +81,7 @@
 
 }
 
-.banner-border{
-    height: 10px;
-    width: 100%;
-    background: linear-gradient(0deg, #FFDA40, #320600);
-    background: linear-gradient(0deg, rgba(255, 218, 64, 0), rgba(0, 6, 0, 1));
-}
+
 
 .centered-text-banner {
     position: absolute;
@@ -94,7 +106,8 @@
     line-height: 1.428571429;
     border-radius: 15px;
     border-color: gray;
-    color: gray;
+    background-color: #3E3C3D;
+    color: white;
 }
 
 
@@ -175,7 +188,9 @@
  }
 
 .main-content{
-    margin-top: 70px;
+    padding: 64px 32px 64px 32px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 

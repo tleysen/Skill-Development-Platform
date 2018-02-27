@@ -3,7 +3,7 @@
         <div class="col-lg-4">
             <div class="card font2-black" style="width: 18rem;" ng-repeat="u in users">
                 <div class="card-body">
-                    <h5 class="card-title">{{u.name}} {{u.lastname}}</h5>
+                    <h5 class="card-title">{{u.name}} {{u.lastname}}<span ng-if="recently_hired" class="badge badge-secondary">New</span></h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{u.function.name}}</h6>
                     <p class="card-text"><b></b></p>
                     <button type="button" class="btn btn-default btn-circle"><i class="fas fa-address-card"></i></button>
