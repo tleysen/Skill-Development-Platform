@@ -15,9 +15,19 @@ sdp.config(function($routeProvider) {
             controller  : 'employeesController'
         })
 
+        .when('/employeedetail', {
+            templateUrl : 'pages/employeedetail.html',
+            controller  : 'detailController'
+        })
+
         .when('/domains', {
             templateUrl : 'pages/domains.html',
             controller  : 'mainController'
+        })
+
+        .when('/courses', {
+            templateUrl: 'pages/courses.html',
+            controller: 'coursesController'
         })
 
         // route for the contact page
@@ -38,6 +48,7 @@ sdp.controller('mainController', function($scope,$http) {
         url: '/req/alldomains'
     }).then(function (success){
         $scope.domains = success.data;
+        console.log(success.data);
 
     },function (error){
         $scope.domains = error;
@@ -64,21 +75,46 @@ sdp.controller('mainController', function($scope,$http) {
     }
 });
 
-    sdp.controller('employeesController', function($scope, $http) {
+sdp.controller('employeesController', function($scope, $http) {
 
-        var state;
-        var data;
-        var recently_hired = false;
+        var employee_data;
 
         $http({
             method: 'GET',
             url: '/req/allusers'
         }).then(function (success) {
-            $scope.users = success.data;
+            employee_data = success.data;
+            $scope.users = employee_data;
+            console.log(employee_data);
 
         }, function (error) {
-            $scope.users = error;
+            employee_data = error;
         });
+
+
+
+
+
+});
+
+sdp.controller('coursesController', function($scope, $http) {
+
+    var courses_data;
+
+    $http({
+        method: 'GET',
+        url: '/req/allcourses'
+    }).then(function (success) {
+        courses_data = success.data;
+        $scope.courses = courses_data;
+        console.log(courses_data);
+
+    }, function (error) {
+        courses_data = error;
+    });
+
+
+
 
 
 });

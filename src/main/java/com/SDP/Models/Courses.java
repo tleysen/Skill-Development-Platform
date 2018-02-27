@@ -32,5 +32,23 @@ public class Courses {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Domains getDomain() {
+        return domain;
+    }
+
+    public void setDomain(Domains domain) {
+        this.domain = domain;
+    }
 }

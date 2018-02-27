@@ -31,6 +31,8 @@ public class MainController {
     private FunctionsDomainsRepository functionsDomainsRepository;
     @Autowired
     private FunctionsRepository functionsRepository;
+    @Autowired
+    private CoursesRepository coursesRepository;
 
 
     //------------------------------------------------------------------------------------------------------------------
@@ -49,9 +51,7 @@ public class MainController {
     @GetMapping(path = "/allusers")
     public @ResponseBody
     Iterable<Employees> getAllUsers() {
-        System.out.println(employeesRepository.findAll());
         return employeesRepository.findAll();
-
     }
 
     @GetMapping(path = "/alldomains")
@@ -59,6 +59,10 @@ public class MainController {
     Iterable<Domains> getAllDomains() {
         return domainsRepository.findAll();
     }
+
+    @GetMapping(path = "/allcourses")
+    public @ResponseBody
+    Iterable<Courses> getAllCourses() { return coursesRepository.findAll(); }
 
     @GetMapping(path = "/allscores")
     public @ResponseBody

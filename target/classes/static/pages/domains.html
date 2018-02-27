@@ -1,45 +1,15 @@
-<!-- home.html -->
 <div class="container" ng-controller="mainController">
-    <div class="col-8 row justify-content-center">
-        <div class="jumbotron">
-            <div class="name-select">
-                <button ng-click="nextType()" class="switch-select-left switch-select">
-                    <i class="fa fa-angle-left"></i>
-                </button>
-                <div class="switch-select-middle switch-select">
-                    {{type}}
-                </div>
-                <button ng-click="prevType()" class="switch-select-right switch-select">
-                    <i class="fa fa-angle-right"></i>
-                </button>
-            </div>
-            <h2>Domeinen:</h2>
-            <div class="list-container">
-                <div class="table-responsive table-spacing">
-                    <table class="table table-striped table-sm list-background">
-                        <thead>
-                        <tr>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Type
-                            </th>
-                            <th>
-                                Score
-                            </th>
-                        <tr/>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="d in domains">
-                            <td class="col-lg-4">{{d.name}}</td>
-                            <td class="col-lg-4">{{d.type}}</td>
-                            <td class="col-lg-4"></td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="d in domains">
+            <div class="card font2-black bg-stardust" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title font2">{{d.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Priority: {{d.priority}}</h6>
+                    <p class="card-text"><b></b></p>
+                    <button type="button" class="btn btn-default btn-circle font2-black"><i class="fas fa-address-card"></i></button>
                 </div>
             </div>
+            </br>
         </div>
     </div>
 </div>

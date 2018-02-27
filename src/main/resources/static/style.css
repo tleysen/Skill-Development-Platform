@@ -27,9 +27,26 @@
     background: linear-gradient(0deg, rgba(255, 218, 64, 0), rgba(0, 6, 0, 1));
 }
 
+.btn-save{
+    background-color: #98B740;
+}
+
+.btn-cancel{
+    background-color: #FF1A3E;
+}
+
 body{
     background-image: url("img/vertical-waves.png");
 }
+
+.bg-stardust{
+    background-image: url("img/stardust.png");
+}
+
+.bg-verticalwaves{
+    background-image: url("img/vertical-waves.png");
+}
+
 
 
 .font1{
@@ -44,6 +61,7 @@ body{
 
 .font2{
     font-family: 'Raleway', sans-serif;
+    color:white;
 }
 
 .font2-black{
@@ -55,7 +73,7 @@ body{
 .custom-navbar{
     height: 50px;
     width: auto;
-    background-color: white;
+    background-image: url("/img/brushed.png");
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin: 15px auto 15px auto;
@@ -106,8 +124,6 @@ body{
     line-height: 1.428571429;
     border-radius: 15px;
     border-color: gray;
-    background-color: #3E3C3D;
-    color: white;
 }
 
 
@@ -189,8 +205,9 @@ body{
 
 .main-content{
     padding: 64px 32px 64px 32px;
-    background-color: white;
+    background-image: url("/img/brushed.png");
     border-radius: 10px;
+
 }
 
 
