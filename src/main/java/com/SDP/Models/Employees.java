@@ -27,6 +27,8 @@ public class Employees {
     @JoinColumn(name = "idfunction")
     Functions function;
 
+    public Integer getId() { return id; }
+
     public Functions getFunction() {
         return function;
     }
@@ -63,6 +65,12 @@ public class Employees {
         this.lastname = lastname;
     }
 
+    public void setBirth_date(Date birth_date) { this.birth_date = birth_date; }
+
+    public void setHiring_date(Date hiring_date) { this.hiring_date = hiring_date; }
+
+    public void setSex(String sex) { this.sex = sex; }
+
     @Override
     public String toString() {
         return "Employees{" +
@@ -74,11 +82,5 @@ public class Employees {
                 ", sex='" + sex + '\'' +
                 ", function=" + function.toString() +
                 '}';
-    }
-
-    public Integer getId() {
-        return id;
-
-
     }
 }

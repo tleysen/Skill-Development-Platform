@@ -6,10 +6,16 @@ import com.SDP.Models.*;
 import com.SDP.Repositories.*;
 import org.hibernate.context.spi.CurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -33,7 +39,8 @@ public class MainController {
     private FunctionsRepository functionsRepository;
     @Autowired
     private CoursesRepository coursesRepository;
-
+    @Autowired
+    private CourseRecommendation courseRecommendation;
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     VARIABLES                                                          *****
@@ -41,6 +48,7 @@ public class MainController {
 
     private Employees selectedEmployee;
     private Functions employeesFunction;
+    private Functions selectedFunction;
 
 
 
@@ -70,6 +78,10 @@ public class MainController {
         return scoreRepository.findAll();
     }
 
+    @GetMapping(path = "/allfunctions")
+    public @ResponseBody
+    Iterable<Functions> getAllFunctions() { return functionsRepository.findAll(); }
+
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMETER GET'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
@@ -95,25 +107,55 @@ public class MainController {
         return domainsRepository.findById(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/coursesbyemployee/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Courses> coursesByEmployee(
+            @PathVariable("id") String id) {
+        return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
 
-    @GetMapping(path = "/addEmployee")
+    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    String addNewEmployee(@RequestParam String name
-            , @RequestParam String lastname) {
+    String addNewEmployee(@RequestParam("name") String name, @RequestParam("lastname") String lastname, @RequestParam("sex")
+            String sex, @RequestParam("employee_function") String employee_function, @RequestParam("birth_date")
+            String birth_date, @RequestParam("hiring_date") String hiring_date) {
 
-        selectedEmployee = employeesRepository.findById(1);
-        employeesFunction = selectedEmployee.getFunction();
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+
+        //selectedEmployee = employeesRepository.findById(1);
+        //employeesFunction = selectedEmployee.getFunction();
 
         Employees n = new Employees();
         n.setName(name);
         n.setLastname(lastname);
-        n.setFunction(employeesFunction);
+        //n.setFunction(employeesFunction);
+        n.setSex(sex);
+
+        try {
+            Date parsed_hiring = format.parse(hiring_date);
+            n.setHiring_date(new java.sql.Date(parsed_hiring.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Date parsed_birth = format.parse(birth_date);
+            n.setBirth_date(new java.sql.Date(parsed_birth.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        selectedFunction = functionsRepository.findByName(employee_function);
+        n.setFunction(selectedFunction);
+
         employeesRepository.save(n);
-        return "Saved";
+        System.out.println(n);
+        return "ok";
     }
 
 

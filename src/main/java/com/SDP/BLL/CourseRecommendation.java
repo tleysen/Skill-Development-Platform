@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public class CourseRecommendation {
     private List<Courses> followedCoursesList = new ArrayList<Courses>();
     private List<Courses> coursesForDomainList = new ArrayList<Courses>();
     private List<Employees> allEmployeesList = new ArrayList<Employees>();
-    private List<EmployeeCourses> allCoursesList = new ArrayList<EmployeeCourses>();
+    private List<EmployeeCourses> allEmployeeCoursesList = new ArrayList<EmployeeCourses>();
     private Random rand = new Random();
 
     private String domainid;
@@ -46,7 +45,8 @@ public class CourseRecommendation {
     private Employees checkEmployee;
     private Courses checkCourse;
     private Iterable<Employees> allEmployeesIterable;
-    private Iterable<EmployeeCourses> allCoursesIterable;
+    private Iterable<EmployeeCourses> allEmployeeCoursesIterable;
+    private Iterable<Courses>allCoursesIterable;
     private int[][] idMatrix;
 
 
@@ -60,7 +60,7 @@ public class CourseRecommendation {
         coursesList.clear();
         employeeCoursesList.clear();
         followedCoursesList.clear();
-        allCoursesList.clear();
+        allEmployeeCoursesList.clear();
         counter = 0;
 
     }
@@ -94,10 +94,10 @@ public class CourseRecommendation {
 
         Init();
 
-        allCoursesIterable = employeeCoursesRepository.findAll();
-        allCoursesIterable.forEach(allCoursesList::add);
+        allEmployeeCoursesIterable = employeeCoursesRepository.findAll();
+        allEmployeeCoursesIterable.forEach(allEmployeeCoursesList::add);
 
-        for (EmployeeCourses course : allCoursesList) {
+        for (EmployeeCourses course : allEmployeeCoursesList) {
             if (course.getCourse().getId() == course_id && course.getEmployee().getId() == employee_id) {
                 return true;
             }
@@ -159,16 +159,16 @@ public class CourseRecommendation {
 
         Init();
 
-        coursesList = coursesRepository.findAllByDomain_Id(id);
-        employeeCoursesList = employeeCoursesRepository.findAllByEmployee_Id(1);
+        allCoursesIterable = coursesRepository.findAll();
+        employeeCoursesList = employeeCoursesRepository.findAllByEmployee_Id(id);
 
         for (EmployeeCourses employeeCourses : employeeCoursesList) {
-
-            followedCoursesList.add(employeeCourses.getCourse());
-            counter++;
+            for (Courses course : allCoursesIterable){
+                if(course.getId() == employeeCourses.getCourse().getId()){
+                    followedCoursesList.add(employeeCourses.getCourse());
+                }
+            }
         }
-
-        counter = 0;
         return followedCoursesList;
     }
 }
