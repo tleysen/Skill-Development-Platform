@@ -217,7 +217,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     //CHARTING
 
     var d = new Date();
-    var month = new Array();
+    var month = [];
     month[0] = "January";
     month[1] = "February";
     month[2] = "March";

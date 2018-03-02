@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0527721b-219b-4fc0-b319-82b3de716740" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/js/details.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/js/details.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/SDP/Repositories/ScoresRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Repositories/ScoresRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/ScoresRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/ScoresRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index1.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index1.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/index1.html" afterPath="$PROJECT_DIR$/target/classes/static/index1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/hello.js" afterPath="$PROJECT_DIR$/target/classes/static/js/hello.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/pages/employeedetail.html" afterPath="$PROJECT_DIR$/target/classes/static/pages/employeedetail.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +27,8 @@
       <file leaf-file-name="employeedetail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="52" column="87" lean-forward="true" selection-start-line="52" selection-start-column="83" selection-end-line="52" selection-end-column="99" />
+            <state relative-caret-position="15">
+              <caret line="61" column="48" lean-forward="true" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -393,12 +381,12 @@
       <updated>1519721265341</updated>
       <workItem from="1519721266756" duration="19615000" />
       <workItem from="1519840432237" duration="771000" />
-      <workItem from="1519890588825" duration="32600000" />
+      <workItem from="1519890588825" duration="32645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52986000" />
+    <option name="totallyTimeSpent" value="53031000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -693,8 +681,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="52" column="87" lean-forward="true" selection-start-line="52" selection-start-column="83" selection-end-line="52" selection-end-column="99" />
+        <state relative-caret-position="15">
+          <caret line="61" column="48" lean-forward="true" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
           <folding />
         </state>
       </provider>
