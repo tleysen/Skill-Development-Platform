@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ScoresRepository extends CrudRepository<Scores, Long> {
 
+    List<Scores> findByEmployee_IdOrderByPointsDesc(int id);
+
 }

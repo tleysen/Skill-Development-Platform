@@ -114,6 +114,13 @@ public class MainController {
         return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/scoresforemployee/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Scores> scoresForEmployee(
+            @PathVariable("id") String id) {
+        return scoreRepository.findByEmployee_IdOrderByPointsDesc(Integer.parseInt(id));
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****

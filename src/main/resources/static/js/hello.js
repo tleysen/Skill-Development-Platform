@@ -1,5 +1,6 @@
 var sdp = angular.module('sdp', ['ngRoute']);
 
+
 sdp.config(function($routeProvider) {
     $routeProvider
 
@@ -80,7 +81,7 @@ sdp.controller('employeesController', function($scope, $http) {
 
     $scope.getDetails = function(emp_id){
         location.href = '#!/employeedetail/' + emp_id;
-    }
+    };
 
     var employee_data;
     $http({
@@ -161,9 +162,10 @@ sdp.controller('coursesController', function($scope, $http) {
     });
 });
 
-sdp.controller('detailController', function($scope, $http, $routeParams, $location) {
+sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout) {
 
     var courses_data;
+    var deferred = $q.defer();
 
     $http({
         method: 'GET',
@@ -185,4 +187,139 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     }, function (error) {
         console.log(error);
     });
+
+    var scores_data;
+    var labelArray = [];
+
+
+    $http({
+        method: 'GET',
+        url: '/req/scoresforemployee/' + $routeParams.param1
+    }).then(function (success) {
+
+        deferred.resolve();
+        deferred.promise.then(function(){
+            var i = 0;
+            scores_data = success.data;
+            $scope.score = scores_data;
+            scores_data.forEach(function(entry){
+                console.log(entry);
+                labelArray[i] = entry.domain.name;
+                i++;
+            });
+            console.log(labelArray);
+        })
+    }, function (error) {
+        deferred.reject();
+        console.log(error);
+    });
+
+    //CHARTING
+
+    var d = new Date();
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+
+    function monthCalculator(amount){
+
+        var returnmonth = d.getMonth() - amount;
+
+        if(returnmonth >= 0){
+            return month[returnmonth];
+        }
+        else{
+
+        }
+    }
+
+
+    var color1_dark = "rgba(46,38,51,0.7)";
+    var color2_dark = "rgba(85,81,82,0.7)";
+    var color3_dark = "rgba(153,23,60,0.7)";
+    var color4_dark = "rgba(220,233,190,0.7)";
+    var color5_dark = "rgba(239,255,205,0.7)";
+
+    var color1_light = "rgba(46,38,51,0.4)";
+    var color2_light = "rgba(85,81,82,0.4)";
+    var color3_light = "rgba(153,23,60,0.4)";
+    var color4_light = "rgba(220,233,190,0.4)";
+    var color5_light = "rgba(239,255,205,0.4)";
+
+    //line
+
+    var ctxL = document.getElementById("lineChart").getContext('2d');
+
+
+$timeout(function() {
+
+
+    var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {
+            labels: [month[d.getMonth() - 5], month[d.getMonth() - 4], month[d.getMonth() - 3], month[d.getMonth() - 3], month[d.getMonth() - 2], month[d.getMonth() - 1], month[d.getMonth()]],
+            datasets: [
+                {
+                    label: scores_data[0].domain.name,
+                    backgroundColor: color5_light,
+                    pointHighlightStroke: color5_dark,
+                    data: [0, 0, 0, 1, 1, 1, 1]
+                },{
+                    label: scores_data[1].domain.name,
+                    backgroundColor: color4_light,
+                    pointHighlightStroke: color4_dark,
+                    data: [0, 0, 0, 0, 1, 1, 1]
+                },{
+                    //label: scores_data[2].domain.name,
+                    backgroundColor: color3_light,
+                    pointHighlightStroke: color3_dark,
+                    data: [1, 1, 1, 2, 2, 2, 2]
+                },{
+                    //label: scores_data[3].domain.name,
+                    backgroundColor: color2_light,
+                    pointHighlightStroke: color2_dark,
+                    data: [1, 2, 2, 3, 3, 3, 3]
+                }, {
+                    //label: scores_data[4].domain.name,
+                    backgroundColor: color1_light,
+                    pointHighlightStroke: "rgba(153,23,60,0.7)",
+                    data: [1, 2, 2, 3, 3, 3, 4]
+                }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    //polar
+    var ctxPA = document.getElementById("polarChart").getContext('2d');
+    var myPolarChart = new Chart(ctxPA, {
+        type: 'polarArea',
+        data: {
+
+            labels: labelArray,
+            datasets: [
+                {
+                    data: [4, 3, 2, 1, 1],
+                    backgroundColor: [color1_dark, color2_dark, color3_dark, color4_dark, color5_dark],
+                    hoverBackgroundColor: [color1_light, color2_light, color3_light, color4_light, color5_light]
+                }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
+}, 10)
 });
