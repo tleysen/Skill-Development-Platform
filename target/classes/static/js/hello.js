@@ -35,45 +35,15 @@ sdp.config(function($routeProvider) {
         .when('/contact', {
             templateUrl : 'pages/contact.html',
             controller  : 'contactController'
-        });
+        })
+
+        .when('/properties', {
+            templateUrl: 'pages/properties.html',
+            controller: 'propertiesController'
+        })
 });
 
 sdp.controller('mainController', function($scope,$http) {
-
-    var state;
-
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-    //$http({
-    //    method: 'GET',
-    //    url: '/req/alldomains'
-    //}).then(function (success){
-    //    $scope.domains = success.data;
-    //    console.log(success.data);
-//
-    //},function (error){
-    //    $scope.domains = error;
-    //});
-
-    $scope.nextType = function() {
-        state += 1;
-        cycleTypes(state);
-    };
-
-    $scope.prevType = function(){
-        state -= 1;
-        cycleTypes(state);
-    };
-
-    function cycleTypes(state){
-        if(state % 2){
-            //nextType
-            $scope.type = "Atlassian";
-        }else{
-            //prevType
-            $scope.type = "Others";
-        }
-    }
 });
 
 sdp.controller('employeesController', function($scope, $http) {
@@ -217,7 +187,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     //CHARTING
 
     var d = new Date();
-    var month = new Array();
+    var month = [];
     month[0] = "January";
     month[1] = "February";
     month[2] = "March";
@@ -261,21 +231,18 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     var ctxL = document.getElementById("lineChart").getContext('2d');
 
 
-$timeout(function() {
-
-
     var myLineChart = new Chart(ctxL, {
         type: 'line',
         data: {
             labels: [month[d.getMonth() - 5], month[d.getMonth() - 4], month[d.getMonth() - 3], month[d.getMonth() - 3], month[d.getMonth() - 2], month[d.getMonth() - 1], month[d.getMonth()]],
             datasets: [
                 {
-                    label: scores_data[0].domain.name,
+                    //label: scores_data[0].domain.name,
                     backgroundColor: color5_light,
                     pointHighlightStroke: color5_dark,
                     data: [0, 0, 0, 1, 1, 1, 1]
                 },{
-                    label: scores_data[1].domain.name,
+                    //label: scores_data[1].domain.name,
                     backgroundColor: color4_light,
                     pointHighlightStroke: color4_dark,
                     data: [0, 0, 0, 0, 1, 1, 1]
@@ -307,8 +274,7 @@ $timeout(function() {
     var myPolarChart = new Chart(ctxPA, {
         type: 'polarArea',
         data: {
-
-            labels: labelArray,
+            labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding"],
             datasets: [
                 {
                     data: [4, 3, 2, 1, 1],
@@ -321,5 +287,19 @@ $timeout(function() {
             responsive: true
         }
     });
-}, 10)
+});
+
+sdp.controller('propertiesController', function($scope,$http) {
+
+    $http({
+        method: 'GET',
+        url: '/props/getdbpass'
+    }).then(function (success) {
+
+        $scope.pass = success.data;
+    }, function (error) {
+        $scope.pass = error;
+    });
+
+
 });
