@@ -1,0 +1,70 @@
+<div class="container" ng-controller="manageController">
+    <!-- CREATE NEW EMPLOYEE -->
+
+    <!-- HEADER -->
+    <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Manage</h1>
+    <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Functions:</h3>
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewFunction"><i class="fas fa-plus-circle"></i></button>
+
+    <!-- CARD TEMPLATE USED TO SHOW EMPLOYEES -->
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="f in functions">
+            <div class="card font2 bg-stardust" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{f.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{f.name}}</h6>
+                    <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" data-toggle="modal" data-target="modalEdit"><i class="fas fa-chevron-circle-right"></i></button>
+                </div>
+            </div>
+            </br>
+        </div>
+    </div>
+
+    <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Domains:</h3>
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNew"><i class="fas fa-plus-circle"></i></button>
+
+    <!-- CARD TEMPLATE USED TO SHOW EMPLOYEES -->
+    <div>
+        <div  class="row" >
+            <div class="col-lg-4"  ng-repeat="d in domains">
+                <div class="card font2 bg-stardust" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{d.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{c.domain.name}}</h6>
+                    </div>
+                </div>
+                </br>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modalNewFunction" tabindex="-1" role="dialog" aria-labelledby="newFunctionModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font1-black" id="exampleModalLongTitle">Add a new Function</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body font2-black">
+                    <!-- FORM -->
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Function" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-circle btn-save font1" ng-click="newFunction()" data-dismiss="modal"><i class="fas fa-save"></i></button>
+                            <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,12 +19,15 @@ public class Courses {
     @JoinColumn(name = "iddomain")
     Domains domain;
 
+    private int exp;
+
     @Override
     public String toString() {
         return "Courses{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", domain=" + domain +
+                ", exp=" + exp +
                 '}';
     }
 
@@ -50,5 +53,13 @@ public class Courses {
 
     public void setDomain(Domains domain) {
         this.domain = domain;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 }

@@ -14,43 +14,36 @@ public class PropertiesController {
     @Autowired
     private Settings appSettings;
 
-
     //------------------------------------------------------------------------------------------------------------------
-    //*****                                     PARAMLESS GET'S                                                    *****
+    //*****                                     PARAMLESS GET                                                    *****
     //------------------------------------------------------------------------------------------------------------------
-    @GetMapping(path = "/getDbPass")
-    public @ResponseBody
-    String getDbPass(){ return appSettings.getDbpw(); }
 
-    @GetMapping(path = "/getDbIp")
+    @GetMapping(path = "/getsettings")
     public @ResponseBody
-    String getDbIp(){ return appSettings.getUrl(); }
-
-    @GetMapping(path = "/dgetDbUser")
-    public @ResponseBody
-    String getDbUser(){ return appSettings.getUser(); }
-
+    Settings getSetings() {
+        return appSettings;
+    }
 
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
 
-    @RequestMapping(value = "/newDbPass", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/newdbpass", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String changeDbPass(@RequestParam("data") String data) {
         appSettings.setDbpw(data);
         return "ok";
     }
 
-    @RequestMapping(value = "/newDbIp", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/newDbIp/{data}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String changeDbIp(@RequestParam("data") String data) {
         appSettings.setUrl(data);
         return "ok";
     }
 
-    @RequestMapping(value = "/newDbUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/newDbUser/{data}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String changeDbUser(@RequestParam("data") String data) {
         appSettings.setUrl(data);

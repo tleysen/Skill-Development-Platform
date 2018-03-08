@@ -32,9 +32,9 @@ sdp.config(function($routeProvider) {
         })
 
         // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
+        .when('/manage', {
+            templateUrl : 'pages/manage.html',
+            controller  : 'manageController'
         })
 
         .when('/properties', {
@@ -295,11 +295,43 @@ sdp.controller('propertiesController', function($scope,$http) {
         method: 'GET',
         url: '/props/getdbpass'
     }).then(function (success) {
-
-        $scope.pass = success.data;
+        $scope.pass = success.password;
+        console.log(password)
     }, function (error) {
         $scope.pass = error;
+        console.log(error);
     });
 
+
+});
+
+sdp.controller('manageController', function($scope,$http) {
+
+    var old_input;
+
+    $http({
+        method: 'GET',
+        url: '/req/alldomains'
+    }).then(function (success) {
+        $scope.domains = success.data;
+    }, function (error) {
+        $scope.domains = error;
+    });
+
+    $http({
+        method: 'GET',
+        url: '/req/allfunctions'
+    }).then(function (success) {
+        $scope.functions = success.data;
+
+    }, function (error) {
+        $scope.functions = error;
+    });
+
+    $scope.rowSorter = function(input){
+        if(old_input !== input){
+            console.log(input);
+        }
+    }
 
 });
