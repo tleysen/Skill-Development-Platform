@@ -18,12 +18,12 @@ public class TestController {
     @RequestMapping(value = "/check/1", method = RequestMethod.GET)
     public @ResponseBody
     Boolean testMeth1() {
-        return courseRecommendation.checkIfCourseNotFollowed(1,1);
+        return courseRecommendation.checkIfCourseFollowed(1,1);
     }
 
     @RequestMapping(value = "/check/2", method = RequestMethod.GET)
     public @ResponseBody
     Boolean testMeth2() {
-        return courseRecommendation.checkIfCourseNotFollowed(1,2);
+        return courseRecommendation.checkIfCourseFollowed(1,4);
     }
 }

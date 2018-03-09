@@ -17,7 +17,7 @@ public class Settings {
     @Value("${spring.datasource.username}")
     private String user;
 
-    @Value("{spring.datasource.url}")
+    @Value("${spring.datasource.url}")
     private String url;
 
     public String getDbpw() {

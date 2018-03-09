@@ -39,7 +39,7 @@ public class CourseRecommendation {
     private String domainid;
     private int functionid;
     private int counter;
-    private Courses recommendedCourse;
+    private static Courses recommendedCourse;
     private Employees selectedEmployee;
     private Functions employeesFunction;
     private Domains selectedDomain;
@@ -58,6 +58,7 @@ public class CourseRecommendation {
     //----------------------------------------------------------------------------------------------------------------//
     private void Init(){
 
+        checkedCoursesForDomainList.clear();
         functionsDomainsList.clear();
         domainsIdList.clear();
         domainsList.clear();
@@ -83,59 +84,55 @@ public class CourseRecommendation {
 
         //Populate List with domains coupled to employee
         domainsList = GetDomainsForEmployeeId(employee_id);
-        System.out.println("Domains for employee: " + domainsList);
 
         //Iterate over domains
         for (Domains domain : domainsList) {
-            System.out.println("Iterating domain: " + domain);
             //check if a domain is set, then check priority
             if (selectedDomain == null || domain.getPriority() > selectedDomain.getPriority()) {
                 //if a domain is not set or priority is higher, overwrite
                 selectedDomain = domain;
-                System.out.println("selected domain: " + selectedDomain);
             }
         }
 
         //Populate list with courses for selected domain
         coursesForDomainList = GetCoursesForDomain(selectedDomain.getId());
 
-        //----------------------------------------------------------------------------------------------------------------//
-        //                                                                                                                //
-        //                                  SUPER VAGE ERROR SEND HELP                                                    //
-        //                (als uitprinten, geen null, als niet uitprinten, wel null)                                      //
-        //----------------------------------------------------------------------------------------------------------------//
-
-        System.out.println("getCoursesForDomain: " + GetCoursesForDomain(selectedDomain.getId()));
-
         counter = 0;
         try{
             for(Courses course: coursesForDomainList){
-                System.out.println("course to check: " + course);
-                if(checkIfCourseNotFollowed(employee_id, course.getId())){
+                if(!checkIfCourseFollowed(employee_id, course.getId())){
                     checkedCoursesForDomainList.add(counter, course);
-                    System.out.println("course: " + course + "counter: " + counter);
                     counter++;
                 }
             }
         }catch (Error e){
             return e.getStackTrace().toString();
         }
+
+        //return result
+        return selectAvailableCourse(checkedCoursesForDomainList);
+    }
+
+    //----------------------------------------------------------------------------------------------------------------//
+    //                                         selectAvailableCourse                                                  //
+    //----------------------------------------------------------------------------------------------------------------//
+    //                            Retrieve the list of domains for the coupled function                               //
+    //----------------------------------------------------------------------------------------------------------------//
+
+
+    public String selectAvailableCourse(List<Courses> checkedCoursesForDomainList){
         //check if there are any courses found
-        if (coursesForDomainList.size() > 1) {
+        if (checkedCoursesForDomainList.size() > 1) {
             //if courses are found, select one at random
-            int rnd = rand.nextInt(coursesForDomainList.size());
-            recommendedCourse = coursesForDomainList.get(rnd);
-        } else if (coursesForDomainList.size() == 1) {
+            int rnd = rand.nextInt(checkedCoursesForDomainList.size());
+            return checkedCoursesForDomainList.get(rnd).toString();
+        } else if (checkedCoursesForDomainList.size() == 1) {
             //if only one course is found, return that course
-            recommendedCourse = coursesForDomainList.get(0);
+            return checkedCoursesForDomainList.get(0).toString();
         } else {
-            System.out.println("--------------------------END-------------------------");
             //if none are found, inform user
             return "No courses found";
         }
-        System.out.println("--------------------------END-------------------------");
-        //return result
-        return recommendedCourse.toString();
     }
 
     //----------------------------------------------------------------------------------------------------------------//
@@ -179,7 +176,7 @@ public class CourseRecommendation {
     //----------------------------------------------------------------------------------------------------------------//
     //                            Retrieve the list of domains for the coupled function                               //
     //----------------------------------------------------------------------------------------------------------------//
-    public boolean checkIfCourseNotFollowed(int employee_id, int course_id) {
+    public boolean checkIfCourseFollowed(int employee_id, int course_id) {
 
         //empty variables
         //Init();
@@ -190,9 +187,9 @@ public class CourseRecommendation {
         //convert iterable into List object
         allEmployeeCoursesIterable.forEach(allEmployeeCoursesList::add);
 
-        //run through the list to check if there's a record with both input parameters matching
+        //run through the list to check if there's a record w
+        // ith both input parameters matching
         for (EmployeeCourses employeeCourse : allEmployeeCoursesList) {
-            System.out.println("employeeCourse record: " + employeeCourse);
             if (employeeCourse.getCourse().getId() == course_id && employeeCourse.getEmployee().getId() == employee_id) {
                 //return result
                 return true;
@@ -265,7 +262,6 @@ public class CourseRecommendation {
                 if(course.getId() == employeeCourses.getCourse().getId()){
                     // add the Course object to the followed courses list
                     followedCoursesList.add(employeeCourses.getCourse());
-                    System.out.println("followed course: " + employeeCourses.getCourse());
                 }
             }
         }
