@@ -1,14 +1,23 @@
 package com.SDP.Models;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 public class Employees {
+
+    public Employees() {
+    }
+
+    public Employees(String name, String lastname, Date birth_date, Date hiring_date, String sex, int level) {
+        this.name = name;
+        this.lastname = lastname;
+        this.birth_date = birth_date;
+        this.hiring_date = hiring_date;
+        this.sex = sex;
+        this.level = level;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -23,15 +32,9 @@ public class Employees {
 
     private String sex;
 
-    @ManyToOne
-    @JoinColumn(name = "idfunction")
-    Functions function;
+    private int level;
 
     public Integer getId() { return id; }
-
-    public Functions getFunction() {
-        return function;
-    }
 
     public String getName() {
         return name;
@@ -53,10 +56,6 @@ public class Employees {
         return sex;
     }
 
-    public void setFunction(Functions function) {
-        this.function = function;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -65,22 +64,24 @@ public class Employees {
         this.lastname = lastname;
     }
 
-    public void setBirth_date(Date birth_date) { this.birth_date = birth_date; }
-
-    public void setHiring_date(Date hiring_date) { this.hiring_date = hiring_date; }
-
-    public void setSex(String sex) { this.sex = sex; }
-
-    @Override
-    public String toString() {
-        return "Employees{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", birth_date=" + birth_date +
-                ", hiring_date=" + hiring_date +
-                ", sex='" + sex + '\'' +
-                ", function=" + function.toString() +
-                '}';
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
+
+    public void setHiring_date(Date hiring_date) {
+        this.hiring_date = hiring_date;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
 }

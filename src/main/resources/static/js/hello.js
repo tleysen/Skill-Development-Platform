@@ -100,7 +100,9 @@ sdp.controller('employeesController', function($scope, $http) {
             url: "/req/addEmployee",
             data: { name: firstname, lastname: lastname, sex: sex, employee_function: employee_function,
                 hiring_date: hiring_date, birth_date: birth_date }
-        })
+        });
+
+        window.location.reload();
 
         //DEPRECATED
         //$http({
@@ -137,52 +139,62 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     var courses_data;
     var deferred = $q.defer();
 
-    $http({
-        method: 'GET',
-        url: '/req/coursesbyemployee/' + $routeParams.param1
-    }).then(function (success) {
-        courses_data = success.data;
-        $scope.courses = courses_data;
-    }, function (error) {
-        console.log(error);
-    });
+    $scope.firstDisplay = function () {
+        console.log("lala");
 
-    $http({
-        method: 'GET',
-        url: '/req/userbyid/' + $routeParams.param1
-    }).then(function (success) {
-        user_data = success.data;
-        $scope.user = user_data;
-        console.log(user_data);
-    }, function (error) {
-        console.log(error);
-    });
+    };
 
-    var scores_data;
-    var labelArray = [];
+    loadData = function(){
+
+        $http({
+            method: 'GET',
+            url: '/req/coursesbyemployee/' + $routeParams.param1
+        }).then(function (success) {
+            courses_data = success.data;
+            $scope.courses = courses_data;
+        }, function (error) {
+            console.log(error);
+        });
+
+        $http({
+            method: 'GET',
+            url: '/req/userbyid/' + $routeParams.param1
+        }).then(function (success) {
+            user_data = success.data;
+            $scope.user = user_data;
+            console.log(user_data);
+        }, function (error) {
+            console.log(error);
+        });
+
+        var scores_data;
+        var labelArray = [];
 
 
-    $http({
-        method: 'GET',
-        url: '/req/scoresforemployee/' + $routeParams.param1
-    }).then(function (success) {
+        $http({
+            method: 'GET',
+            url: '/req/scoresforemployee/' + $routeParams.param1
+        }).then(function (success) {
 
-        deferred.resolve();
-        deferred.promise.then(function(){
-            var i = 0;
-            scores_data = success.data;
-            $scope.score = scores_data;
-            scores_data.forEach(function(entry){
-                console.log(entry);
-                labelArray[i] = entry.domain.name;
-                i++;
-            });
-            console.log(labelArray);
-        })
-    }, function (error) {
-        deferred.reject();
-        console.log(error);
-    });
+            deferred.resolve();
+            deferred.promise.then(function(){
+                var i = 0;
+                scores_data = success.data;
+                $scope.score = scores_data;
+                scores_data.forEach(function(entry){
+                    console.log(entry);
+                    labelArray[i] = entry.domain.name;
+                    i++;
+                });
+                console.log(labelArray);
+            })
+        }, function (error) {
+            deferred.reject();
+            console.log(error);
+        });
+    };
+
+    loadData();
 
     //CHARTING
 
@@ -209,7 +221,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             return month[returnmonth];
         }
         else{
-
         }
     }
 

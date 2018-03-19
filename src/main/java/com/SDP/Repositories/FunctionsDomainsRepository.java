@@ -1,6 +1,5 @@
 package com.SDP.Repositories;
 
-import com.SDP.Models.Functions;
 import com.SDP.Models.FunctionsDomains;
 import org.springframework.data.repository.CrudRepository;
 

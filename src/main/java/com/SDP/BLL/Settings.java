@@ -2,11 +2,6 @@ package com.SDP.BLL;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import sun.tools.java.Environment;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 @Service
 public class Settings {

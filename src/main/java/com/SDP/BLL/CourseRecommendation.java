@@ -22,6 +22,8 @@ public class CourseRecommendation {
     private CoursesRepository coursesRepository;
     @Autowired
     private DomainsRepository domainsRepository;
+    @Autowired
+    private EmployeesFunctionsRepository employeesFunctionsRepository;
 
 
     private List<FunctionsDomains> functionsDomainsList = new ArrayList<FunctionsDomains>();
@@ -81,9 +83,10 @@ public class CourseRecommendation {
         //empty variables
         Init();
 
-
         //Populate List with domains coupled to employee
         domainsList = GetDomainsForEmployeeId(employee_id);
+
+
 
         //Iterate over domains
         for (Domains domain : domainsList) {
@@ -91,12 +94,12 @@ public class CourseRecommendation {
             if (selectedDomain == null || domain.getPriority() > selectedDomain.getPriority()) {
                 //if a domain is not set or priority is higher, overwrite
                 selectedDomain = domain;
+                coursesForDomainList = GetCoursesForDomain(selectedDomain.getId());
             }
         }
 
         //Populate list with courses for selected domain
         coursesForDomainList = GetCoursesForDomain(selectedDomain.getId());
-
         counter = 0;
         try{
             for(Courses course: coursesForDomainList){
@@ -229,8 +232,11 @@ public class CourseRecommendation {
         //get Employee object by inserted id
         selectedEmployee = employeesRepository.findById(id);
 
+
+
+
         //get Function object from selected Employee object
-        employeesFunction = selectedEmployee.getFunction();
+                                                                    //employeesFunction = selectedEmployee.getFunction();
 
         //get id from resulted Function object
         functionid = employeesFunction.getId();

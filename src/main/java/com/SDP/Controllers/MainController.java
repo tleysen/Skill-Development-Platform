@@ -1,10 +1,8 @@
 package com.SDP.Controllers;
 
 import com.SDP.BLL.CourseRecommendation;
-import com.SDP.BLL.Settings;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
-import org.hibernate.context.spi.CurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -41,16 +39,8 @@ public class MainController {
     private CoursesRepository coursesRepository;
     @Autowired
     private CourseRecommendation courseRecommendation;
-
-    //------------------------------------------------------------------------------------------------------------------
-    //*****                                     VARIABLES                                                          *****
-    //------------------------------------------------------------------------------------------------------------------
-
-    private Employees selectedEmployee;
-    private Functions employeesFunction;
-    private Functions selectedFunction;
-
-
+    @Autowired
+    private EmployeesFunctionsRepository employeesFunctionsRepository;
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMLESS GET'S                                                    *****
@@ -81,6 +71,11 @@ public class MainController {
     @GetMapping(path = "/allfunctions")
     public @ResponseBody
     Iterable<Functions> getAllFunctions() { return functionsRepository.findAll(); }
+
+
+    @GetMapping(path = "/allfunctionsbeta")
+    public @ResponseBody
+    Iterable<EmployeesFunctions> getAllFunctionsBeta() { return employeesFunctionsRepository.findAll(); }
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMETER GET'S                                                    *****
@@ -156,9 +151,6 @@ public class MainController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        selectedFunction = functionsRepository.findByName(employee_function);
-        n.setFunction(selectedFunction);
 
         employeesRepository.save(n);
         System.out.println(n);
