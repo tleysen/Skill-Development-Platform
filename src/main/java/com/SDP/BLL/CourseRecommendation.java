@@ -47,8 +47,6 @@ public class CourseRecommendation {
                 //Get functiondomains object;
                  functionsDomainsList=  fdr.findAllByFunction_IdOrderByDomainPriorityDesc(selectedEmployeesFunction.getFunction().getId());
             }
-            //Get domain in functionDomainsList
-            do {
                 //select the first domain in the list
                 Domains selectedDomain = functionsDomainsList.get(domainCounter).getDomain();
                 //find courses connected to domain
@@ -68,10 +66,9 @@ public class CourseRecommendation {
                 }
 
                 //check if a course is found
-                if(filteredCourses != null){
+                if(filteredCourses.size() > 0){
                     courseFound = true;
                 }
-            }while(!courseFound);
 
         }while(!courseFound);
         return filteredCourses;
