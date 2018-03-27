@@ -40,12 +40,15 @@ public class CourseRecommendation {
 
         do{
             //Get function in functionlist
-            if(employeesFunctions.size() >= functionCounter){
+            if(employeesFunctions.size() > functionCounter){
                 //select the first function in the list
                 selectedEmployeesFunction = employeesFunctions.get(functionCounter);
                 functionCounter++;
                 //Get functiondomains object;
                  functionsDomainsList=  fdr.findAllByFunction_IdOrderByDomainPriorityDesc(selectedEmployeesFunction.getFunction().getId());
+            }
+            else{
+                break;
             }
                 //select the first domain in the list
                 Domains selectedDomain = functionsDomainsList.get(domainCounter).getDomain();
@@ -64,7 +67,6 @@ public class CourseRecommendation {
                         filteredCourses.add(bc);
                     }
                 }
-
                 //check if a course is found
                 if(filteredCourses.size() > 0){
                     courseFound = true;
