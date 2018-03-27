@@ -8,4 +8,6 @@ import java.util.List;
 public interface EmployeeCoursesRepository extends CrudRepository<EmployeeCourses, Long> {
 
     List<EmployeeCourses> findAllByEmployee_Id(int id);
+
+
 }

@@ -1,6 +1,7 @@
 package com.SDP.Controllers;
 
-import com.SDP.BLL.CourseRecommendation;
+import com.SDP.BLL.CourseRecommendation0;
+import com.SDP.BLL.TopSkills;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,11 @@ public class MainController {
     @Autowired
     private CoursesRepository coursesRepository;
     @Autowired
-    private CourseRecommendation courseRecommendation;
+    private CourseRecommendation0 courseRecommendation;
     @Autowired
     private EmployeesFunctionsRepository employeesFunctionsRepository;
+    @Autowired
+    private TopSkills topSkills;
 
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMLESS GET'S                                                    *****
@@ -116,6 +119,14 @@ public class MainController {
         return scoreRepository.findByEmployee_IdOrderByPointsDesc(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/topscoresforemployee/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    TestObject topScoresForEmployee(
+            @PathVariable("id") String id) {
+        return topSkills.getTop5ForEmployeeId(Integer.parseInt(id));
+    }
+
+
 
     //------------------------------------------------------------------------------------------------------------------
     //****                                     PARAMETER POST'S                                                    *****
@@ -156,6 +167,5 @@ public class MainController {
         System.out.println(n);
         return "ok";
     }
-
 
 }

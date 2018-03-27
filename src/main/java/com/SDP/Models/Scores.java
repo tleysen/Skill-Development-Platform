@@ -24,5 +24,27 @@ public class Scores {
 
     private Date date;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public Domains getDomain() {
+        return domain;
+    }
+
+    public Employees getEmployee() {
+        return employee;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }

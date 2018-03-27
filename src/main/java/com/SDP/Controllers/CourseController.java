@@ -1,6 +1,6 @@
 package com.SDP.Controllers;
 
-import com.SDP.BLL.CourseRecommendation;
+import com.SDP.BLL.CourseRecommendation0;
 import com.SDP.Models.Courses;
 import com.SDP.Models.Domains;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    private CourseRecommendation courseRecommendation;
+    private CourseRecommendation0 courseRecommendation;
 
     @GetMapping(path = "/domainbyemployeeid/{id}")
     public @ResponseBody
