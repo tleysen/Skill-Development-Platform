@@ -75,7 +75,6 @@ public class MainController {
     public @ResponseBody
     Iterable<Functions> getAllFunctions() { return functionsRepository.findAll(); }
 
-
     @GetMapping(path = "/allfunctionsbeta")
     public @ResponseBody
     Iterable<EmployeesFunctions> getAllFunctionsBeta() { return employeesFunctionsRepository.findAll(); }
@@ -124,6 +123,13 @@ public class MainController {
     TestObject topScoresForEmployee(
             @PathVariable("id") String id) {
         return topSkills.getTop5ForEmployeeId(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/functionsforemployee/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<EmployeesFunctions> functionsForEmployee(
+            @PathVariable("id") String id) {
+        return employeesFunctionsRepository.findAllByEmployee_Id(Integer.parseInt(id));
     }
 
     //------------------------------------------------------------------------------------------------------------------

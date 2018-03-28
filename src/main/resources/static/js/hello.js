@@ -171,6 +171,16 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
         $http({
             method: 'GET',
+            url: '/req/functionsforemployee/' + $routeParams.param1
+        }).then(function (success) {
+            employeefunctions_data = success.data;
+            $scope.employeefunctions = employeefunctions_data;
+        }, function (error) {
+            console.log(error);
+        });
+
+        $http({
+            method: 'GET',
             url: '/req/userbyid/' + $routeParams.param1
         }).then(function (success) {
             user_data = success.data;
@@ -197,6 +207,9 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     loadData();
 
+    $scope.getCourse = function(course_id, employee_id){
+
+    };
 
 
     function display(){
