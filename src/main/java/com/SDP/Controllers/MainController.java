@@ -126,6 +126,32 @@ public class MainController {
         return topSkills.getTop5ForEmployeeId(Integer.parseInt(id));
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+    //*****                               PARAMETER GET'S NO RESPONSE                                              *****
+    //------------------------------------------------------------------------------------------------------------------
+
+
+    @RequestMapping(value = "/deleteemployeebyid/{id}", method = RequestMethod.GET)
+    public void deleteUserById(
+            @PathVariable("id") String id) {
+        employeesRepository.deleteById(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/deletedomainbyid/{id}", method = RequestMethod.GET)
+    public void deleteDomainById(
+            @PathVariable("id") String id) {
+            domainsRepository.deleteById(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/deletecoursebyid/{id}", method = RequestMethod.GET)
+    public void deleteCourseById(@PathVariable("id") String id) {
+        coursesRepository.deleteById(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/deletefunctionbyid/{id}", method = RequestMethod.GET)
+    public void deleteFunctionsById(@PathVariable("id") String id) {
+        functionsRepository.deleteById(Integer.parseInt(id));
+    }
 
 
     //------------------------------------------------------------------------------------------------------------------

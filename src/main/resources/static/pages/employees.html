@@ -10,9 +10,13 @@
         <div class="col-lg-4" ng-repeat="u in users">
             <div class="card font2 bg-stardust" style="width: 18rem;">
                 <div class="card-body">
+                    <button type="button" class="close" ng-click="removeEmployee(u.id)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h5 class="card-title">{{u.name}} {{u.lastname}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{u.function.name}}</h6>
                     <p class="card-text"><b></b></p>
+                    </br>
                     <button type="button" ng-click="getDetails(u.id)" class="btn btn-default btn-circle font2-black btn-right btn-red"><i class="fas fa-address-card"></i></button>
                 </div>
             </div>

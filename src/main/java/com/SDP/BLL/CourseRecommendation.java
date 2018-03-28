@@ -75,7 +75,4 @@ public class CourseRecommendation {
         }while(!courseFound);
         return filteredCourses;
     }
-
-
-
 }

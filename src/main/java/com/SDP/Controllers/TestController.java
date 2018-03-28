@@ -55,4 +55,11 @@ public class TestController {
     List<Courses> testMeth3() {
         return cr.RecommendByPriorityByEmployeeId(1);
     }
+
+    @RequestMapping(value = "/check/4", method = RequestMethod.GET)
+    public void testMeth4() {
+        employeesRepository.deleteById(6);
+    }
+
+
 }
