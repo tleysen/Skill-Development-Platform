@@ -28,6 +28,8 @@ public class TestController {
     private CourseRecommendation cr;
     @Autowired
     private FunctionsRepository fr;
+    @Autowired
+    private ExperienceController ec;
 
     Employees emp;
 
@@ -54,7 +56,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "/check/4", method = RequestMethod.GET)
-    public void testMeth4() {
-        employeesRepository.deleteById(6);
+    public @ResponseBody
+    int testMeth4() {
+        return ec.ec.calculateTotalExperiencepoints(1, "qsdf");
     }
 }
