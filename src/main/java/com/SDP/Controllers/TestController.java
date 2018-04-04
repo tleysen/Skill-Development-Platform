@@ -7,6 +7,7 @@ import com.SDP.Models.Courses;
 import com.SDP.Models.Employees;
 import com.SDP.Models.TestObject;
 import com.SDP.Repositories.EmployeesRepository;
+import com.SDP.Repositories.FunctionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,13 +21,13 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private CourseRecommendation0 courseRecommendation;
-    @Autowired
     private EmployeesRepository employeesRepository;
     @Autowired
     private TopSkills ts;
     @Autowired
     private CourseRecommendation cr;
+    @Autowired
+    private FunctionsRepository fr;
 
     Employees emp;
 
@@ -35,31 +36,25 @@ public class TestController {
     public @ResponseBody
     Employees testMeth1() {
         emp = employeesRepository.findById(1);
-
         emp.setSex("F");
         employeesRepository.save(emp);
-
         return emp;
     }
 
     @RequestMapping(value = "/check/2", method = RequestMethod.GET)
     public
     TestObject testMeth2() {
-
         return ts.getTop5ForEmployeeId(1);
-
     }
 
     @RequestMapping(value = "/check/3", method = RequestMethod.GET)
     public @ResponseBody
     List<Courses> testMeth3() {
-        return cr.RecommendByPriorityByEmployeeId(1);
+        return cr.RecommendByPriorityByEmployeeId(1, fr.findById(2).getName());
     }
 
     @RequestMapping(value = "/check/4", method = RequestMethod.GET)
     public void testMeth4() {
         employeesRepository.deleteById(6);
     }
-
-
 }

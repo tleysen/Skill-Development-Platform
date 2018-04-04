@@ -203,13 +203,26 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             console.log(error);
         });
 
+        $scope.getCourse = function() {
+
+            var selected_function = document.getElementById("inputEmployeeFunctions").value;
+            $http({
+                method: 'GET',
+                url: 'req/recommendCourse/' + $routeParams.param1 + '/' + selected_function
+            }).then(function (success) {
+                console.log($routeParams.param1);
+                recommend_data = success.data;
+                $scope.recommended = success.data;
+                console.log(success.data);
+            }, function (error) {
+                console.log(error);
+            });
+        };
+
     };
 
     loadData();
 
-    $scope.getCourse = function(course_id, employee_id){
-
-    };
 
 
     function display(){
@@ -236,7 +249,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         var myLineChart = new Chart(ctxL, {
             type: 'line',
             data: {
-                labels: [],
+                labels: ["test", "lala", "ikweetnie", "lol", "xd"],
                 datasets: [
                     {
                         //label: scores_data[0].domain.name,
@@ -276,7 +289,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         var myPolarChart = new Chart(ctxPA, {
             type: 'polarArea',
             data: {
-                labels: labelArray,
+                labels: ["test", "lala", "ikweetnie", "lol", "xd"],
                 datasets: [
                     {
                         data: [4, 3, 2, 1, 1],

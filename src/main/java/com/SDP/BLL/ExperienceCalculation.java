@@ -24,13 +24,12 @@ public class ExperienceCalculation {
     private EmployeeCoursesRepository employeeCoursesRepository;
 
 
-    public int calculateExperiencepoints(int employee_id){
+    public int calculateTotalExperiencepoints(int employee_id){ //ADD FUNCTION
 
         Employees selectedEmployee;
         List<EmployeeCourses> all_employeeCourses;
         List<Courses> followed_courses = new ArrayList<Courses>();
         int total_exp = 0;
-        int REQUIRED_EXP = 1000;
 
         all_employeeCourses = employeeCoursesRepository.findAllByEmployee_Id(employee_id);
 

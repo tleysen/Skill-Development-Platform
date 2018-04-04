@@ -1,5 +1,6 @@
 package com.SDP.Controllers;
 
+import com.SDP.BLL.CourseRecommendation;
 import com.SDP.BLL.CourseRecommendation0;
 import com.SDP.Models.Courses;
 import com.SDP.Models.Domains;
@@ -18,6 +19,8 @@ public class CourseController {
 
     @Autowired
     private CourseRecommendation0 courseRecommendation;
+    @Autowired
+    private CourseRecommendation cr;
 
     @GetMapping(path = "/domainbyemployeeid/{id}")
     public @ResponseBody
@@ -31,9 +34,16 @@ public class CourseController {
         return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
     }
 
-    @GetMapping(path = "/recommendCourse/{id}")
+
+    @GetMapping(path = "/recommendCourse/1/Javadeveloper")
     public @ResponseBody
-    String getCoursesForEmp(@PathVariable("id") String id) {
-        return courseRecommendation.RecommendCourseByPriority(Integer.parseInt(id));
+    List<Courses> test() {
+        return cr.RecommendByPriorityByEmployeeId(Integer.parseInt("1"), "Javadeveloper");
+    }
+
+    @GetMapping(path = "/recommendCourse/{id_emp}/{func_name}")
+    public @ResponseBody
+    List<Courses> getCoursesForEmp(@PathVariable("id_emp") String id_emp, @PathVariable("func_name") String func_name) {
+        return cr.RecommendByPriorityByEmployeeId(Integer.parseInt(id_emp), func_name);
     }
 }

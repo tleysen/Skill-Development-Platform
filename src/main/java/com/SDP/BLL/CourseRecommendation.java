@@ -21,16 +21,17 @@ public class CourseRecommendation {
     CoursesRepository cr;
     @Autowired
     EmployeeCoursesRepository ecr;
+    @Autowired
+    FunctionsRepository fr;
 
-    public List<Courses> RecommendByPriorityByEmployeeId(int id){
+    public List<Courses> RecommendByPriorityByEmployeeId(int employee_id, String function_name){
 
         boolean courseFound = false;
         int functionCounter = 0;
         int domainCounter = 0;
 
-        Employees selectedEmployee = er.findById(id);
-        List<EmployeesFunctions> employeesFunctions = efr.findAllByEmployee_Id(id);
-        EmployeesFunctions selectedEmployeesFunction;
+        Functions selectedFunction;
+        Employees selectedEmployee = er.findById(employee_id);
         List<FunctionsDomains> functionsDomainsList = null;
         List<Courses> boundCourses;
         List<Courses> followedCourses = new ArrayList<Courses>();
@@ -39,39 +40,25 @@ public class CourseRecommendation {
 
 
         do{
-            //Get function in functionlist
-            if(employeesFunctions.size() > functionCounter){
-                //select the first function in the list
-                selectedEmployeesFunction = employeesFunctions.get(functionCounter);
-                functionCounter++;
-                //Get functiondomains object;
-                 functionsDomainsList=  fdr.findAllByFunction_IdOrderByDomainPriorityDesc(selectedEmployeesFunction.getFunction().getId());
+            int function_id = fr.findByName(function_name).getId();
+            //get domains by
+            functionsDomainsList = fdr.findAllByFunction_IdOrderByDomainPriorityDesc(function_id);
+            //select the first domain in the list
+            Domains selectedDomain = functionsDomainsList.get(domainCounter).getDomain();
+            //find courses connected to domain
+            boundCourses = cr.findAllByDomain_Id(selectedDomain.getId());
+            //get followed courses
+            employeeCoursesList = ecr.findAllByEmployee_Id(employee_id);
+            //Extract the courses from the EmployeeCourses Objects
+            for(EmployeeCourses ec : employeeCoursesList){
+                followedCourses.add(ec.getCourse()); }//Check if courses are followed by comparing ID's
+            for(Courses bc : boundCourses){
+                if(!followedCourses.contains(bc)){
+                    filteredCourses.add(bc); } }//check if a course is found
+            if(filteredCourses.size() > 0){
+                courseFound = true;
             }
-            else{
-                break;
-            }
-                //select the first domain in the list
-                Domains selectedDomain = functionsDomainsList.get(domainCounter).getDomain();
-                //find courses connected to domain
-                boundCourses = cr.findAllByDomain_Id(selectedDomain.getId());
-                //get followed courses
-                employeeCoursesList = ecr.findAllByEmployee_Id(id);
-                //Extract the courses from the EmployeeCourses Objects
-                for(EmployeeCourses ec : employeeCoursesList){
-                    followedCourses.add(ec.getCourse());
-                }
-
-                //Check if courses are followed by comparing ID's
-                for(Courses bc : boundCourses){
-                    if(!followedCourses.contains(bc)){
-                        filteredCourses.add(bc);
-                    }
-                }
-                //check if a course is found
-                if(filteredCourses.size() > 0){
-                    courseFound = true;
-                }
-
+            domainCounter++;
         }while(!courseFound);
         return filteredCourses;
     }
