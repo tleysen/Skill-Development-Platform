@@ -1,9 +1,6 @@
 package com.SDP.BLL;
 
-import com.SDP.Models.Courses;
-import com.SDP.Models.EmployeeCourses;
-import com.SDP.Models.Employees;
-import com.SDP.Models.FunctionsDomains;
+import com.SDP.Models.*;
 import com.SDP.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +12,10 @@ import java.util.List;
 public class ExperienceCalculation {
 
 
-    @Autowired
-    private EmployeesRepository er;
-    @Autowired
-    private ScoresRepository sr;
+    //@Autowired
+    //private EmployeesRepository er;
+    //@Autowired
+    //private ScoresRepository sr;
     @Autowired
     private EmployeeCoursesRepository ecr;
     @Autowired
@@ -60,4 +57,49 @@ public class ExperienceCalculation {
         return exp;
     }
 
+    private ExperienceObject createExpObject(ExperienceObject obj){
+
+        int totalExp;
+        int level = 0;
+
+
+        totalExp = obj.getTotalExp();
+
+        if(totalExp >=1000){
+            do{
+                totalExp = totalExp - 1000;
+                level++;
+            }while(totalExp>=1000);
+        }else{
+            level++;
+        }
+
+        obj.setRemainingExp(totalExp);
+        obj.setLevel(level);
+
+        if(level > 12){
+            obj.setTitle("Senior");
+        }
+        else if(level >= 10) {
+            obj.setTitle("Medior-Senior");
+        }
+        else if(level >= 7) {
+            obj.setTitle("Medior");
+        }
+        else if(level >= 4) {
+            obj.setTitle("Junior-Medior");
+        }
+        else {
+            obj.setTitle("Junior");
+        }
+
+        return obj;
+    }
+
+    public ExperienceObject calculateProfile(int employee_id, String func_name){
+        ExperienceObject calculated_obj = new ExperienceObject();
+        calculated_obj.setTotalExp(calculateTotalExperiencepoints(employee_id, func_name));
+        return createExpObject(calculated_obj);
+
+    }
 }

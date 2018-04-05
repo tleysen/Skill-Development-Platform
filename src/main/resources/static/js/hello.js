@@ -152,8 +152,6 @@ sdp.controller('coursesController', function($scope, $http) {
 
 sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout) {
 
-    var courses_data;
-
     var labelArray;
     var scores_data;
 
@@ -165,7 +163,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         }).then(function (success) {
             courses_data = success.data;
             $scope.courses = courses_data;
-        }, function (error) {
+            }, function (error) {
             console.log(error);
         });
 
@@ -196,7 +194,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         }).then(function (success) {
             scores_data = success.data;
             labelArray = [scores_data.domain1.name.toString(), scores_data.domain2.name, scores_data.domain3.name, scores_data.domain4.name, scores_data.domain5.name];
-            console.log("ayy:" + scores_data.domain1.name);
             $scope.status = success.status;
             $scope.score = success.data;
         }, function (error) {
@@ -218,12 +215,9 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
                 console.log(error);
             });
         };
-
     };
 
     loadData();
-
-
 
     function display(){
         //CHARTING

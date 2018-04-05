@@ -11,7 +11,7 @@ public interface CoursesRepository extends CrudRepository<Courses, Long> {
 
     List<Courses> findAllByDomain_Id(int id);
 
-    List<Courses> findById(int id);
+    Courses findById(int id);
 
     @Transactional
     void deleteById(int id);

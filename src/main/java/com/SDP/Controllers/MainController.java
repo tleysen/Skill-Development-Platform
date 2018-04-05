@@ -104,6 +104,13 @@ public class MainController {
         return domainsRepository.findById(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/coursebyid/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Courses getCourseById(
+            @PathVariable("id") String id) {
+        return coursesRepository.findById(Integer.parseInt(id));
+    }
+
     @RequestMapping(value = "/coursesbyemployee/{id}", method = RequestMethod.GET)
     public @ResponseBody
     List<Courses> coursesByEmployee(

@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-circle btn-save font1" ng-click="getCourse()" data-dismiss="modal" data-toggle="modal" data-target="#modalCourse"><i class="fas fa-book"></i></button>
+                        <button type="submit" class="btn btn-circle btn-save font1" ng-click="getCourse()" data-dismiss="modal" data-toggle="modal" data-target="#modalCourse"><i class="fas fa-arrow-right"></i></button>
                         <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                 </form>
@@ -171,12 +171,10 @@
                 <form>
                     <div class="form-row">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item" ng-repeat="course in recommended"><h3>{{course.name}}</h3>{{course.exp}} exp</li>
-
+                                <a ng-repeat="course in recommended" ng-href="/req/coursebyid/{{course.id}}"><li class="list-group-item"><h3>{{course.name}}</h3>{{course.exp}} exp id: {{course.id}}</li></a>
                             </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-circle btn-save font1" ng-click="getCourse()" data-dismiss="modal"><i class="fas fa-book"></i></button>
                         <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                 </form>
