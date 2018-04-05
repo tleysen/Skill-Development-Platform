@@ -9,6 +9,7 @@ public class PropertyReader {
     private static final String ConfigName="src/main/resources/config.properties";
     private static Properties props = new Properties();
     private static String exponentialFactor;
+    private static String baseExp;
     private static String juniorMedior;
     private static String medior;
     private static String mediorSenior;
@@ -22,6 +23,7 @@ public class PropertyReader {
             e.printStackTrace();
         }
         exponentialFactor = props.getProperty("EXPONENTIAL_FACTOR");
+        baseExp = props.getProperty("BASE_EXP");
         juniorMedior = props.getProperty("LVL_JUNIOR-MEDIOR");
         medior = props.getProperty("LVL_MEDIOR");
         mediorSenior = props.getProperty("LVL_MEDIOR-SENIOR");
@@ -44,6 +46,15 @@ public class PropertyReader {
 
     public static void setExponentialFactor(int input){
         props.setProperty("EXPONENTIAL_FACTOR", Double.toString(input));
+        Write();
+    }
+
+    public static int getBaseExp(){
+        return Integer.parseInt(baseExp);
+    }
+
+    public static void setBaseExp(int input){
+        props.setProperty("BASE_EXP", Integer.toString(input));
         Write();
     }
 

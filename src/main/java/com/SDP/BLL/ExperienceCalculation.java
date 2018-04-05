@@ -60,6 +60,7 @@ public class ExperienceCalculation {
         pr.Read();
 
         double FACTOR = PropertyReader.getExponentialFactor();
+        int BASE_EXP = PropertyReader.getBaseExp();
         int JUNIOR_MEDIOR = PropertyReader.getJuniorMedior();
         int MEDIOR = PropertyReader.getMedior();
         int MEDIOR_SENIOR = PropertyReader.getMediorSenior();
