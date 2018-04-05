@@ -157,6 +157,20 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     loadData = function(){
 
+
+        $http({
+            method: 'GET',
+            url: '/req/expforempfunc/' + $routeParams.param1 + '/Javadeveloper' //add function('/1')
+        }).then(function(succes){
+            exp_data = succes.data;
+            $scope.expobj = exp_data;
+            var progress = exp_data.remainingExp / 10;
+            var elem = document.getElementById("progressbar");
+            elem.style.width = progress + '%';
+        }, function (error) {
+            console.log(error);
+        });
+
         $http({
             method: 'GET',
             url: '/req/coursesbyemployee/' + $routeParams.param1
@@ -243,7 +257,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         var myLineChart = new Chart(ctxL, {
             type: 'line',
             data: {
-                labels: ["test", "lala", "ikweetnie", "lol", "xd"],
+                labels: labels_polar,
                 datasets: [
                     {
                         //label: scores_data[0].domain.name,
@@ -283,7 +297,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         var myPolarChart = new Chart(ctxPA, {
             type: 'polarArea',
             data: {
-                labels: ["test", "lala", "ikweetnie", "lol", "xd"],
+                labels: labels_polar,
                 datasets: [
                     {
                         data: [4, 3, 2, 1, 1],
@@ -296,7 +310,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
                 responsive: true
             }
         });
-    };
+    }
 
     $timeout(display(), 2000);
 });

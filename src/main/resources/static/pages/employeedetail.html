@@ -11,14 +11,6 @@
 
 
     <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
-        </div>
-        <div class="col-lg-2"></div>
-    </div>
-
-
-    <div class="row">
 
         <div class="col-lg-1"></div>
         <!-- DETAILS -->
@@ -27,11 +19,16 @@
             <b>Birth date:</b> {{user.birth_date}}</br>
             <b>Hiring date:</b> {{user.hiring_date}}</br>
             <b>Sex: </b> {{user.sex}}</br>
-            <b>Function: </b> {{user.function.name}}</br>
-            </br>
-            <b>Progress:</b> {{user.experiencepoints}} / 1000 exp
+            <b>Functions: </b> {{user.function.name}}</br>
+            <ul>
+                <li ng-repeat="f in employeefunctions">{{f.function.name}}</li>
+            </ul>
+            <hr>
+            <h3>Level: {{expobj.level}}</h3>
+            <h5>{{expobj.title}}</h5>
+            <b>Progress:</b> {{expobj.remainingExp}} / 1000 exp
             <div class="progress">
-                <div class="progress-bar btn-red" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div id="progressbar" class="progress-bar btn-red" role="progressbar" style="width: 0%; height: 100%;" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
 

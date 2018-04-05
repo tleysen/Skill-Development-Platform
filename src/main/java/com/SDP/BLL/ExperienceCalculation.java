@@ -60,7 +60,7 @@ public class ExperienceCalculation {
     private ExperienceObject createExpObject(ExperienceObject obj){
 
         int totalExp;
-        int level = 0;
+        int level = 1;
 
 
         totalExp = obj.getTotalExp();
@@ -70,8 +70,6 @@ public class ExperienceCalculation {
                 totalExp = totalExp - 1000;
                 level++;
             }while(totalExp>=1000);
-        }else{
-            level++;
         }
 
         obj.setRemainingExp(totalExp);
