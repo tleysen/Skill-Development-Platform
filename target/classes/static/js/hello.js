@@ -157,7 +157,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     loadData = function(){
 
-
         $http({
             method: 'GET',
             url: '/req/expforempfunc/' + $routeParams.param1 + '/Javadeveloper' //add function('/1')
@@ -359,7 +358,4 @@ sdp.controller('manageController', function($scope,$http) {
             console.log(input);
         }
     }
-
-
-
 });

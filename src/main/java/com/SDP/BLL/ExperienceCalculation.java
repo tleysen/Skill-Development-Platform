@@ -1,7 +1,9 @@
 package com.SDP.BLL;
 
 import com.SDP.Models.*;
+import com.SDP.Remaining.PropertyReader;
 import com.SDP.Repositories.*;
+import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,6 @@ import java.util.List;
 @Service
 public class ExperienceCalculation {
 
-
-    //@Autowired
-    //private EmployeesRepository er;
-    //@Autowired
-    //private ScoresRepository sr;
     @Autowired
     private EmployeeCoursesRepository ecr;
     @Autowired
@@ -23,6 +20,7 @@ public class ExperienceCalculation {
     @Autowired
     private CoursesRepository cr;
 
+    PropertyReader pr = new PropertyReader();
 
     public int calculateTotalExperiencepoints(int employee_id, String func_name){
 
@@ -59,8 +57,17 @@ public class ExperienceCalculation {
 
     private ExperienceObject createExpObject(ExperienceObject obj){
 
+        pr.Read();
+
+        double FACTOR = PropertyReader.getExponentialFactor();
+        int JUNIOR_MEDIOR = PropertyReader.getJuniorMedior();
+        int MEDIOR = PropertyReader.getMedior();
+        int MEDIOR_SENIOR = PropertyReader.getMediorSenior();
+        int SENIOR = PropertyReader.getSenior();
+
         int totalExp;
         int level = 1;
+
 
 
         totalExp = obj.getTotalExp();
@@ -75,16 +82,16 @@ public class ExperienceCalculation {
         obj.setRemainingExp(totalExp);
         obj.setLevel(level);
 
-        if(level > 12){
+        if(level > SENIOR){
             obj.setTitle("Senior");
         }
-        else if(level >= 10) {
+        else if(level >= MEDIOR_SENIOR) {
             obj.setTitle("Medior-Senior");
         }
-        else if(level >= 7) {
+        else if(level >= MEDIOR) {
             obj.setTitle("Medior");
         }
-        else if(level >= 4) {
+        else if(level >= JUNIOR_MEDIOR) {
             obj.setTitle("Junior-Medior");
         }
         else {
