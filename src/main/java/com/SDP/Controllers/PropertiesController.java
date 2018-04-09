@@ -2,6 +2,7 @@ package com.SDP.Controllers;
 
 
 import com.SDP.BLL.Settings;
+import com.SDP.Remaining.PropertyReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ public class PropertiesController {
     private Settings appSettings;
 
     //------------------------------------------------------------------------------------------------------------------
-    //*****                                     PARAMLESS GET                                                    *****
+    //*****                                     GET DB Settings                                                    *****
     //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping(path = "/getsettings")
@@ -26,33 +27,57 @@ public class PropertiesController {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    //****                                     PARAMETER POST'S                                                    *****
+    //****                                  DB PARAMETER POST                                                      *****
     //------------------------------------------------------------------------------------------------------------------
 
-    @RequestMapping(value = "/newdbpass", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/changeDb", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    String changeDbPass(@RequestParam("data") String data) {
-        appSettings.setDbpw(data);
-        return "ok";
+    void changeDb(
+            @RequestParam("user") String user,
+            @RequestParam("pass") String pass,
+            @RequestParam("url") String url) {
+
+        if(!user.equals("")){
+            appSettings.setUser(user);
+        }
+        if(!pass.equals("")){
+            appSettings.setDbpw(pass);
+        }
+        if(!url.equals("")){
+            appSettings.setUrl(url);
+        }
     }
 
-    @RequestMapping(value = "/newDbIp/{data}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String changeDbIp(@RequestParam("data") String data) {
-        appSettings.setUrl(data);
-        return "ok";
-    }
 
-    @RequestMapping(value = "/newDbUser/{data}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String changeDbUser(@RequestParam("data") String data) {
-        appSettings.setUrl(data);
-        return "ok";
-    }
 
     //------------------------------------------------------------------------------------------------------------------
-    //****                                       EXP PARAMETER POST'S                                              *****
+    //****                                       EXP PARAMETER POST                                                *****
     //------------------------------------------------------------------------------------------------------------------
 
+    @RequestMapping(value = "/changeExp", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    void changeExp(
+            @RequestParam("juniorMedior") String juniorMedior,
+            @RequestParam("medior") String medior,
+            @RequestParam("mediorSenior") String mediorSenior,
+            @RequestParam("senior") String senior,
+            @RequestParam("factor") String factor) {
+
+        if(!juniorMedior.equals("")){
+            PropertyReader.setJuniorMedior(Integer.parseInt(juniorMedior));
+        }
+        if(!medior.equals("")){
+            PropertyReader.setMedior(Integer.parseInt(medior));
+        }
+        if(!mediorSenior.equals("")){
+            PropertyReader.setMediorSenior(Integer.parseInt(mediorSenior));
+        }
+        if(!senior.equals("")){
+            PropertyReader.setSenior(Integer.parseInt(senior));
+        }
+        if(!factor.equals("")){
+            PropertyReader.setExponentialFactor(Double.parseDouble(factor));
+        }
+    }
 
 }

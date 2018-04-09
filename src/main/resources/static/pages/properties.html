@@ -39,6 +39,7 @@
                     <div class="form-group col-md-8">
                     </div>
                 </div>
+                <button ng-click="changeDb()" class="btn btn-default btn-circle font2-black btn-right btn-red"><i class="fas fa-save"></i></button>
             </form>
         </div>
         <div class="col-lg-2"></div>
@@ -54,52 +55,44 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="form-row">
+    <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 jumbotron">
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputPass">Junior-Medior rankup level:</label>
-                        <input type="text" class="form-control" id="inputJuniorMedior" placeholder="4" required>
-                    </div>
-                </div>
-                    <div class="form-group col-md-8">
-                    </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="inputPass">Medior rankup level:</label>
-                        <input type="text" class="form-control" id="inputMedior" placeholder="7" required>
-                    </div>
-                    <div class="form-group col-md-8">
+                        <input type="text" class="form-control" id="inputJuniorMedior" placeholder="4">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputPass">Medior-Senior rankup level:</label>
-                        <input type="text" class="form-control" id="inputMediorSenior" placeholder="10" required>
-                    </div>
-                    <div class="form-group col-md-8">
+                        <label>Medior rankup level:</label>
+                        <input type="text" class="form-control" id="inputMedior" placeholder="7">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputPass">Senior rankup level:</label>
-                        <input type="text" class="form-control" id="inputSenior" placeholder="13" required>
+                        <label>Medior-Senior rankup level:</label>
+                        <input type="text" class="form-control" id="inputMediorSenior" placeholder="10">
                     </div>
-                    <div class="form-group col-md-8">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Senior rankup level:</label>
+                        <input type="text" class="form-control" id="inputSenior" placeholder="13">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputPass">Multiplying factor:</label>
-                        <input type="text" class="form-control" id="inputFactor" placeholder="0.1" required>
+                        <input type="text" class="form-control" id="inputFactor" placeholder="0.1">
                     </div>
                     <div class="form-group col-md-8">
                     </div>
                 </div>
-        </div>
-        </form>
+                <button ng-click="changeExp()" class="btn btn-default btn-circle font2-black btn-right btn-red"><i class="fas fa-save"></i></button>
+            </form>
         </div>
         <div class="col-lg-2"></div>
     </div>

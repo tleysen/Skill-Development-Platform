@@ -316,18 +316,23 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
 sdp.controller('propertiesController', function($scope,$http) {
 
-    $http({
-        method: 'GET',
-        url: '/props/getdbpass'
-    }).then(function (success) {
-        $scope.pass = success.password;
-        console.log(password)
-    }, function (error) {
-        $scope.pass = error;
-        console.log(error);
-    });
+    $scope.changeExp = function(){
 
+        var juniorMedior = document.getElementById("inputJuniorMedior").value;
+        console.log(juniorMedior);
+        var medior = document.getElementById("inputMedior").value;
+        console.log(medior);
+        var mediorSenior = document.getElementById("inputMediorSenior").value;
+        var senior = document.getElementById("inputSenior").value;
+        var factor = document.getElementById("inputFactor").value;
 
+        $.ajax({
+            type: "POST",
+            url: "/props/changeExp",
+            data: { juniorMedior: juniorMedior, medior: medior, mediorSenior: mediorSenior, senior: senior,
+                factor: factor}
+        });
+    };
 });
 
 sdp.controller('manageController', function($scope,$http) {

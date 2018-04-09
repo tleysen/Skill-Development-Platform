@@ -44,9 +44,9 @@ public class PropertyReader {
         return Double.parseDouble(exponentialFactor);
     }
 
-    public static void setExponentialFactor(int input){
+    public static void setExponentialFactor(Double input){
         props.setProperty("EXPONENTIAL_FACTOR", Double.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 
     public static int getBaseExp(){
@@ -55,7 +55,7 @@ public class PropertyReader {
 
     public static void setBaseExp(int input){
         props.setProperty("BASE_EXP", Integer.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 
     public static int getJuniorMedior(){
@@ -64,7 +64,7 @@ public class PropertyReader {
 
     public static void setJuniorMedior(int input){
         props.setProperty("LVL_JUNIOR-MEDIOR", Integer.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 
     public static int getMedior(){
@@ -73,7 +73,7 @@ public class PropertyReader {
 
     public static void setMedior(int input){
         props.setProperty("LVL_MEDIOR", Integer.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 
     public static int getMediorSenior(){
@@ -82,7 +82,7 @@ public class PropertyReader {
 
     public static void setMediorSenior(int input){
         props.setProperty("LVL_MEDIOR-SENIOR", Integer.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 
     public static int getSenior(){
@@ -91,6 +91,6 @@ public class PropertyReader {
 
     public static void setSenior(int input){
         props.setProperty("LVL_SENIOR", Integer.toString(input));
-        Write();
+        PropertyReader.Write();
     }
 }
