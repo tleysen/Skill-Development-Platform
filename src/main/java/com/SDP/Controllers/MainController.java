@@ -127,7 +127,7 @@ public class MainController {
 
     @RequestMapping(value = "/topscoresforemployee/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    TestObject topScoresForEmployee(
+    ScoresObject topScoresForEmployee(
             @PathVariable("id") String id) {
         return topSkills.getTop5ForEmployeeId(Integer.parseInt(id));
     }

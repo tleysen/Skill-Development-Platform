@@ -169,49 +169,35 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     var labelArray;
     var scores_data;
 
-
-    ////////////////////////////////////
-
     var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
     getTopScores.then(function (data) {
-        var scores = data.data;
         var labels_polar = [];
         var scores_data = [];
 
         if(data.data.domain1){
             labels_polar.push(data.data.domain1.name);
-            scores_data.push(data.data.domain1.)
-        }else{
-            labels_polar.push(" ")
+            scores_data.push(data.data.score1.points)
         }
 
         if(data.data.domain2){
-            labels_polar.push(data.data.domain2.name)
-        }
-        else{
-            labels_polar.push(" ")
+            labels_polar.push(data.data.domain2.name);
+            scores_data.push(data.data.score2.points)
         }
 
         if(data.data.domain3){
-            labels_polar.push(data.data.domain3.name)
-        }
-        else{
-            labels_polar.push(" ")
+            labels_polar.push(data.data.domain3.name);
+            scores_data.push(data.data.score3.points)
         }
 
         if(data.data.domain4){
-            labels_polar.push(data.data.domain4.name)
-        }
-        else{
-            labels_polar.push(" ")
-        }
-        if(data.data.domain5){
-            labels_polar.push(data.data.domain5.name)
-        }
-        else{
-            labels_polar.push(" ")
+            labels_polar.push(data.data.domain4.name);
+            scores_data.push(data.data.score4.points)
         }
 
+        if(data.data.domain5){
+            labels_polar.push(data.data.domain5.name);
+            scores_data.push(data.data.score5.points)
+        }
         ////////
 
 
@@ -244,16 +230,9 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
                 responsive: true
             }
         });
-
-        /////////////
-
-        $scope.score = data.data;
-        console.log(data.data);
     }, function (reason) {
         // fail, do something with reason
     });
-
-    ////////////////////////////////////
 
     loadData = function(){
 
@@ -300,18 +279,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         }, function (error) {
             console.log(error);
         });
-
-        //$http({
-        //    method: 'GET',
-        //    url: '/req/topscoresforemployee/' + $routeParams.param1
-        //}).then(function (success) {
-        //    scores_data = success.data;
-        //    labelArray = [scores_data.domain1.name.toString(), scores_data.domain2.name, scores_data.domain3.name, scores_data.domain4.name, scores_data.domain5.name];
-        //    $scope.status = success.status;
-        //    $scope.score = success.data;
-        //}, function (error) {
-        //    console.log(error);
-        //});
 
         $scope.getCourse = function() {
 

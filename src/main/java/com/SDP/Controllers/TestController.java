@@ -1,11 +1,10 @@
 package com.SDP.Controllers;
 
 import com.SDP.BLL.CourseRecommendation;
-import com.SDP.BLL.CourseRecommendation0;
 import com.SDP.BLL.TopSkills;
 import com.SDP.Models.Courses;
 import com.SDP.Models.Employees;
-import com.SDP.Models.TestObject;
+import com.SDP.Models.ScoresObject;
 import com.SDP.Repositories.EmployeesRepository;
 import com.SDP.Repositories.FunctionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "/check/2", method = RequestMethod.GET)
-    public
-    TestObject testMeth2() {
+    public ScoresObject testMeth2() {
         return ts.getTop5ForEmployeeId(1);
     }
 
