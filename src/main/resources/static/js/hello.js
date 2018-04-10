@@ -46,7 +46,21 @@ sdp.config(function($routeProvider) {
 sdp.controller('mainController', function($scope,$http) {
 });
 
-sdp.controller('employeesController', function($scope, $http) {
+sdp.controller('employeesController', function($scope, $http, getService, $q) {
+
+
+    ////////////////////////////////////
+
+    var getEmployees = getService.promiseGet('/req/allusers');
+    getEmployees.then(function (data) {
+        $scope.users = data.data;
+        console.log(data.data);
+    }, function (reason) {
+        // fail, do something with reason
+    });
+
+    ////////////////////////////////////
+
 
 
     $scope.getDetails = function(emp_id){
@@ -54,16 +68,18 @@ sdp.controller('employeesController', function($scope, $http) {
     };
 
     var employee_data;
-    $http({
-        method: 'GET',
-        url: '/req/allusers'
-    }).then(function (success) {
-        employee_data = success.data;
-        $scope.users = employee_data;
-        console.log(employee_data);
-    }, function (error) {
-        employee_data = error;
-    });
+
+
+    //$http({
+    //    method: 'GET',
+    //    url: '/req/allusers'
+    //}).then(function (success) {
+    //    employee_data = success.data;
+    //    $scope.users = employee_data;
+    //    console.log(employee_data);
+    //}, function (error) {
+    //    employee_data = error;
+    //});
 
     var function_data;
 
@@ -73,8 +89,6 @@ sdp.controller('employeesController', function($scope, $http) {
     }).then(function (success) {
         function_data = success.data;
         $scope.functions = function_data;
-        console.log(function_data);
-
     }, function (error) {
         function_data = error;
     });
@@ -150,10 +164,96 @@ sdp.controller('coursesController', function($scope, $http) {
     });
 });
 
-sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout) {
+sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout, getService) {
 
     var labelArray;
     var scores_data;
+
+
+    ////////////////////////////////////
+
+    var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
+    getTopScores.then(function (data) {
+        var scores = data.data;
+        var labels_polar = [];
+        var scores_data = [];
+
+        if(data.data.domain1){
+            labels_polar.push(data.data.domain1.name);
+            scores_data.push(data.data.domain1.)
+        }else{
+            labels_polar.push(" ")
+        }
+
+        if(data.data.domain2){
+            labels_polar.push(data.data.domain2.name)
+        }
+        else{
+            labels_polar.push(" ")
+        }
+
+        if(data.data.domain3){
+            labels_polar.push(data.data.domain3.name)
+        }
+        else{
+            labels_polar.push(" ")
+        }
+
+        if(data.data.domain4){
+            labels_polar.push(data.data.domain4.name)
+        }
+        else{
+            labels_polar.push(" ")
+        }
+        if(data.data.domain5){
+            labels_polar.push(data.data.domain5.name)
+        }
+        else{
+            labels_polar.push(" ")
+        }
+
+        ////////
+
+
+        var color1_dark = "rgba(46,38,51,0.7)";
+        var color2_dark = "rgba(85,81,82,0.7)";
+        var color3_dark = "rgba(153,23,60,0.7)";
+        var color4_dark = "rgba(220,233,190,0.7)";
+        var color5_dark = "rgba(239,255,205,0.7)";
+
+        var color1_light = "rgba(46,38,51,0.4)";
+        var color2_light = "rgba(85,81,82,0.4)";
+        var color3_light = "rgba(153,23,60,0.4)";
+        var color4_light = "rgba(220,233,190,0.4)";
+        var color5_light = "rgba(239,255,205,0.4)";
+
+        var ctxPA = document.getElementById("polarChart").getContext('2d');
+        var myPolarChart = new Chart(ctxPA, {
+            type: 'polarArea',
+            data: {
+                labels: labels_polar,
+                datasets: [
+                    {
+                        data: scores_data,
+                        backgroundColor: [color1_dark, color2_dark, color3_dark, color4_dark, color5_dark],
+                        hoverBackgroundColor: [color1_light, color2_light, color3_light, color4_light, color5_light]
+                    }
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        /////////////
+
+        $scope.score = data.data;
+        console.log(data.data);
+    }, function (reason) {
+        // fail, do something with reason
+    });
+
+    ////////////////////////////////////
 
     loadData = function(){
 
@@ -201,17 +301,17 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             console.log(error);
         });
 
-        $http({
-            method: 'GET',
-            url: '/req/topscoresforemployee/' + $routeParams.param1
-        }).then(function (success) {
-            scores_data = success.data;
-            labelArray = [scores_data.domain1.name.toString(), scores_data.domain2.name, scores_data.domain3.name, scores_data.domain4.name, scores_data.domain5.name];
-            $scope.status = success.status;
-            $scope.score = success.data;
-        }, function (error) {
-            console.log(error);
-        });
+        //$http({
+        //    method: 'GET',
+        //    url: '/req/topscoresforemployee/' + $routeParams.param1
+        //}).then(function (success) {
+        //    scores_data = success.data;
+        //    labelArray = [scores_data.domain1.name.toString(), scores_data.domain2.name, scores_data.domain3.name, scores_data.domain4.name, scores_data.domain5.name];
+        //    $scope.status = success.status;
+        //    $scope.score = success.data;
+        //}, function (error) {
+        //    console.log(error);
+        //});
 
         $scope.getCourse = function() {
 
@@ -234,84 +334,52 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     function display(){
         //CHARTING
-        var color1_dark = "rgba(46,38,51,0.7)";
-        var color2_dark = "rgba(85,81,82,0.7)";
-        var color3_dark = "rgba(153,23,60,0.7)";
-        var color4_dark = "rgba(220,233,190,0.7)";
-        var color5_dark = "rgba(239,255,205,0.7)";
-
-        var color1_light = "rgba(46,38,51,0.4)";
-        var color2_light = "rgba(85,81,82,0.4)";
-        var color3_light = "rgba(153,23,60,0.4)";
-        var color4_light = "rgba(220,233,190,0.4)";
-        var color5_light = "rgba(239,255,205,0.4)";
-
-        var labels_polar = ["Eating", "Drinking", "Sleeping", "Designing", "Coding"];
 
         //line
 
-        var ctxL = document.getElementById("lineChart").getContext('2d');
-
-
-        var myLineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: labels_polar,
-                datasets: [
-                    {
-                        //label: scores_data[0].domain.name,
-                        backgroundColor: color5_light,
-                        pointHighlightStroke: color5_dark,
-                        data: [0, 0, 0, 1, 1, 1, 1]
-                    },{
-                        //label: scores_data[1].domain.name,
-                        backgroundColor: color4_light,
-                        pointHighlightStroke: color4_dark,
-                        data: [0, 0, 0, 0, 1, 1, 1]
-                    },{
-                        //label: scores_data[2].domain.name,
-                        backgroundColor: color3_light,
-                        pointHighlightStroke: color3_dark,
-                        data: [1, 1, 1, 2, 2, 2, 2]
-                    },{
-                        //label: scores_data[3].domain.name,
-                        backgroundColor: color2_light,
-                        pointHighlightStroke: color2_dark,
-                        data: [1, 2, 2, 3, 3, 3, 3]
-                    }, {
-                        //label: scores_data[4].domain.name,
-                        backgroundColor: color1_light,
-                        pointHighlightStroke: "rgba(153,23,60,0.7)",
-                        data: [1, 2, 2, 3, 3, 3, 4]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
+        //var ctxL = document.getElementById("lineChart").getContext('2d');
+        //var myLineChart = new Chart(ctxL, {
+        //    type: 'line',
+        //    data: {
+        //        labels: ["lol"],
+        //        datasets: [
+        //            {
+        //                //label: scores_data[0].domain.name,
+        //                backgroundColor: color5_light,
+        //                pointHighlightStroke: color5_dark,
+        //                data: [0, 0, 0, 1, 1, 1, 1]
+        //            },{
+        //                //label: scores_data[1].domain.name,
+        //                backgroundColor: color4_light,
+        //                pointHighlightStroke: color4_dark,
+        //                data: [0, 0, 0, 0, 1, 1, 1]
+        //            },{
+        //                //label: scores_data[2].domain.name,
+        //                backgroundColor: color3_light,
+        //                pointHighlightStroke: color3_dark,
+        //                data: [1, 1, 1, 2, 2, 2, 2]
+        //            },{
+        //                //label: scores_data[3].domain.name,
+        //                backgroundColor: color2_light,
+        //                pointHighlightStroke: color2_dark,
+        //                data: [1, 2, 2, 3, 3, 3, 3]
+        //            }, {
+        //                //label: scores_data[4].domain.name,
+        //                backgroundColor: color1_light,
+        //                pointHighlightStroke: "rgba(153,23,60,0.7)",
+        //                data: [1, 2, 2, 3, 3, 3, 4]
+        //            }
+        //        ]
+        //    },
+        //    options: {
+        //        responsive: true
+        //    }
+        //});
 
         //polar
-        var ctxPA = document.getElementById("polarChart").getContext('2d');
-        var myPolarChart = new Chart(ctxPA, {
-            type: 'polarArea',
-            data: {
-                labels: labels_polar,
-                datasets: [
-                    {
-                        data: [4, 3, 2, 1, 1],
-                        backgroundColor: [color1_dark, color2_dark, color3_dark, color4_dark, color5_dark],
-                        hoverBackgroundColor: [color1_light, color2_light, color3_light, color4_light, color5_light]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
     }
 
-    $timeout(display(), 2000);
+    display();
 });
 
 sdp.controller('propertiesController', function($scope,$http) {
