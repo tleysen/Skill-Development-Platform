@@ -53,7 +53,6 @@ public class TopSkills {
             obj.setDomain5(scores.get(4).getDomain());
             obj.setScore5(scores.get(4));
         }
-
         return obj;
     }
 }

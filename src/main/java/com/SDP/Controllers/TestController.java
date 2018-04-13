@@ -1,6 +1,7 @@
 package com.SDP.Controllers;
 
 import com.SDP.BLL.CourseRecommendation;
+import com.SDP.BLL.TimeTracking;
 import com.SDP.BLL.TopSkills;
 import com.SDP.Models.Courses;
 import com.SDP.Models.Employees;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Time;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,8 @@ public class TestController {
     private FunctionsRepository fr;
     @Autowired
     private ExperienceController ec;
+    @Autowired
+    private TimeTracking tt;
 
     Employees emp;
 
@@ -55,7 +59,8 @@ public class TestController {
 
     @RequestMapping(value = "/check/4", method = RequestMethod.GET)
     public @ResponseBody
-    int testMeth4() {
-        return ec.ec.calculateTotalExperiencepoints(1, "qsdf");
+    List<List<Integer>> testMeth4() {
+        return tt.getAllSetsForEmployeeWithFunction(1,1);
+
     }
 }

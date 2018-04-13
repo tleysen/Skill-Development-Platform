@@ -47,4 +47,16 @@ public class Scores {
     public Date getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Scores{" +
+                "id=" + id +
+                ", domain=" + domain +
+                ", employee=" + employee +
+                ", points=" + points +
+                ", remarks='" + remarks + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

@@ -11,4 +11,6 @@ public interface FunctionsDomainsRepository extends CrudRepository<FunctionsDoma
     List<FunctionsDomains> findAllByFunction_IdOrderByDomainPriorityDesc(int id);
 
     List<FunctionsDomains> findAllByFunction_Name(String name);
+
+    List<FunctionsDomains> findAllByFunction_Id(int id);
 }
