@@ -172,15 +172,11 @@ public class MainController {
     //------------------------------------------------------------------------------------------------------------------
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String addNewEmployee(@RequestParam("name") String name, @RequestParam("lastname") String lastname, @RequestParam("sex")
+    public void addNewEmployee(@RequestParam("name") String name, @RequestParam("lastname") String lastname, @RequestParam("sex")
             String sex, @RequestParam("employee_function") String employee_function, @RequestParam("birth_date")
             String birth_date, @RequestParam("hiring_date") String hiring_date) {
 
         DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-
-        //selectedEmployee = employeesRepository.findById(1);
-        //employeesFunction = selectedEmployee.getFunction();
 
         Employees n = new Employees();
         n.setName(name);
@@ -204,7 +200,15 @@ public class MainController {
 
         employeesRepository.save(n);
         System.out.println(n);
-        return "ok";
+    }
+
+    @RequestMapping(value = "/addDomain", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addNewDomain(@RequestParam("name") String name){
+        Domains d = new Domains();
+        
+        d.setName(name);
+        domainsRepository.save(d);
+
     }
 
 }

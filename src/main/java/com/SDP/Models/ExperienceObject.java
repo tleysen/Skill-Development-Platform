@@ -7,6 +7,7 @@ public class ExperienceObject {
     private String title;
     private int totalExp;
     private int remainingExp;
+    private int requiredExp;
 
     public int getLevel() {
         return level;
@@ -38,5 +39,13 @@ public class ExperienceObject {
 
     public void setRemainingExp(int remainingExp) {
         this.remainingExp = remainingExp;
+    }
+
+    public int getRequiredExp() {
+        return requiredExp;
+    }
+
+    public void setRequiredExp(int requiredExp) {
+        this.requiredExp = requiredExp;
     }
 }

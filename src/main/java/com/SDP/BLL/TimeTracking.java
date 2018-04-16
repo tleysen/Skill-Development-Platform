@@ -1,7 +1,6 @@
 package com.SDP.BLL;
 
 import com.SDP.Models.Domains;
-import com.SDP.Models.Functions;
 import com.SDP.Models.FunctionsDomains;
 import com.SDP.Models.Scores;
 import com.SDP.Repositories.FunctionsDomainsRepository;
@@ -9,12 +8,10 @@ import com.SDP.Repositories.ScoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Function;
 
 @Service
 public class TimeTracking {

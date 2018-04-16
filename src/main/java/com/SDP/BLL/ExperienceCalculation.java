@@ -68,16 +68,18 @@ public class ExperienceCalculation {
 
         int totalExp;
         int level = 1;
+        int requiredExp = BASE_EXP;
 
 
 
         totalExp = obj.getTotalExp();
 
-        if(totalExp >=1000){
+        if(totalExp >=requiredExp){
             do{
-                totalExp = totalExp - 1000;
+                totalExp = totalExp - requiredExp;
                 level++;
-            }while(totalExp>=1000);
+                requiredExp = (int) (requiredExp + requiredExp * FACTOR);
+            }while(totalExp>= requiredExp);
         }
 
         obj.setRemainingExp(totalExp);
@@ -99,6 +101,7 @@ public class ExperienceCalculation {
             obj.setTitle("Junior");
         }
 
+        obj.setRequiredExp(requiredExp);
         return obj;
     }
 

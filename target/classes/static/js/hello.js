@@ -313,7 +313,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         }).then(function(succes){
             exp_data = succes.data;
             $scope.expobj = exp_data;
-            var progress = exp_data.remainingExp / 10;
+            var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
             var elem = document.getElementById("progressbar");
             elem.style.width = progress + '%';
         }, function (error) {
@@ -419,5 +419,17 @@ sdp.controller('manageController', function($scope,$http) {
         if(old_input !== input){
             console.log(input);
         }
-    }
+    };
+
+    $scope.newDomain = function(){
+        var name = document.getElementById("inputDomainName").value;
+        $.ajax({
+            type: "POST",
+            url: "/req/addDomain",
+            data: { name: name }
+        });
+        window.location.reload();
+    };
+
+
 });
