@@ -11,6 +11,9 @@
         <div class="col-lg-4" ng-repeat="f in functions">
             <div class="card font2 bg-stardust" style="width: 18rem;">
                 <div class="card-body">
+                    <button type="button" class="close" ng-click="removeFunction(f.id)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h5 class="card-title">{{f.name}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{f.name}}</h6>
                     <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" data-toggle="modal" data-target="modalEdit"><i class="fas fa-chevron-circle-right"></i></button>
@@ -29,6 +32,9 @@
             <div class="col-lg-4"  ng-repeat="d in domains">
                 <div class="card font2 bg-stardust" style="width: 18rem;">
                     <div class="card-body">
+                        <button type="button" class="close" ng-click="removeDomain(d.id)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         <h5 class="card-title">{{d.name}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{c.domain.name}}</h6>
                     </div>
@@ -54,8 +60,8 @@
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="inputName">Name</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Function" required>
+                                <label for="inputFunctionName">Name</label>
+                                <input type="text" class="form-control" id="inputFunctionName" placeholder="Function" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -69,7 +75,7 @@
     </div>
 
     <!-- MODAL -->
-    <div class="modal fade" id="modalNewDomain" tabindex="-1" role="dialog" aria-labelledby="newFunctionModal" aria-hidden="true">
+    <div class="modal fade" id="modalNewDomain" tabindex="-1" role="dialog" aria-labelledby="newDomainModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

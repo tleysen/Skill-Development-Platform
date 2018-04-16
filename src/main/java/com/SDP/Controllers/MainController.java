@@ -172,9 +172,13 @@ public class MainController {
     //------------------------------------------------------------------------------------------------------------------
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addNewEmployee(@RequestParam("name") String name, @RequestParam("lastname") String lastname, @RequestParam("sex")
-            String sex, @RequestParam("employee_function") String employee_function, @RequestParam("birth_date")
-            String birth_date, @RequestParam("hiring_date") String hiring_date) {
+    public void addNewEmployee(
+            @RequestParam("name") String name,
+            @RequestParam("lastname") String lastname,
+            @RequestParam("sex") String sex,
+            @RequestParam("employee_function") String employee_function,
+            @RequestParam("birth_date") String birth_date,
+            @RequestParam("hiring_date") String hiring_date) {
 
         DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 
@@ -203,12 +207,22 @@ public class MainController {
     }
 
     @RequestMapping(value = "/addDomain", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addNewDomain(@RequestParam("name") String name){
+    public void addNewDomain(
+            @RequestParam("name") String name){
         Domains d = new Domains();
-        
+
         d.setName(name);
         domainsRepository.save(d);
 
+    }
+
+    @RequestMapping(value = "/addFunction", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addNewFunction(
+            @RequestParam("name") String name){
+        Functions f = new Functions();
+
+        f.setName(name);
+        functionsRepository.save(f);
     }
 
 }

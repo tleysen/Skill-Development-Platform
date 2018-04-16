@@ -134,12 +134,9 @@ sdp.controller('employeesController', function($scope, $http, getService, $q) {
 
         $http({
             method: 'GET',
-            url: '/test/check/4'
+            url: '/req/deleteemployeebyid/' + id
         }).then(function (success) {
-            $scope.pass = success.password;
-            console.log(password)
         }, function (error) {
-            $scope.pass = error;
             console.log(error);
         });
 
@@ -394,8 +391,6 @@ sdp.controller('propertiesController', function($scope,$http) {
 
 sdp.controller('manageController', function($scope,$http) {
 
-    var old_input;
-
     $http({
         method: 'GET',
         url: '/req/alldomains'
@@ -415,12 +410,6 @@ sdp.controller('manageController', function($scope,$http) {
         $scope.functions = error;
     });
 
-    $scope.rowSorter = function(input){
-        if(old_input !== input){
-            console.log(input);
-        }
-    };
-
     $scope.newDomain = function(){
         var name = document.getElementById("inputDomainName").value;
         $.ajax({
@@ -431,5 +420,40 @@ sdp.controller('manageController', function($scope,$http) {
         window.location.reload();
     };
 
+    $scope.removeDomain = function(id){
+
+        $http({
+            method: 'GET',
+            url: '/req/deletedomainbyid/' + id
+        }).then(function (success) {
+        }, function (error) {
+            console.log(error);
+        });
+
+        window.location.reload();
+    };
+
+    $scope.newFunction = function(){
+        var name = document.getElementById("inputFunctionName").value;
+        $.ajax({
+            type: "POST",
+            url: "/req/addFunction",
+            data: { name: name }
+        });
+        window.location.reload();
+    };
+
+    $scope.removeFunction = function(id){
+
+        $http({
+            method: 'GET',
+            url: '/req/deletefunctionbyid/' + id
+        }).then(function (success) {
+        }, function (error) {
+            console.log(error);
+        });
+
+        window.location.reload();
+    }
 
 });
