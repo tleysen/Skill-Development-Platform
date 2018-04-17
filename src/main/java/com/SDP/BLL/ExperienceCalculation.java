@@ -78,7 +78,8 @@ public class ExperienceCalculation {
             do{
                 totalExp = totalExp - requiredExp;
                 level++;
-                requiredExp = (int) (requiredExp + requiredExp * FACTOR);
+                requiredExp =  (int) (requiredExp + requiredExp * FACTOR);
+                requiredExp = requiredExp - (requiredExp % 100);
             }while(totalExp>= requiredExp);
         }
 

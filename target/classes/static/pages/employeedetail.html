@@ -21,7 +21,7 @@
             <b>Sex: </b> {{user.sex}}</br>
             <b>Functions: </b> {{user.function.name}}</br>
             <ul>
-                <li ng-repeat="f in employeefunctions">{{f.function.name}}</li>
+                <li ng-repeat="f in employeefunctions"><a ng-href="#!/functiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
             </ul>
             <hr>
             <h3>Level: {{expobj.level}}</h3>
@@ -37,35 +37,7 @@
             <h5 class="font1-black" style="text-align: center;">Top 5 skills:</h5>
             <canvas id="polarChart"></canvas>
         </div>
-        <div class="col-lg-1"></div></div>
-        <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Development over time:</h3>
-        <div class="row">
-            <div class="col-lg-1"></div>
-        <!-- LINECHART CANVAS -->
-            <div class="col-lg-10 sub-content">
-                <canvas id="lineChart"></canvas>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-        <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Courses:</h3>
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10 sub-content">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" ng-repeat="c in courses">{{c.name}}</li>
-                </ul>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-    <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
-        </div>
-        <div class="col-lg-2">
-            <button type="button" class="btn btn-circle bg-stardust font1" data-toggle="modal" data-target="#modalCourseRequest"><i class="fas fa-book"></i></button>
-        </div>
     </div>
-
 </div>
 
 <!-- MODAL -->
@@ -113,65 +85,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-circle btn-save font1" ng-click="newEmployee()" data-dismiss="modal"><i class="fas fa-save"></i></button>
-                        <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalCourseRequest" tabindex="-1" role="dialog" aria-labelledby="newCourseRequestModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title font1-black" id="modalCourseRequestLongTitle">Request a new course</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body font2-black">
-                <!-- FORM -->
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="inputFunction">Function</label>
-                            <select class="form-control" id="inputEmployeeFunctions" required>
-                                <option ng-repeat="ef in employeefunctions">{{ef.function.name}}</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-circle btn-save font1" ng-click="getCourse()" data-dismiss="modal" data-toggle="modal" data-target="#modalCourse"><i class="fas fa-arrow-right"></i></button>
-                        <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalCourse" tabindex="-1" role="dialog" aria-labelledby="courseModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title font1-black" id="courseModalLongTitle">Results:</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body font2-black">
-                <!-- FORM -->
-                <form>
-                    <div class="form-row">
-                            <ul class="list-group list-group-flush">
-                                <a ng-repeat="course in recommended" ng-href="/req/coursebyid/{{course.id}}"><li class="list-group-item"><h3>{{course.name}}</h3>{{course.exp}} exp id: {{course.id}}</li></a>
-                            </ul>
-                    </div>
-                    <div class="modal-footer">
                         <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                 </form>

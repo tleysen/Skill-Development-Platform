@@ -20,6 +20,10 @@ sdp.config(function($routeProvider) {
             templateUrl : 'pages/employeedetail.html',
             controller  : 'detailController'
         })
+        .when('/functiondetail/:emp_id/:func_id', {
+            templateUrl : 'pages/functiondetail.html',
+            controller  : 'detailController'
+        })
 
         .when('/domains', {
             templateUrl : 'pages/domains.html',

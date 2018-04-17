@@ -20,7 +20,7 @@ sdp.config(function($routeProvider) {
             templateUrl : 'pages/employeedetail.html',
             controller  : 'detailController'
         })
-        .when('/employeedetail/:emp_id/:func_id', {
+        .when('/functiondetail/:emp_id/:func_id', {
             templateUrl : 'pages/functiondetail.html',
             controller  : 'detailController'
         })
