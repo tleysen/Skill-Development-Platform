@@ -6,6 +6,7 @@ import com.SDP.BLL.TopSkills;
 import com.SDP.Models.Courses;
 import com.SDP.Models.Employees;
 import com.SDP.Models.ScoresObject;
+import com.SDP.Models.TimeTrackingObject;
 import com.SDP.Repositories.EmployeesRepository;
 import com.SDP.Repositories.FunctionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class TestController {
 
     @RequestMapping(value = "/check/4", method = RequestMethod.GET)
     public @ResponseBody
-    List<List<Integer>> testMeth4() {
+    TimeTrackingObject testMeth4() {
         return tt.getAllSetsForEmployeeWithFunction(1,1);
 
     }

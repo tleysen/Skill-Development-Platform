@@ -3,6 +3,7 @@ package com.SDP.BLL;
 import com.SDP.Models.Domains;
 import com.SDP.Models.FunctionsDomains;
 import com.SDP.Models.Scores;
+import com.SDP.Models.TimeTrackingObject;
 import com.SDP.Repositories.FunctionsDomainsRepository;
 import com.SDP.Repositories.ScoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,12 +94,14 @@ public class TimeTracking {
         return out;
     }
 
-    public List<List<Integer>> getAllSetsForEmployeeWithFunction(int emp_id, int func_id){
+    public TimeTrackingObject getAllSetsForEmployeeWithFunction(int emp_id, int func_id){
 
         List<Scores> allScoresForEmployee = getScoresForEmployeeWithFunction(emp_id, func_id);
         List<FunctionsDomains> functionsDomains = fdr.findAllByFunction_Id(func_id);
         List<Scores> input = new ArrayList<>();
-        List<List<Integer>> out = new ArrayList<>();
+        List<List<Integer>> wa_scorearray = new ArrayList<>();
+        List<String> wa_labelarray = new ArrayList<>();
+        TimeTrackingObject out = new TimeTrackingObject();
 
         for(FunctionsDomains fd : functionsDomains){
             for(Scores s : allScoresForEmployee){
@@ -106,9 +109,14 @@ public class TimeTracking {
                     input.add(s);
                 }
             }
-            out.add(format1DomainScoresTo12Months(input));
+            wa_labelarray.add(fd.getDomain().getName());
+            wa_scorearray.add(format1DomainScoresTo12Months(input));
             input.clear();
+
         }
+
+        out.setDatasets(wa_scorearray);
+        out.setDatalabels(wa_labelarray);
 
         return out;
     }

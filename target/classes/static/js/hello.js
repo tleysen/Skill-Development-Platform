@@ -240,8 +240,10 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
 
     // LINECHART//
-    var getChartData = getService.promiseGet('/test/check/4' + $routeParams.param1);
-    getTopScores.then(function (data) {
+    var getChartData = getService.promiseGet('/test/check/4');
+    getChartData.then(function (returned_data) {
+
+        console.log(returned_data.data);
         var line_x_labels = [];
         var month;
 
@@ -260,30 +262,30 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
                 labels: line_x_labels,
                 datasets: [
                     {
-                        //label: scores_data[0].domain.name,
+                        label: returned_data.data.datalabels[0],
                         backgroundColor: color5_light,
                         pointHighlightStroke: color5_dark,
-                        data: [0, 1, 2]
+                        data: returned_data.data.datasets[0]
                     },{
-                        //label: scores_data[1].domain.name,
+                        label: returned_data.data.datalabels[1],
                         backgroundColor: color4_light,
                         pointHighlightStroke: color4_dark,
-                        data: [0, 0, 0, 0, 1, 1, 1]
+                        data: returned_data.data.datasets[1]
                     },{
-                        //label: scores_data[2].domain.name,
+                        label: returned_data.data.datalabels[2],
                         backgroundColor: color3_light,
                         pointHighlightStroke: color3_dark,
-                        data: [1, 1, 1, 2, 2, 2, 2]
+                        data: returned_data.data.datasets[2]
                     },{
-                        //label: scores_data[3].domain.name,
+                        label: returned_data.data.datalabels[3],
                         backgroundColor: color2_light,
                         pointHighlightStroke: color2_dark,
-                        data: [1, 2, 2, 3, 3, 3, 3]
+                        data: returned_data.data.datasets[3]
                     }, {
-                        //label: scores_data[4].domain.name,
+                        label: returned_data.data.datalabels[4],
                         backgroundColor: color1_light,
-                        pointHighlightStroke: "rgba(153,23,60,0.7)",
-                        data: [1, 2, 2, 3, 3, 3, 4]
+                        pointHighlightStroke: color1_dark,
+                        data: returned_data.data.datasets[4]
                     }
                 ]
             },

@@ -5,7 +5,7 @@ import java.util.List;
 public class TimeTrackingObject {
 
     private List<List<Integer>> datasets;
-    private List<List<String>> datalabels;
+    private List<String> datalabels;
 
     public List<List<Integer>> getDatasets() {
         return datasets;
@@ -15,11 +15,11 @@ public class TimeTrackingObject {
         this.datasets = datasets;
     }
 
-    public List<List<String>> getDatalabels() {
+    public List<String> getDatalabels() {
         return datalabels;
     }
 
-    public void setDatalabels(List<List<String>> datalabels) {
+    public void setDatalabels(List<String> datalabels) {
         this.datalabels = datalabels;
     }
 }

@@ -1,12 +1,11 @@
 <div class="container" ng-controller="manageController">
-    <!-- CREATE NEW EMPLOYEE -->
 
     <!-- HEADER -->
     <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Manage</h1>
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Functions:</h3>
     <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewFunction"><i class="fas fa-plus-circle"></i></button>
 
-    <!-- CARD TEMPLATE USED TO SHOW EMPLOYEES -->
+    <!-- CARD TEMPLATE USED TO SHOW FUNCTIONS -->
     <div class="row">
         <div class="col-lg-4" ng-repeat="f in functions">
             <div class="card font2 bg-stardust" style="width: 18rem;">
@@ -26,7 +25,7 @@
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Domains:</h3>
     <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewDomain"><i class="fas fa-plus-circle"></i></button>
 
-    <!-- CARD TEMPLATE USED TO SHOW EMPLOYEES -->
+    <!-- CARD TEMPLATE USED TO SHOW DOMAINS -->
     <div>
         <div  class="row" >
             <div class="col-lg-4"  ng-repeat="d in domains">
@@ -45,7 +44,7 @@
     </div>
 
 
-    <!-- MODAL -->
+    <!-- MODAL FUNCTION -->
     <div class="modal fade" id="modalNewFunction" tabindex="-1" role="dialog" aria-labelledby="newFunctionModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -74,7 +73,7 @@
         </div>
     </div>
 
-    <!-- MODAL -->
+    <!-- MODAL DOMAIN-->
     <div class="modal fade" id="modalNewDomain" tabindex="-1" role="dialog" aria-labelledby="newDomainModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
