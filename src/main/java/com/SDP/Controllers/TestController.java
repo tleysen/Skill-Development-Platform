@@ -55,7 +55,7 @@ public class TestController {
     @RequestMapping(value = "/check/3", method = RequestMethod.GET)
     public @ResponseBody
     List<Courses> testMeth3() {
-        return cr.RecommendByPriorityByEmployeeId(1, fr.findById(2).getName());
+        return cr.RecommendByPriorityByEmployeeId(1, 2);
     }
 
     @RequestMapping(value = "/check/4", method = RequestMethod.GET)

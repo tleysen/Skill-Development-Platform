@@ -35,15 +35,9 @@ public class CourseController {
     }
 
 
-    @GetMapping(path = "/recommendCourse/1/Javadeveloper")
+    @GetMapping(path = "/recommendCourse/{id_emp}/{func_id}")
     public @ResponseBody
-    List<Courses> test() {
-        return cr.RecommendByPriorityByEmployeeId(Integer.parseInt("1"), "Javadeveloper");
-    }
-
-    @GetMapping(path = "/recommendCourse/{id_emp}/{func_name}")
-    public @ResponseBody
-    List<Courses> getCoursesForEmp(@PathVariable("id_emp") String id_emp, @PathVariable("func_name") String func_name) {
-        return cr.RecommendByPriorityByEmployeeId(Integer.parseInt(id_emp), func_name);
+    List<Courses> getCoursesForEmp(@PathVariable("id_emp") String id_emp, @PathVariable("func_id") String func_id) {
+        return cr.RecommendByPriorityByEmployeeId(Integer.parseInt(id_emp), Integer.parseInt(func_id));
     }
 }

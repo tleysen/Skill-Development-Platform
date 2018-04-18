@@ -1,5 +1,17 @@
 var sdp = angular.module('sdp', ['ngRoute']);
 
+var color1_dark = "rgba(46,38,51,0.7)";
+var color2_dark = "rgba(85,81,82,0.7)";
+var color3_dark = "rgba(153,23,60,0.7)";
+var color4_dark = "rgba(220,233,190,0.7)";
+var color5_dark = "rgba(239,255,205,0.7)";
+
+var color1_light = "rgba(46,38,51,0.4)";
+var color2_light = "rgba(85,81,82,0.4)";
+var color3_light = "rgba(153,23,60,0.4)";
+var color4_light = "rgba(220,233,190,0.4)";
+var color5_light = "rgba(239,255,205,0.4)";
+
 
 sdp.config(function($routeProvider) {
     $routeProvider
@@ -22,7 +34,7 @@ sdp.config(function($routeProvider) {
         })
         .when('/functiondetail/:emp_id/:func_id', {
             templateUrl : 'pages/functiondetail.html',
-            controller  : 'detailController'
+            controller  : 'functiondetailController'
         })
 
         .when('/domains', {
@@ -169,22 +181,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     var labelArray;
     var scores_data;
-    var today = new Date();
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
 
-    var color1_dark = "rgba(46,38,51,0.7)";
-    var color2_dark = "rgba(85,81,82,0.7)";
-    var color3_dark = "rgba(153,23,60,0.7)";
-    var color4_dark = "rgba(220,233,190,0.7)";
-    var color5_dark = "rgba(239,255,205,0.7)";
-
-    var color1_light = "rgba(46,38,51,0.4)";
-    var color2_light = "rgba(85,81,82,0.4)";
-    var color3_light = "rgba(153,23,60,0.4)";
-    var color4_light = "rgba(220,233,190,0.4)";
-    var color5_light = "rgba(239,255,205,0.4)";
 
     var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
     getTopScores.then(function (data) {
@@ -241,73 +238,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         // fail, do something with reason
     });
 
-
-
-    // LINECHART//
-    var getChartData = getService.promiseGet('/test/check/4');
-    getChartData.then(function (returned_data) {
-
-        console.log(returned_data.data);
-        var line_x_labels = [];
-        var month;
-
-        for (var i = 12; i > 0; i--) {
-            month = today.getMonth() + i;
-            if(month > 11){
-                month -= 12;
-            }
-            line_x_labels[i-1] = monthNames[month];
-        }
-
-        var ctxL = document.getElementById("lineChart").getContext('2d');
-        var myLineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: line_x_labels,
-                datasets: [
-                    {
-                        label: returned_data.data.datalabels[0],
-                        backgroundColor: color5_light,
-                        pointHighlightStroke: color5_dark,
-                        data: returned_data.data.datasets[0]
-                    },{
-                        label: returned_data.data.datalabels[1],
-                        backgroundColor: color4_light,
-                        pointHighlightStroke: color4_dark,
-                        data: returned_data.data.datasets[1]
-                    },{
-                        label: returned_data.data.datalabels[2],
-                        backgroundColor: color3_light,
-                        pointHighlightStroke: color3_dark,
-                        data: returned_data.data.datasets[2]
-                    },{
-                        label: returned_data.data.datalabels[3],
-                        backgroundColor: color2_light,
-                        pointHighlightStroke: color2_dark,
-                        data: returned_data.data.datasets[3]
-                    }, {
-                        label: returned_data.data.datalabels[4],
-                        backgroundColor: color1_light,
-                        pointHighlightStroke: color1_dark,
-                        data: returned_data.data.datasets[4]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-
-    }, function (reason) {
-        // fail, do something with reason
-    });
-
-
-
-
-
-
-
     loadData = function(){
 
         $http({
@@ -319,17 +249,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
             var elem = document.getElementById("progressbar");
             elem.style.width = progress + '%';
-        }, function (error) {
-            console.log(error);
-        });
-
-        $http({
-            method: 'GET',
-            url: '/req/coursesbyemployee/' + $routeParams.param1
-        }).then(function (success) {
-            courses_data = success.data;
-            $scope.courses = courses_data;
-            }, function (error) {
+        }, function (error){
             console.log(error);
         });
 
@@ -353,22 +273,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
         }, function (error) {
             console.log(error);
         });
-
-        $scope.getCourse = function() {
-
-            var selected_function = document.getElementById("inputEmployeeFunctions").value;
-            $http({
-                method: 'GET',
-                url: 'req/recommendCourse/' + $routeParams.param1 + '/' + selected_function
-            }).then(function (success) {
-                console.log($routeParams.param1);
-                recommend_data = success.data;
-                $scope.recommended = success.data;
-                console.log(success.data);
-            }, function (error) {
-                console.log(error);
-            });
-        };
     };
 
     loadData();
@@ -462,4 +366,121 @@ sdp.controller('manageController', function($scope,$http) {
         window.location.reload();
     }
 
+});
+
+sdp.controller('functiondetailController', function($scope, $http, getService, $routeParams) {
+
+
+    delete $scope.courses;
+    $scope.courses = "";
+
+    var today = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    // LINECHART//
+    var getChartData = getService.promiseGet('/req/timetracking/' + $routeParams.emp_id + '/' + $routeParams.func_id);
+    getChartData.then(function (returned_data) {
+
+        console.log(returned_data.data);
+        var line_x_labels = [];
+        var month;
+
+        for (var i = 12; i > 0; i--) {
+            month = today.getMonth() + i;
+            if(month > 11){
+                month -= 12;
+            }
+            line_x_labels[i-1] = monthNames[month];
+        }
+
+        var ctxL = document.getElementById("lineChart").getContext('2d');
+        var myLineChart = new Chart(ctxL, {
+            type: 'line',
+            data: {
+                labels: line_x_labels,
+                datasets: [
+                    {
+                        label: returned_data.data.datalabels[0],
+                        backgroundColor: color5_light,
+                        pointHighlightStroke: color5_dark,
+                        data: returned_data.data.datasets[0]
+                    },{
+                        label: returned_data.data.datalabels[1],
+                        backgroundColor: color4_light,
+                        pointHighlightStroke: color4_dark,
+                        data: returned_data.data.datasets[1]
+                    },{
+                        label: returned_data.data.datalabels[2],
+                        backgroundColor: color3_light,
+                        pointHighlightStroke: color3_dark,
+                        data: returned_data.data.datasets[2]
+                    },{
+                        label: returned_data.data.datalabels[3],
+                        backgroundColor: color2_light,
+                        pointHighlightStroke: color2_dark,
+                        data: returned_data.data.datasets[3]
+                    }, {
+                        label: returned_data.data.datalabels[4],
+                        backgroundColor: color1_light,
+                        pointHighlightStroke: color1_dark,
+                        data: returned_data.data.datasets[4]
+                    }
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+    }, function (reason) {
+        // fail, do something with reason
+    });
+
+
+    $http({
+        method: 'GET',
+        url: '/req/userbyid/' + $routeParams.emp_id
+    }).then(function (success) {
+        $scope.user = success.data;
+    }, function (error) {
+        console.log(error);
+    });
+
+    $http({
+        method: 'GET',
+        url: '/req/functionbyid/' + $routeParams.func_id
+    }).then(function (success) {
+        $scope.function = success.data;
+    }, function (error) {
+        console.log(error);
+    });
+
+    $http({
+        method: 'GET',
+        url: '/req/coursesbyemployee/' + $routeParams.emp_id
+    }).then(function (success) {
+        $scope.courses = success.data;
+    }, function (error) {
+        console.log(error);
+    });
+
+    $scope.getCourse = function() {
+
+        $http({
+            method: 'GET',
+            url: 'req/recommendCourse/' + $routeParams.emp_id + '/' + $routeParams.func_id
+        }).then(function (success) {
+            $scope.recommended = success.data;
+            console.log(success.data);
+            console.log($routeParams.emp_id + ' - ' + $routeParams.func_id );
+        }, function (error) {
+            console.log(error);
+        });
+    };
+
+    $scope.back = function(id){
+        location.href='#!/employeedetail/' + id;
+    }
 });

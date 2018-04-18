@@ -24,7 +24,7 @@ public class CourseRecommendation {
     @Autowired
     FunctionsRepository fr;
 
-    public List<Courses> RecommendByPriorityByEmployeeId(int employee_id, String function_name){
+    public List<Courses> RecommendByPriorityByEmployeeId(int employee_id, int function_id){
 
         boolean courseFound = false;
         int functionCounter = 0;
@@ -40,7 +40,6 @@ public class CourseRecommendation {
 
 
         do{
-            int function_id = fr.findByName(function_name).getId();
             //get domains by
             functionsDomainsList = fdr.findAllByFunction_IdOrderByDomainPriorityDesc(function_id);
             //select the first domain in the list
