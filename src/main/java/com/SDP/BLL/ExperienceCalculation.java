@@ -22,6 +22,22 @@ public class ExperienceCalculation {
 
     PropertyReader pr = new PropertyReader();
 
+
+
+    public int calculateTotalExp(int employee_id){
+        List<EmployeeCourses> wa_emplcourses;
+        List<Courses> followedCourses = new ArrayList<>();
+        int totalExp = 0;
+
+        //All employee courses objects
+        wa_emplcourses = ecr.findAllByEmployee_Id(employee_id);
+        //convert list to courses list
+        for (EmployeeCourses ec: wa_emplcourses){
+            totalExp += ec.getCourse().getExp();
+        }
+        return totalExp;
+    }
+
     public int calculateTotalExperiencepoints(int employee_id, String func_name){
 
         int exp = 0;
@@ -106,9 +122,16 @@ public class ExperienceCalculation {
         return obj;
     }
 
-    public ExperienceObject calculateProfile(int employee_id, String func_name){
+    public ExperienceObject calculateFunctionProfile(int employee_id, String func_name){
         ExperienceObject calculated_obj = new ExperienceObject();
         calculated_obj.setTotalExp(calculateTotalExperiencepoints(employee_id, func_name));
+        return createExpObject(calculated_obj);
+
+    }
+
+    public ExperienceObject calculateGeneralProfile(int employee_id){
+        ExperienceObject calculated_obj = new ExperienceObject();
+        calculated_obj.setTotalExp(calculateTotalExp(employee_id));
         return createExpObject(calculated_obj);
 
     }

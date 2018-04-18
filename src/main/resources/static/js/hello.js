@@ -242,7 +242,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
         $http({
             method: 'GET',
-            url: '/req/expforempfunc/' + $routeParams.param1 + '/Javadeveloper' //add function('/1')
+            url: '/req/expforemp/' + $routeParams.param1
         }).then(function(succes){
             exp_data = succes.data;
             $scope.expobj = exp_data;

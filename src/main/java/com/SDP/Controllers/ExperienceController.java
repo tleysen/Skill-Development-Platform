@@ -22,9 +22,17 @@ public class ExperienceController {
 
     @RequestMapping(value = "/expforempfunc/{id}/{func}", method = RequestMethod.GET)
     public @ResponseBody
+    ExperienceObject getExpObjForEmployeeFunction(
+            @PathVariable("id") String id,
+            @PathVariable("func") String func) {
+        return  ec.calculateFunctionProfile(Integer.parseInt(id), func);
+    }
+
+    @RequestMapping(value = "/expforemp/{id}", method = RequestMethod.GET)
+    public @ResponseBody
     ExperienceObject getExpObjForEmployee(
-            @PathVariable("id") String id, @PathVariable("func") String func) {
-        return  ec.calculateProfile(Integer.parseInt(id), func);
+            @PathVariable("id") String id){
+        return ec.calculateGeneralProfile(Integer.parseInt(id));
     }
 
     @RequestMapping(value = "/timetracking/{id}/{func}", method = RequestMethod.GET)

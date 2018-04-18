@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b55ad5fb-af88-4903-a3e9-83d165fac59e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/BLL/CourseRecommendation.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/BLL/CourseRecommendation.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/CourseController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/CourseController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/ExperienceController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/ExperienceController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/TestController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/TestController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/hello.js" afterPath="$PROJECT_DIR$/target/classes/static/js/hello.js" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/pages/functiondetail.html" afterPath="$PROJECT_DIR$/target/classes/static/pages/functiondetail.html" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,7 +39,7 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="275">
               <caret line="178" column="37" lean-forward="false" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
               <folding>
                 <element signature="method#deleteDomainById#0;class#MainController#0" expanded="false" />
@@ -61,20 +51,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ExperienceController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hello.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hello.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="454" column="39" lean-forward="true" selection-start-line="454" selection-start-column="39" selection-end-line="454" selection-end-column="39" />
+            <state relative-caret-position="183">
+              <caret line="246" column="35" lean-forward="true" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
               <folding>
                 <element signature="e#505#1752#0" expanded="false" />
                 <element signature="e#1812#1815#0" expanded="false" />
                 <element signature="e#1897#4509#0" expanded="false" />
                 <element signature="e#4573#4875#0" expanded="false" />
-                <element signature="e#4989#7992#0" expanded="false" />
-                <element signature="e#8058#8761#0" expanded="false" />
-                <element signature="e#8823#10361#0" expanded="false" />
-                <element signature="e#10889#12893#0" expanded="false" />
+                <element signature="e#5171#6693#0" expanded="false" />
+                <element signature="e#8014#8717#0" expanded="false" />
+                <element signature="e#8779#10317#0" expanded="false" />
+                <element signature="e#10845#12849#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -86,6 +86,22 @@
             <state relative-caret-position="435">
               <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExperienceCalculation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="131" column="68" lean-forward="false" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
+              <folding>
+                <element signature="method#calculateTotalExp#0;class#ExperienceCalculation#0" expanded="false" />
+                <element signature="method#calculateTotalExperiencepoints#0;class#ExperienceCalculation#0" expanded="false" />
+                <element signature="method#createExpObject#0;class#ExperienceCalculation#0" expanded="false" />
+                <element signature="method#calculateFunctionProfile#0;class#ExperienceCalculation#0" expanded="false" />
+                <element signature="method#calculateGeneralProfile#0;class#ExperienceCalculation#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,13 +144,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/pages/manage.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/TimeTrackingObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TimeTracking.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/hello.js" />
       </list>
     </option>
@@ -398,12 +414,12 @@
       <workItem from="1523519278503" duration="17437000" />
       <workItem from="1523865904590" duration="5649000" />
       <workItem from="1523952736692" duration="1707000" />
-      <workItem from="1524040872539" duration="3252000" />
+      <workItem from="1524040872539" duration="4467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44150000" />
+    <option name="totallyTimeSpent" value="45365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -475,8 +491,8 @@
         <state relative-caret-position="855">
           <caret line="57" column="54" lean-forward="true" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
           <folding>
-            <element signature="e#1678#1679#0" expanded="true" />
-            <element signature="e#1741#1742#0" expanded="true" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -501,9 +517,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
-          <folding>
-            <element signature="method#calculateProfile#0;class#ExperienceCalculation#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -516,10 +530,10 @@
             <element signature="e#1812#1815#0" expanded="false" />
             <element signature="e#1897#4509#0" expanded="false" />
             <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#4989#7992#0" expanded="false" />
-            <element signature="e#8058#8761#0" expanded="false" />
-            <element signature="e#8823#10361#0" expanded="false" />
-            <element signature="e#10889#12893#0" expanded="false" />
+            <element signature="e#5171#6693#0" expanded="false" />
+            <element signature="e#8014#8717#0" expanded="false" />
+            <element signature="e#8779#10317#0" expanded="false" />
+            <element signature="e#10845#12849#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -536,8 +550,8 @@
         <state relative-caret-position="720">
           <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
           <folding>
-            <element signature="e#1678#1679#0" expanded="true" />
-            <element signature="e#1741#1742#0" expanded="true" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -559,10 +573,10 @@
             <element signature="e#1812#1815#0" expanded="false" />
             <element signature="e#1897#4509#0" expanded="false" />
             <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#4989#7992#0" expanded="false" />
-            <element signature="e#8058#8761#0" expanded="false" />
-            <element signature="e#8823#10361#0" expanded="false" />
-            <element signature="e#10889#12893#0" expanded="false" />
+            <element signature="e#5171#6693#0" expanded="false" />
+            <element signature="e#8014#8717#0" expanded="false" />
+            <element signature="e#8779#10317#0" expanded="false" />
+            <element signature="e#10845#12849#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -604,10 +618,10 @@
             <element signature="e#1812#1815#0" expanded="false" />
             <element signature="e#1897#4509#0" expanded="false" />
             <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#4989#7992#0" expanded="false" />
-            <element signature="e#8058#8761#0" expanded="false" />
-            <element signature="e#8823#10361#0" expanded="false" />
-            <element signature="e#10889#12893#0" expanded="false" />
+            <element signature="e#5171#6693#0" expanded="false" />
+            <element signature="e#8014#8717#0" expanded="false" />
+            <element signature="e#8779#10317#0" expanded="false" />
+            <element signature="e#10845#12849#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -617,8 +631,8 @@
         <state relative-caret-position="645">
           <caret line="62" column="57" lean-forward="true" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
           <folding>
-            <element signature="e#1678#1679#0" expanded="true" />
-            <element signature="e#1741#1742#0" expanded="true" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -634,6 +648,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5">
           <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
+          <folding>
+            <element signature="e#1689#1690#0" expanded="false" />
+            <element signature="e#1737#1738#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -797,31 +815,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="42" column="27" lean-forward="true" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
           <folding>
-            <element signature="e#1678#1679#0" expanded="true" />
-            <element signature="e#1741#1742#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
-          <folding>
-            <element signature="method#calculateProfile#0;class#ExperienceCalculation#0" expanded="false" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -831,7 +831,7 @@
         <state relative-caret-position="75">
           <caret line="5" column="109" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="109" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -853,13 +853,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="275">
           <caret line="178" column="37" lean-forward="false" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
           <folding>
             <element signature="method#deleteDomainById#0;class#MainController#0" expanded="false" />
             <element signature="method#deleteFunctionsById#0;class#MainController#0" expanded="false" />
             <element signature="method#addNewEmployee#0;class#MainController#0" expanded="false" />
             <element signature="method#addNewDomain#0;class#MainController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="131" column="68" lean-forward="false" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
+          <folding>
+            <element signature="method#calculateTotalExp#0;class#ExperienceCalculation#0" expanded="false" />
+            <element signature="method#calculateTotalExperiencepoints#0;class#ExperienceCalculation#0" expanded="false" />
+            <element signature="method#createExpObject#0;class#ExperienceCalculation#0" expanded="false" />
+            <element signature="method#calculateFunctionProfile#0;class#ExperienceCalculation#0" expanded="false" />
+            <element signature="method#calculateGeneralProfile#0;class#ExperienceCalculation#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -872,19 +886,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hello.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="454" column="39" lean-forward="true" selection-start-line="454" selection-start-column="39" selection-end-line="454" selection-end-column="39" />
+        <state relative-caret-position="183">
+          <caret line="246" column="35" lean-forward="true" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
           <folding>
             <element signature="e#505#1752#0" expanded="false" />
             <element signature="e#1812#1815#0" expanded="false" />
             <element signature="e#1897#4509#0" expanded="false" />
             <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#4989#7992#0" expanded="false" />
-            <element signature="e#8058#8761#0" expanded="false" />
-            <element signature="e#8823#10361#0" expanded="false" />
-            <element signature="e#10889#12893#0" expanded="false" />
+            <element signature="e#5171#6693#0" expanded="false" />
+            <element signature="e#8014#8717#0" expanded="false" />
+            <element signature="e#8779#10317#0" expanded="false" />
+            <element signature="e#10845#12849#0" expanded="false" />
           </folding>
         </state>
       </provider>
