@@ -38,7 +38,7 @@ public class ExperienceCalculation {
         return totalExp;
     }
 
-    public int calculateTotalExperiencepoints(int employee_id, String func_name){
+    public int calculateTotalExperiencepoints(int employee_id, int func_id){
 
         int exp = 0;
         List<FunctionsDomains> boundDomains;
@@ -48,7 +48,7 @@ public class ExperienceCalculation {
         List<EmployeeCourses> wa_emplcourses;
 
         //All bound domains for given function
-        boundDomains = fdr.findAllByFunction_Name(func_name);
+        boundDomains = fdr.findAllByFunction_Id(func_id);
         //find all courses for bound domains
         for(FunctionsDomains fd: boundDomains) {
             //list of courses bound to fd domain
@@ -122,9 +122,9 @@ public class ExperienceCalculation {
         return obj;
     }
 
-    public ExperienceObject calculateFunctionProfile(int employee_id, String func_name){
+    public ExperienceObject calculateFunctionProfile(int employee_id, int func_id){
         ExperienceObject calculated_obj = new ExperienceObject();
-        calculated_obj.setTotalExp(calculateTotalExperiencepoints(employee_id, func_name));
+        calculated_obj.setTotalExp(calculateTotalExperiencepoints(employee_id, func_id));
         return createExpObject(calculated_obj);
 
     }

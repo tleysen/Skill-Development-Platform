@@ -32,9 +32,9 @@ sdp.config(function($routeProvider) {
             templateUrl : 'pages/employeedetail.html',
             controller  : 'detailController'
         })
-        .when('/functiondetail/:emp_id/:func_id', {
-            templateUrl : 'pages/functiondetail.html',
-            controller  : 'functiondetailController'
+        .when('/employeefunctiondetail/:emp_id/:func_id', {
+            templateUrl : 'pages/employeefunctiondetail.html',
+            controller  : 'employeeFunctionDetailController'
         })
 
         .when('/domains', {
@@ -56,6 +56,11 @@ sdp.config(function($routeProvider) {
         .when('/properties', {
             templateUrl: 'pages/properties.html',
             controller: 'propertiesController'
+        })
+
+        .when('/functiondetail/:func_id', {
+            templateUrl: 'pages/functiondetail.html',
+            controller: 'functionDetailController'
         })
 });
 
@@ -366,33 +371,53 @@ sdp.controller('manageController', function($scope,$http) {
         window.location.reload();
     }
 
+    $scope.getDetails = function(func_id){
+        location.href = '#!/functiondetail/' + func_id;
+    };
+
 });
 
-sdp.controller('functiondetailController', function($scope, $http, getService, $routeParams) {
-
+sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams) {
 
     delete $scope.courses;
     $scope.courses = "";
-
     var today = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-
     // LINECHART//
     var getChartData = getService.promiseGet('/req/timetracking/' + $routeParams.emp_id + '/' + $routeParams.func_id);
     getChartData.then(function (returned_data) {
-
         console.log(returned_data.data);
         var line_x_labels = [];
         var month;
-
+        var dataset_linechart = [];
+        var more_data = true;
+        var counter = 0;
+        //Fill up the moth array so the graph will display the correct month names
         for (var i = 12; i > 0; i--) {
             month = today.getMonth() + i;
-            if(month > 11){
+            if (month > 11) {
                 month -= 12;
             }
-            line_x_labels[i-1] = monthNames[month];
+            line_x_labels[i - 1] = monthNames[month];
+        }
+        while (more_data) {
+            if (returned_data.data.datalabels[counter]) {
+
+                dataset_linechart.push(
+                    {
+                        label: returned_data.data.datalabels[counter],
+                        backgroundColor: "rgba(46,38,51,0.4)",
+                        pointHighLightStroke: "rgba(46,38,51,0.4)",
+                        data: returned_data.data.datasets[counter]
+                    }
+                );
+                counter++;
+            }
+            else {
+                more_data = false
+            }
         }
 
         var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -400,34 +425,7 @@ sdp.controller('functiondetailController', function($scope, $http, getService, $
             type: 'line',
             data: {
                 labels: line_x_labels,
-                datasets: [
-                    {
-                        label: returned_data.data.datalabels[0],
-                        backgroundColor: color5_light,
-                        pointHighlightStroke: color5_dark,
-                        data: returned_data.data.datasets[0]
-                    },{
-                        label: returned_data.data.datalabels[1],
-                        backgroundColor: color4_light,
-                        pointHighlightStroke: color4_dark,
-                        data: returned_data.data.datasets[1]
-                    },{
-                        label: returned_data.data.datalabels[2],
-                        backgroundColor: color3_light,
-                        pointHighlightStroke: color3_dark,
-                        data: returned_data.data.datasets[2]
-                    },{
-                        label: returned_data.data.datalabels[3],
-                        backgroundColor: color2_light,
-                        pointHighlightStroke: color2_dark,
-                        data: returned_data.data.datasets[3]
-                    }, {
-                        label: returned_data.data.datalabels[4],
-                        backgroundColor: color1_light,
-                        pointHighlightStroke: color1_dark,
-                        data: returned_data.data.datasets[4]
-                    }
-                ]
+                datasets: dataset_linechart
             },
             options: {
                 responsive: true
@@ -438,6 +436,19 @@ sdp.controller('functiondetailController', function($scope, $http, getService, $
         // fail, do something with reason
     });
 
+
+    $http({
+        method: 'GET',
+        url: '/req/expforempfunc/' + $routeParams.emp_id + '/' + $routeParams.func_id
+    }).then(function(succes){
+        exp_data = succes.data;
+        $scope.expobj = exp_data;
+        var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
+        var elem = document.getElementById("progressbar");
+        elem.style.width = progress + '%';
+    }, function (error){
+        console.log(error);
+    });
 
     $http({
         method: 'GET',
@@ -483,4 +494,53 @@ sdp.controller('functiondetailController', function($scope, $http, getService, $
     $scope.back = function(id){
         location.href='#!/employeedetail/' + id;
     }
+});
+
+sdp.controller('functionDetailController', function($scope, $http, $routeParams, getService, $timeout){
+
+    $http({
+        method: 'GET',
+        url: '/req/alldomains'
+    }).then(function (success) {
+        $scope.domains = success.data
+    }, function (error) {
+        $scope.domains = error;
+    });
+
+    $http({
+        method: 'GET',
+        url: '/req/functionbyid/' + $routeParams.func_id
+    }).then(function (success) {
+        $scope.function = success.data;
+    }, function (error) {
+        $scope.function = error;
+    });
+
+    var getDomainsByFunction = getService.promiseGet('/req/domainsbyfunction/' + $routeParams.func_id);
+    var checked_domains;
+    getDomainsByFunction.then(function(data){
+        checked_domains = data.data;
+        $scope.loadCheckboxes();
+    });
+
+    $scope.loadCheckboxes = function () {
+        $timeout( function(){
+            checked_domains.forEach(function(entry){
+                if(document.getElementById(entry.domain.name)){
+                    document.getElementById(entry.domain.name).checked = true;
+                }
+            });
+        }, 5 );
+    };
+
+    $http({
+        method: 'GET',
+        url: '/req/domainsbyfunction/' + $routeParams.func_id
+    }).then(function (success) {
+
+
+    }, function (error) {
+        $scope.checked_domains = error;
+    });
+
 });

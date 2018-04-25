@@ -83,6 +83,14 @@ public class MainController {
     //*****                                     PARAMETER GET'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
 
+    @RequestMapping(value= "/domainsbyfunction/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<FunctionsDomains> getDomainsByFunction(
+            @PathVariable("id") String id) {
+        return functionsDomainsRepository.findAllByFunction_Id(Integer.parseInt(id));
+    }
+
+
     @RequestMapping(value = "/userbyid/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Employees getUserById(

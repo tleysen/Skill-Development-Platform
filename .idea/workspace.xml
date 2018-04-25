@@ -2,9 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b55ad5fb-af88-4903-a3e9-83d165fac59e" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/employeefunctiondetail.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation0.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation0.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/hello.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pages/manage.html" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/manage.html" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/BLL/ExperienceCalculation.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/BLL/ExperienceCalculation.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/BLL/TopSkills.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/BLL/TopSkills.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/ExperienceController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/ExperienceController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Controllers/MainController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SDP/Repositories/FunctionsDomainsRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/SDP/Repositories/FunctionsDomainsRepository.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/hello.js" afterPath="$PROJECT_DIR$/target/classes/static/js/hello.js" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/pages/employeedetail.html" afterPath="$PROJECT_DIR$/target/classes/static/pages/employeedetail.html" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/pages/functiondetail.html" afterPath="$PROJECT_DIR$/target/classes/static/pages/functiondetail.html" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/pages/manage.html" afterPath="$PROJECT_DIR$/target/classes/static/pages/manage.html" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,39 +41,8 @@
       <file leaf-file-name="functiondetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
-              <folding>
-                <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="178" column="37" lean-forward="false" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
-              <folding>
-                <element signature="method#deleteDomainById#0;class#MainController#0" expanded="false" />
-                <element signature="method#deleteFunctionsById#0;class#MainController#0" expanded="false" />
-                <element signature="method#addNewEmployee#0;class#MainController#0" expanded="false" />
-                <element signature="method#addNewDomain#0;class#MainController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExperienceController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state relative-caret-position="90">
+              <caret line="6" column="106" lean-forward="true" selection-start-line="6" selection-start-column="106" selection-end-line="6" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -64,43 +51,18 @@
       <file leaf-file-name="hello.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hello.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="246" column="35" lean-forward="true" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
+            <state relative-caret-position="432">
+              <caret line="535" column="11" lean-forward="true" selection-start-line="535" selection-start-column="11" selection-end-line="535" selection-end-column="11" />
               <folding>
-                <element signature="e#505#1752#0" expanded="false" />
-                <element signature="e#1812#1815#0" expanded="false" />
-                <element signature="e#1897#4509#0" expanded="false" />
-                <element signature="e#4573#4875#0" expanded="false" />
-                <element signature="e#5171#6693#0" expanded="false" />
-                <element signature="e#8014#8717#0" expanded="false" />
-                <element signature="e#8779#10317#0" expanded="false" />
-                <element signature="e#10845#12849#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CourseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExperienceCalculation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="131" column="68" lean-forward="false" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
-              <folding>
-                <element signature="method#calculateTotalExp#0;class#ExperienceCalculation#0" expanded="false" />
-                <element signature="method#calculateTotalExperiencepoints#0;class#ExperienceCalculation#0" expanded="false" />
-                <element signature="method#createExpObject#0;class#ExperienceCalculation#0" expanded="false" />
-                <element signature="method#calculateFunctionProfile#0;class#ExperienceCalculation#0" expanded="false" />
-                <element signature="method#calculateGeneralProfile#0;class#ExperienceCalculation#0" expanded="false" />
+                <element signature="e#1997#2000#0" expanded="false" />
+                <element signature="e#2082#4694#0" expanded="false" />
+                <element signature="e#4758#5060#0" expanded="false" />
+                <element signature="e#5174#8133#0" expanded="false" />
+                <element signature="e#6898#6947#0" expanded="false" />
+                <element signature="e#6976#8113#0" expanded="false" />
+                <element signature="e#8199#8902#0" expanded="false" />
+                <element signature="e#8964#10609#0" expanded="false" />
+                <element signature="e#10714#14306#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -135,22 +97,24 @@
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/ScoresObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/Scores.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/ScoresRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/ExperienceObject.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/pages/courses.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/Domains.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/pages/manage.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Models/TimeTrackingObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TimeTracking.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/TestController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation0.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/pages/manage.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/pages/employeefunctiondetail.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/hello.js" />
       </list>
     </option>
@@ -277,10 +241,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -414,12 +378,13 @@
       <workItem from="1523519278503" duration="17437000" />
       <workItem from="1523865904590" duration="5649000" />
       <workItem from="1523952736692" duration="1707000" />
-      <workItem from="1524040872539" duration="4467000" />
+      <workItem from="1524040872539" duration="16900000" />
+      <workItem from="1524642470766" duration="4010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45365000" />
+    <option name="totallyTimeSpent" value="61808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -467,20 +432,47 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" column="24" lean-forward="true" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
+          <folding>
+            <element signature="method#deleteDomainById#0;class#MainController#0" expanded="false" />
+            <element signature="method#deleteFunctionsById#0;class#MainController#0" expanded="false" />
+            <element signature="method#addNewEmployee#0;class#MainController#0" expanded="false" />
+            <element signature="method#addNewDomain#0;class#MainController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hello.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7995">
+          <caret line="533" column="45" lean-forward="true" selection-start-line="533" selection-start-column="45" selection-end-line="533" selection-end-column="45" />
+          <folding>
+            <element signature="e#1997#2000#0" expanded="false" />
+            <element signature="e#2082#4694#0" expanded="false" />
+            <element signature="e#4758#5060#0" expanded="false" />
+            <element signature="e#5174#8133#0" expanded="false" />
+            <element signature="e#6898#6947#0" expanded="false" />
+            <element signature="e#6976#8113#0" expanded="false" />
+            <element signature="e#8199#8902#0" expanded="false" />
+            <element signature="e#8964#10609#0" expanded="false" />
+            <element signature="e#10714#14306#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employeefunctiondetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1200">
           <caret line="80" column="26" lean-forward="true" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
           <folding>
-            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -501,7 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -517,7 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -526,14 +516,15 @@
         <state relative-caret-position="6735">
           <caret line="449" column="15" lean-forward="true" selection-start-line="449" selection-start-column="15" selection-end-line="449" selection-end-column="15" />
           <folding>
-            <element signature="e#505#1752#0" expanded="false" />
-            <element signature="e#1812#1815#0" expanded="false" />
-            <element signature="e#1897#4509#0" expanded="false" />
-            <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#5171#6693#0" expanded="false" />
-            <element signature="e#8014#8717#0" expanded="false" />
-            <element signature="e#8779#10317#0" expanded="false" />
-            <element signature="e#10845#12849#0" expanded="false" />
+            <element signature="e#1997#2000#0" expanded="false" />
+            <element signature="e#2082#4694#0" expanded="false" />
+            <element signature="e#4758#5060#0" expanded="false" />
+            <element signature="e#5174#8133#0" expanded="false" />
+            <element signature="e#6898#6947#0" expanded="false" />
+            <element signature="e#6976#8113#0" expanded="false" />
+            <element signature="e#8199#8902#0" expanded="false" />
+            <element signature="e#8964#10609#0" expanded="false" />
+            <element signature="e#10714#14306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -542,6 +533,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -560,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -569,14 +563,15 @@
         <state relative-caret-position="6615">
           <caret line="441" column="11" lean-forward="true" selection-start-line="441" selection-start-column="11" selection-end-line="441" selection-end-column="11" />
           <folding>
-            <element signature="e#505#1752#0" expanded="false" />
-            <element signature="e#1812#1815#0" expanded="false" />
-            <element signature="e#1897#4509#0" expanded="false" />
-            <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#5171#6693#0" expanded="false" />
-            <element signature="e#8014#8717#0" expanded="false" />
-            <element signature="e#8779#10317#0" expanded="false" />
-            <element signature="e#10845#12849#0" expanded="false" />
+            <element signature="e#1997#2000#0" expanded="false" />
+            <element signature="e#2082#4694#0" expanded="false" />
+            <element signature="e#4758#5060#0" expanded="false" />
+            <element signature="e#5174#8133#0" expanded="false" />
+            <element signature="e#6898#6947#0" expanded="false" />
+            <element signature="e#6976#8113#0" expanded="false" />
+            <element signature="e#8199#8902#0" expanded="false" />
+            <element signature="e#8964#10609#0" expanded="false" />
+            <element signature="e#10714#14306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -598,7 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,14 +608,15 @@
         <state relative-caret-position="3675">
           <caret line="245" column="59" lean-forward="false" selection-start-line="245" selection-start-column="59" selection-end-line="245" selection-end-column="59" />
           <folding>
-            <element signature="e#505#1752#0" expanded="false" />
-            <element signature="e#1812#1815#0" expanded="false" />
-            <element signature="e#1897#4509#0" expanded="false" />
-            <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#5171#6693#0" expanded="false" />
-            <element signature="e#8014#8717#0" expanded="false" />
-            <element signature="e#8779#10317#0" expanded="false" />
-            <element signature="e#10845#12849#0" expanded="false" />
+            <element signature="e#1997#2000#0" expanded="false" />
+            <element signature="e#2082#4694#0" expanded="false" />
+            <element signature="e#4758#5060#0" expanded="false" />
+            <element signature="e#5174#8133#0" expanded="false" />
+            <element signature="e#6898#6947#0" expanded="false" />
+            <element signature="e#6976#8113#0" expanded="false" />
+            <element signature="e#8199#8902#0" expanded="false" />
+            <element signature="e#8964#10609#0" expanded="false" />
+            <element signature="e#10714#14306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -648,10 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5">
           <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding>
-            <element signature="e#1689#1690#0" expanded="false" />
-            <element signature="e#1737#1738#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -680,7 +671,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,20 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -716,16 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="405" column="0" lean-forward="false" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="52" lean-forward="false" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
-          <folding>
-            <element signature="method#getTop5ForEmployeeId#0;class#TopSkills#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,25 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employees.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="44" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/manage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/TimeTracking.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="443">
           <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,14 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,26 +769,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="62" column="9" lean-forward="true" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/TopSkills.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employees.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsDomainsRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employeedetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="109" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="109" />
+        <state relative-caret-position="283">
+          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Repositories/FunctionsRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+        <state relative-caret-position="60">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/employeefunctiondetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="147" lean-forward="false" selection-start-line="58" selection-start-column="147" selection-end-line="58" selection-end-column="147" />
           <folding>
-            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -853,8 +842,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="178" column="37" lean-forward="false" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
+        <state relative-caret-position="306">
+          <caret line="125" column="41" lean-forward="false" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
           <folding>
             <element signature="method#deleteDomainById#0;class#MainController#0" expanded="false" />
             <element signature="method#deleteFunctionsById#0;class#MainController#0" expanded="false" />
@@ -864,49 +853,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/ExperienceCalculation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="131" column="68" lean-forward="false" selection-start-line="131" selection-start-column="68" selection-end-line="131" selection-end-column="68" />
-          <folding>
-            <element signature="method#calculateTotalExp#0;class#ExperienceCalculation#0" expanded="false" />
-            <element signature="method#calculateTotalExperiencepoints#0;class#ExperienceCalculation#0" expanded="false" />
-            <element signature="method#createExpObject#0;class#ExperienceCalculation#0" expanded="false" />
-            <element signature="method#calculateFunctionProfile#0;class#ExperienceCalculation#0" expanded="false" />
-            <element signature="method#calculateGeneralProfile#0;class#ExperienceCalculation#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/CourseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="233">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/Controllers/ExperienceController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/SDP/BLL/CourseRecommendation0.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="1916">
+          <caret line="260" column="25" lean-forward="true" selection-start-line="260" selection-start-column="25" selection-end-line="260" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/pages/functiondetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="106" lean-forward="true" selection-start-line="6" selection-start-column="106" selection-end-line="6" selection-end-column="106" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hello.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="246" column="35" lean-forward="true" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
+        <state relative-caret-position="432">
+          <caret line="535" column="11" lean-forward="true" selection-start-line="535" selection-start-column="11" selection-end-line="535" selection-end-column="11" />
           <folding>
-            <element signature="e#505#1752#0" expanded="false" />
-            <element signature="e#1812#1815#0" expanded="false" />
-            <element signature="e#1897#4509#0" expanded="false" />
-            <element signature="e#4573#4875#0" expanded="false" />
-            <element signature="e#5171#6693#0" expanded="false" />
-            <element signature="e#8014#8717#0" expanded="false" />
-            <element signature="e#8779#10317#0" expanded="false" />
-            <element signature="e#10845#12849#0" expanded="false" />
+            <element signature="e#1997#2000#0" expanded="false" />
+            <element signature="e#2082#4694#0" expanded="false" />
+            <element signature="e#4758#5060#0" expanded="false" />
+            <element signature="e#5174#8133#0" expanded="false" />
+            <element signature="e#6898#6947#0" expanded="false" />
+            <element signature="e#6976#8113#0" expanded="false" />
+            <element signature="e#8199#8902#0" expanded="false" />
+            <element signature="e#8964#10609#0" expanded="false" />
+            <element signature="e#10714#14306#0" expanded="false" />
           </folding>
         </state>
       </provider>

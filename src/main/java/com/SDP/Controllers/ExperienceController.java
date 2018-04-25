@@ -24,8 +24,8 @@ public class ExperienceController {
     public @ResponseBody
     ExperienceObject getExpObjForEmployeeFunction(
             @PathVariable("id") String id,
-            @PathVariable("func") String func) {
-        return  ec.calculateFunctionProfile(Integer.parseInt(id), func);
+            @PathVariable("func") String func_id) {
+        return  ec.calculateFunctionProfile(Integer.parseInt(id), Integer.parseInt(func_id));
     }
 
     @RequestMapping(value = "/expforemp/{id}", method = RequestMethod.GET)

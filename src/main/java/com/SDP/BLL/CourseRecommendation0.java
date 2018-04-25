@@ -259,8 +259,7 @@ public class CourseRecommendation0 {
     public List<Courses> FollowedCoursesEmployees(int id){
 
         //empty variables
-        //Init();
-
+        followedCoursesList.clear();
         //insert all Course objects into an Iterable object
         allCoursesIterable = coursesRepository.findAll();
         //insert all EmployeeCourse objects which match the input employeeid into a List

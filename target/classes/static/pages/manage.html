@@ -5,17 +5,17 @@
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Functions:</h3>
     <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewFunction"><i class="fas fa-plus-circle"></i></button>
 
+    <label><i class="fas fa-search"></i> <input ng-model="searchTextFunctions"></label>
     <!-- CARD TEMPLATE USED TO SHOW FUNCTIONS -->
     <div class="row">
-        <div class="col-lg-4" ng-repeat="f in functions">
+        <div class="col-lg-4" ng-repeat="f in functions | filter:searchTextFunctions">
             <div class="card font2 bg-stardust" style="width: 18rem;">
                 <div class="card-body">
-                    <button type="button" class="close" ng-click="removeFunction(f.id)">
+                    <button type="button" class="close" data-toggle="modal" data-target="#modalRemoveFuncCheck">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h5 class="card-title">{{f.name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{f.name}}</h6>
-                    <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" data-toggle="modal" data-target="modalEdit"><i class="fas fa-chevron-circle-right"></i></button>
+                    <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" ng-click="getDetails(f.id)"><i class="fas fa-chevron-circle-right"></i></button>
                 </div>
             </div>
             </br>
@@ -25,10 +25,11 @@
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Domains:</h3>
     <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewDomain"><i class="fas fa-plus-circle"></i></button>
 
+    <label><i class="fas fa-search"></i> <input ng-model="searchTextDomains"></label>
     <!-- CARD TEMPLATE USED TO SHOW DOMAINS -->
     <div>
         <div  class="row" >
-            <div class="col-lg-4"  ng-repeat="d in domains">
+            <div class="col-lg-4"  ng-repeat="d in domains | filter:searchTextDomains">
                 <div class="card font2 bg-stardust" style="width: 18rem;">
                     <div class="card-body">
                         <button type="button" class="close" ng-click="removeDomain(d.id)">
