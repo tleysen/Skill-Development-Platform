@@ -4,6 +4,9 @@ import com.SDP.BLL.CourseRecommendation0;
 import com.SDP.BLL.TopSkills;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -228,9 +232,49 @@ public class MainController {
     public void addNewFunction(
             @RequestParam("name") String name){
         Functions f = new Functions();
-
         f.setName(name);
         functionsRepository.save(f);
+    }
+
+    @RequestMapping(value="/modifyFunction", method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void modifyFunction(
+            @RequestParam("func_id") String funcID,
+            @RequestParam("domains") List<String> domains
+            ){
+
+        List<FunctionsDomains> currentFunctionDomainList = functionsDomainsRepository.findAllByFunction_Id(Integer.parseInt(funcID));
+        List<FunctionsDomains> postedFunctionDomainList = new ArrayList<>();
+
+
+        //Check if FunctionDomain already exists
+        for(String d : domains){
+
+
+            FunctionsDomains fdToTest = functionsDomainsRepository.findByFunction_IdAndDomain_Name(Integer.parseInt(funcID), d);
+
+
+
+            if(fdToTest != null && currentFunctionDomainList.contains(fdToTest)){
+                postedFunctionDomainList.add(fdToTest);
+            }
+            else //create new FunctionDomain
+                {
+                FunctionsDomains newFuncDomain = new FunctionsDomains();
+                newFuncDomain.setDomain(domainsRepository.findByName(d));
+                newFuncDomain.setFunction(functionsRepository.findById(Integer.parseInt(funcID)));
+                functionsDomainsRepository.save(newFuncDomain);
+
+            }
+        }
+
+        //Check if FunctionDomain exists when it shouldn't
+
+        for(FunctionsDomains cfd : currentFunctionDomainList){
+            if(!postedFunctionDomainList.contains(cfd)){
+                functionsDomainsRepository.delete(cfd);
+            }
+        }
+
     }
 
 }

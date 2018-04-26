@@ -11,4 +11,6 @@ public interface DomainsRepository extends CrudRepository<Domains, Long> {
 
     @Transactional
     void deleteById(int id);
+
+    Domains findByName(String name);
 }

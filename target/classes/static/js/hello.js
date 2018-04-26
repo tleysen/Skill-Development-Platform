@@ -517,30 +517,51 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
     });
 
     var getDomainsByFunction = getService.promiseGet('/req/domainsbyfunction/' + $routeParams.func_id);
-    var checked_domains;
+    var checked_domains = [];
+
     getDomainsByFunction.then(function(data){
-        checked_domains = data.data;
+        console.log(data.data);
+        data.data.forEach(function(entry){
+            checked_domains.push(entry.domain.name)
+        });
         $scope.loadCheckboxes();
     });
 
     $scope.loadCheckboxes = function () {
         $timeout( function(){
             checked_domains.forEach(function(entry){
-                if(document.getElementById(entry.domain.name)){
-                    document.getElementById(entry.domain.name).checked = true;
+                if(document.getElementById(entry)){
+                    document.getElementById(entry).checked = true;
+                    console.log("load - " + entry);
                 }
             });
-        }, 5 );
+        }, 1 );
+
     };
 
-    $http({
-        method: 'GET',
-        url: '/req/domainsbyfunction/' + $routeParams.func_id
-    }).then(function (success) {
+    $scope.changeCheckboxes = function(name) {
+        console.log("call");
+        $timeout(function () {
+            if (document.getElementById(name).checked) {
+                checked_domains.push(name);
+            }
+            else {
+                position = checked_domains.indexOf(name);
+                console.log(position);
+                checked_domains.splice(position, 1);
+            }
+            console.log(checked_domains);
+        }, 10);
+    };
 
-
-    }, function (error) {
-        $scope.checked_domains = error;
-    });
-
+    $scope.saveFunction = function () {
+        $.ajax({
+            type: "POST",
+            url: "/req/modifyFunction",
+            data: {
+                'func_id': $scope.function.id,
+                'domains': checked_domains.toString()
+            }
+        });
+    }
 });

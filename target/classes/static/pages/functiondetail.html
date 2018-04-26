@@ -4,17 +4,17 @@
         <div class="card-header">
             <h3 class="card-title font1-black">Domains:</h3>
             <h6 class="card-subtitle mb-2 text-muted font2-black">Select the associated domains below</h6>
-            <label><i class="fas fa-search"></i> <input ng-change="loadCheckboxes()" ng-model="searchText"></label>
+            <label><i class="fas fa-search"></i> <input id="searchInput" ng-change="loadCheckboxes()" ng-model="searchText"></label>
         </div>
         <div class="card-body">
             <div class = "row">
                 <div class="col-lg-4" ng-repeat="d in domains | filter:searchText">
-                    <input id={{d.name}} type="checkbox" aria-label=""> {{d.name}}
+                    <input id={{d.name}} type="checkbox" aria-label="" ng-click="changeCheckboxes(d.name)" ng-model="domainCheckbox"> {{d.name}}
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-circle btn-save font1" ng-click="saveFunction()" ><i class="fas fa-save"></i></button>
+            <button type="submit" onclick="document.getElementById('searchInput').value = ''" class="btn btn-circle btn-save font1" ng-click="saveFunction()" ><i class="fas fa-save"></i></button>
         </div>
     </div>
 </div>
