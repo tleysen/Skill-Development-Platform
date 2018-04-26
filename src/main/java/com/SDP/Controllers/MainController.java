@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -217,6 +218,44 @@ public class MainController {
         employeesRepository.save(n);
         System.out.println(n);
     }
+    @RequestMapping(value="/modifyEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void modifyEmployee(
+            @RequestParam("id") String id,
+            @RequestParam("name") String name,
+            @RequestParam("lastname") String lastname,
+            @RequestParam("sex") String sex,
+            @RequestParam("birth_date") String birth_date,
+            @RequestParam("hiring_date") String hiring_date){
+        Employees emp = employeesRepository.findById(Integer.parseInt(id));
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+
+        if(!name.equals("")){
+            emp.setName(name);
+        }
+        if(!lastname.equals("")){
+            emp.setLastname(lastname);
+        }
+        if(!sex.equals("")){
+            emp.setSex(sex);
+        }
+        if(!birth_date.equals("")){
+            try {
+                Date parsed_birth = format.parse(birth_date);
+                emp.setBirth_date(new java.sql.Date(parsed_birth.getTime()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        if(!hiring_date.equals("")){
+            try {
+                Date parsed_hiring = format.parse(hiring_date);
+                emp.setHiring_date(new java.sql.Date(parsed_hiring.getTime()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        employeesRepository.save(emp);
+    }
 
     @RequestMapping(value = "/addDomain", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public void addNewDomain(
@@ -241,19 +280,11 @@ public class MainController {
             @RequestParam("func_id") String funcID,
             @RequestParam("domains") List<String> domains
             ){
-
         List<FunctionsDomains> currentFunctionDomainList = functionsDomainsRepository.findAllByFunction_Id(Integer.parseInt(funcID));
         List<FunctionsDomains> postedFunctionDomainList = new ArrayList<>();
-
-
         //Check if FunctionDomain already exists
         for(String d : domains){
-
-
             FunctionsDomains fdToTest = functionsDomainsRepository.findByFunction_IdAndDomain_Name(Integer.parseInt(funcID), d);
-
-
-
             if(fdToTest != null && currentFunctionDomainList.contains(fdToTest)){
                 postedFunctionDomainList.add(fdToTest);
             }
@@ -263,18 +294,13 @@ public class MainController {
                 newFuncDomain.setDomain(domainsRepository.findByName(d));
                 newFuncDomain.setFunction(functionsRepository.findById(Integer.parseInt(funcID)));
                 functionsDomainsRepository.save(newFuncDomain);
-
             }
         }
-
         //Check if FunctionDomain exists when it shouldn't
-
         for(FunctionsDomains cfd : currentFunctionDomainList){
             if(!postedFunctionDomainList.contains(cfd)){
                 functionsDomainsRepository.delete(cfd);
             }
         }
-
     }
-
 }

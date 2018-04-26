@@ -12,6 +12,8 @@ var color3_light = "rgba(153,23,60,0.4)";
 var color4_light = "rgba(220,233,190,0.4)";
 var color5_light = "rgba(239,255,205,0.4)";
 
+var color_array_light = ["rgba(230,25,75, 0.4)", "rgba(60, 180, 75, 0.4)", "rgba(255, 225, 25, 0.4)", "rgba(0, 130, 200, 0.4)", "rgba(245, 130, 48, 0.4)", "rgba(145, 30, 180, 0.4)", "rgba(70, 240, 240, 0.4)", "rgba(240, 50, 230, 0.4)", "rgba(210, 245, 60, 0.4)","rgba(250, 190, 190, 0.4)", "rgba(0, 128, 128, 0.4)", "rgba(0, 128, 128, 0.4)", "rgba(230, 190, 255, 0.4)", "rgba(170, 110, 40, 0.4)", "rgba(255, 250, 200, 0.4)", "rgba(128, 0, 0, 0.4)", "rgba(170, 255, 195, 0.4)", "rgba(128, 128, 0, 0.4)", "rgba(255, 215, 180, 0.4)", "rgba(0, 0, 128, 0.4)", "rgba(128, 128, 128, 0.4)", "rgba(255, 255, 255, 0.4)", "rgba(0, 0, 0, 0.4)"];
+var color_array_dark = ["rgba(230,25,75, 0.7)", "rgba(60, 180, 75, 0.7)", "rgba(255, 225, 25, 0.7)", "rgba(0, 130, 200, 0.7)", "rgba(245, 130, 48, 0.7)", "rgba(145, 30, 180, 0.7)", "rgba(70, 240, 240, 0.7)", "rgba(240, 50, 230, 0.7)", "rgba(210, 245, 60, 0.7)","rgba(250, 190, 190, 0.7)", "rgba(0, 128, 128, 0.7)", "rgba(0, 128, 128, 0.7)", "rgba(230, 190, 255, 0.7)", "rgba(170, 110, 40, 0.7)", "rgba(255, 250, 200, 0.7)", "rgba(128, 0, 0, 0.7)", "rgba(170, 255, 195, 0.7)", "rgba(128, 128, 0, 0.7)", "rgba(255, 215, 180, 0.7)", "rgba(0, 0, 128, 0.7)", "rgba(128, 128, 128, 0.7)", "rgba(255, 255, 255, 0.7)", "rgba(0, 0, 0, 0.7)"];
 
 sdp.config(function($routeProvider) {
     $routeProvider
@@ -67,88 +69,49 @@ sdp.config(function($routeProvider) {
 sdp.controller('mainController', function($scope,$http) {
 });
 
-sdp.controller('employeesController', function($scope, $http, getService, $q) {
-
-
-    ////////////////////////////////////
+sdp.controller('employeesController', function($scope, $http, getService) {
 
     var getEmployees = getService.promiseGet('/req/allusers');
     getEmployees.then(function (data) {
         $scope.users = data.data;
-        console.log(data.data);
     }, function (reason) {
         // fail, do something with reason
     });
-
-    ////////////////////////////////////
-
-
 
     $scope.getDetails = function(emp_id){
         location.href = '#!/employeedetail/' + emp_id;
     };
 
-    var employee_data;
-
-
-    //$http({
-    //    method: 'GET',
-    //    url: '/req/allusers'
-    //}).then(function (success) {
-    //    employee_data = success.data;
-    //    $scope.users = employee_data;
-    //    console.log(employee_data);
-    //}, function (error) {
-    //    employee_data = error;
-    //});
-
-    var function_data;
-
     $http({
         method: 'GET',
         url: '/req/allfunctions'
     }).then(function (success) {
-        function_data = success.data;
-        $scope.functions = function_data;
+        $scope.functions = success.data;
     }, function (error) {
-        function_data = error;
     });
-
 
     $scope.newEmployee = function(){
 
         var firstname = document.getElementById("inputFirstName").value;
-        //console.log(firstname);
         var lastname = document.getElementById("inputLastName").value;
-        //console.log(lastname);
         var sex = document.getElementById("inputSex").value;
-        //console.log(sex);
         var employee_function = document.getElementById("inputFunction").value;
-        //console.log(employee_function);
         var hiring_date = document.getElementById("inputHiring").value;
-        //console.log(hiring_date);
         var birth_date = document.getElementById("inputBirth").value;
-        //console.log(birth_date);
 
         $.ajax({
             type: "POST",
             url: "/req/addEmployee",
-            data: { name: firstname, lastname: lastname, sex: sex, employee_function: employee_function,
-                hiring_date: hiring_date, birth_date: birth_date }
+            data: {
+                name: firstname,
+                lastname: lastname,
+                sex: sex,
+                employee_function: employee_function,
+                hiring_date: hiring_date,
+                birth_date: birth_date
+            }
         });
-
         window.location.reload();
-
-        //DEPRECATED
-        //$http({
-        //    method: 'GET',
-        //    url: '/req/addEmployee?name=' + firstname + '&lastname=' + lastname
-        //}).then(function (success) {
-        //    console.log(success);
-//
-        //}, function (error) {
-        //    console.log(error);
-        //});
     };
 
     $scope.removeEmployee = function(id){
@@ -160,25 +123,18 @@ sdp.controller('employeesController', function($scope, $http, getService, $q) {
         }, function (error) {
             console.log(error);
         });
-
         window.location.reload();
     }
 });
 
 sdp.controller('coursesController', function($scope, $http) {
 
-    var courses_data;
-
     $http({
         method: 'GET',
         url: '/req/allcourses'
     }).then(function (success) {
-        courses_data = success.data;
-        $scope.courses = courses_data;
-        console.log(courses_data);
-
+        $scope.courses = success.data;
     }, function (error) {
-        courses_data = error;
     });
 });
 
@@ -186,7 +142,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
 
     var labelArray;
     var scores_data;
-
 
     var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
     getTopScores.then(function (data) {
@@ -197,30 +152,22 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             labels_polar.push(data.data.domain1.name);
             scores_data.push(data.data.score1.points)
         }
-
         if(data.data.domain2){
             labels_polar.push(data.data.domain2.name);
             scores_data.push(data.data.score2.points)
         }
-
         if(data.data.domain3){
             labels_polar.push(data.data.domain3.name);
             scores_data.push(data.data.score3.points)
         }
-
         if(data.data.domain4){
             labels_polar.push(data.data.domain4.name);
             scores_data.push(data.data.score4.points)
         }
-
         if(data.data.domain5){
             labels_polar.push(data.data.domain5.name);
             scores_data.push(data.data.score5.points)
         }
-
-
-        //////// POLAR CHART
-
 
         var ctxPA = document.getElementById("polarChart").getContext('2d');
         var myPolarChart = new Chart(ctxPA, {
@@ -249,9 +196,8 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             method: 'GET',
             url: '/req/expforemp/' + $routeParams.param1
         }).then(function(succes){
-            exp_data = succes.data;
-            $scope.expobj = exp_data;
-            var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
+            $scope.expobj = succes.data;
+            var progress = $scope.expobj.remainingExp / $scope.expobj.requiredExp * 100;
             var elem = document.getElementById("progressbar");
             elem.style.width = progress + '%';
         }, function (error){
@@ -262,8 +208,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             method: 'GET',
             url: '/req/functionsforemployee/' + $routeParams.param1
         }).then(function (success) {
-            employeefunctions_data = success.data;
-            $scope.employeefunctions = employeefunctions_data;
+            $scope.employeefunctions =  success.data;
         }, function (error) {
             console.log(error);
         });
@@ -272,15 +217,48 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             method: 'GET',
             url: '/req/userbyid/' + $routeParams.param1
         }).then(function (success) {
-            user_data = success.data;
-            $scope.user = user_data;
-            console.log(user_data);
+            $scope.user = success.data;
         }, function (error) {
             console.log(error);
         });
     };
 
     loadData();
+
+    $scope.editEmployee = function(){
+
+        var id = $routeParams.param1;
+        //if(document.getElementById("inputFirstName").value){
+            var firstname = document.getElementById("inputFirstName").value;
+        //}
+        //if(document.getElementById("inputLastName").value){
+            var lastname = document.getElementById("inputLastName").value;
+        //}
+        //if(document.getElementById("inputSex").value){
+            var sex = document.getElementById("inputSex").value;
+        //}
+        //if(document.getElementById("inputHiring").value){
+            var hiring_date = document.getElementById("inputHiring").value;
+        //}
+        //if(document.getElementById("inputBirth").value){
+            var birth_date = document.getElementById("inputBirth").value;
+        //}
+
+        $.ajax({
+            type: "POST",
+            url: "/req/modifyEmployee",
+            data: {
+                id: id,
+                name: firstname,
+                lastname: lastname,
+                sex: sex,
+                hiring_date: hiring_date,
+                birth_date: birth_date
+            }
+        });
+        window.location.reload();
+
+    }
 });
 
 sdp.controller('propertiesController', function($scope,$http) {
@@ -288,9 +266,7 @@ sdp.controller('propertiesController', function($scope,$http) {
     $scope.changeExp = function(){
 
         var juniorMedior = document.getElementById("inputJuniorMedior").value;
-        console.log(juniorMedior);
         var medior = document.getElementById("inputMedior").value;
-        console.log(medior);
         var mediorSenior = document.getElementById("inputMediorSenior").value;
         var senior = document.getElementById("inputSenior").value;
         var factor = document.getElementById("inputFactor").value;
@@ -388,7 +364,6 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
     // LINECHART//
     var getChartData = getService.promiseGet('/req/timetracking/' + $routeParams.emp_id + '/' + $routeParams.func_id);
     getChartData.then(function (returned_data) {
-        console.log(returned_data.data);
         var line_x_labels = [];
         var month;
         var dataset_linechart = [];
@@ -408,8 +383,8 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
                 dataset_linechart.push(
                     {
                         label: returned_data.data.datalabels[counter],
-                        backgroundColor: "rgba(46,38,51,0.4)",
-                        pointHighLightStroke: "rgba(46,38,51,0.4)",
+                        backgroundColor: color_array_light[counter],
+                        pointHighLightStroke: color_array_dark[counter],
                         data: returned_data.data.datasets[counter]
                     }
                 );
@@ -484,8 +459,6 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
             url: 'req/recommendCourse/' + $routeParams.emp_id + '/' + $routeParams.func_id
         }).then(function (success) {
             $scope.recommended = success.data;
-            console.log(success.data);
-            console.log($routeParams.emp_id + ' - ' + $routeParams.func_id );
         }, function (error) {
             console.log(error);
         });
@@ -520,7 +493,6 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
     var checked_domains = [];
 
     getDomainsByFunction.then(function(data){
-        console.log(data.data);
         data.data.forEach(function(entry){
             checked_domains.push(entry.domain.name)
         });
@@ -532,7 +504,6 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
             checked_domains.forEach(function(entry){
                 if(document.getElementById(entry)){
                     document.getElementById(entry).checked = true;
-                    console.log("load - " + entry);
                 }
             });
         }, 1 );
@@ -540,17 +511,14 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
     };
 
     $scope.changeCheckboxes = function(name) {
-        console.log("call");
         $timeout(function () {
             if (document.getElementById(name).checked) {
                 checked_domains.push(name);
             }
             else {
                 position = checked_domains.indexOf(name);
-                console.log(position);
                 checked_domains.splice(position, 1);
             }
-            console.log(checked_domains);
         }, 10);
     };
 
@@ -563,5 +531,18 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
                 'domains': checked_domains.toString()
             }
         });
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $scope.alert = true;
+        $scope.loading = ".";
+        for(i = 0; i < 3; i++){
+            $timeout(function () {
+                $scope.loading = $scope.loading + ".";
+            }, 1000)
+        }
+
+        $timeout(function () {
+            $scope.alert = false;
+            location.href = '#!/manage/';
+        }, 3000);
     }
 });

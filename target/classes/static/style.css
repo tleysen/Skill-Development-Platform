@@ -221,3 +221,10 @@ body{
     background-image: url("/img/brushed.png");
     border-radius: 10px;
 }
+
+.top-overlay {
+    position: fixed; /* Sit on top of the page content */
+    top: 0;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other */
+    cursor: pointer; /* Add a pointer on hover */
+}
