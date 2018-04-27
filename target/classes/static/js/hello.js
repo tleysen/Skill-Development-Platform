@@ -1,4 +1,4 @@
-var sdp = angular.module('sdp', ['ngRoute']);
+var sdp = angular.module('sdp', ['ngRoute', 'ngMaterial']);
 
 var color1_dark = "rgba(46,38,51,0.7)";
 var color2_dark = "rgba(85,81,82,0.7)";

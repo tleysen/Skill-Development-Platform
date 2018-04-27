@@ -3,9 +3,12 @@
     <!-- HEADER -->
     <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Manage</h1>
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Functions:</h3>
-    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewFunction"><i class="fas fa-plus-circle"></i></button>
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewFunction">
+        <i class="fas fa-plus-circle"></i>
+        <md-tooltip md-direction="top">New</md-tooltip>
+    </button>
 
-    <label><i class="fas fa-search"></i> <input ng-model="searchTextFunctions"></label>
+    <label><i class="fas fa-search"></i> <input ng-model="searchTextFunctions"><md-tooltip md-direction="right">Search</md-tooltip></label>
     <!-- CARD TEMPLATE USED TO SHOW FUNCTIONS -->
     <div class="row">
         <div class="col-lg-4" ng-repeat="f in functions | filter:searchTextFunctions">
@@ -13,9 +16,13 @@
                 <div class="card-body">
                     <button type="button" class="close" data-toggle="modal" data-target="#modalRemoveFuncCheck">
                         <span aria-hidden="true">&times;</span>
+                        <md-tooltip md-direction="right">Remove</md-tooltip>
                     </button>
                     <h5 class="card-title">{{f.name}}</h5>
-                    <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" ng-click="getDetails(f.id)"><i class="fas fa-chevron-circle-right"></i></button>
+                    <button type="button" class="btn btn-default btn-circle font2-black btn-right btn-red" ng-click="getDetails(f.id)">
+                        <i class="fas fa-chevron-circle-right"></i>
+                        <md-tooltip md-direction="right">Details</md-tooltip>
+                    </button>
                 </div>
             </div>
             </br>
@@ -23,9 +30,12 @@
     </div>
 
     <h3 class="font1-black" style="padding-bottom: 10px; margin: 30px 30px 30px 30px; border-bottom: 1px solid darkgray;">Domains:</h3>
-    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewDomain"><i class="fas fa-plus-circle"></i></button>
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNewDomain">
+        <i class="fas fa-plus-circle"></i>
+        <md-tooltip md-direction="top">New</md-tooltip>
+    </button>
 
-    <label><i class="fas fa-search"></i> <input ng-model="searchTextDomains"></label>
+    <label><i class="fas fa-search"></i> <input ng-model="searchTextDomains"><md-tooltip md-direction="right">Search</md-tooltip></label>
     <!-- CARD TEMPLATE USED TO SHOW DOMAINS -->
     <div>
         <div  class="row" >
@@ -34,6 +44,7 @@
                     <div class="card-body">
                         <button type="button" class="close" ng-click="removeDomain(d.id)">
                             <span aria-hidden="true">&times;</span>
+                            <md-tooltip md-direction="right">Remove</md-tooltip>
                         </button>
                         <h5 class="card-title">{{d.name}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{c.domain.name}}</h6>

@@ -1,6 +1,9 @@
 <div class="container" ng-controller="employeesController">
     <!-- CREATE NEW EMPLOYEE -->
-    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNew"><i class="fas fa-plus-circle"></i></button>
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNew">
+        <i class="fas fa-plus-circle"></i>
+        <md-tooltip md-direction="top">New</md-tooltip>
+    </button>
 
     <!-- HEADER -->
     <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Employees</h1>
@@ -12,12 +15,16 @@
                 <div class="card-body">
                     <button type="button" class="close" ng-click="removeEmployee(u.id)">
                         <span aria-hidden="true">&times;</span>
+                        <md-tooltip md-direction="right">Remove</md-tooltip>
                     </button>
                     <h5 class="card-title">{{u.name}} {{u.lastname}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{u.function.name}}</h6>
                     <p class="card-text"><b></b></p>
                     </br>
-                    <button type="button" ng-click="getDetails(u.id)" class="btn btn-default btn-circle font2-black btn-right btn-red"><i class="fas fa-address-card"></i></button>
+                    <button type="button" ng-click="getDetails(u.id)" class="btn btn-default btn-circle font2-black btn-right btn-red">
+                        <i class="fas fa-address-card"></i>
+                        <md-tooltip md-direction="right">Details</md-tooltip>
+                    </button>
                 </div>
             </div>
         </br>

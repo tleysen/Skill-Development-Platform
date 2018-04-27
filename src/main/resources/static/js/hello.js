@@ -1,4 +1,4 @@
-var sdp = angular.module('sdp', ['ngRoute']);
+var sdp = angular.module('sdp', ['ngRoute', 'ngMaterial']);
 
 var color1_dark = "rgba(46,38,51,0.7)";
 var color2_dark = "rgba(85,81,82,0.7)";
@@ -139,10 +139,6 @@ sdp.controller('coursesController', function($scope, $http) {
 });
 
 sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout, getService) {
-
-    var labelArray;
-    var scores_data;
-
     var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
     getTopScores.then(function (data) {
         var labels_polar = [];
@@ -257,7 +253,6 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             }
         });
         window.location.reload();
-
     }
 });
 

@@ -94,22 +94,18 @@ public class MainController {
             @PathVariable("id") String id) {
         return functionsDomainsRepository.findAllByFunction_Id(Integer.parseInt(id));
     }
-
-
     @RequestMapping(value = "/userbyid/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Employees getUserById(
             @PathVariable("id") String id) {
         return employeesRepository.findById(Integer.parseInt(id));
     }
-
     @RequestMapping(value = "/functionbyid/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Functions getFunctionById(
             @PathVariable("id") String id) {
         return functionsRepository.findById(Integer.parseInt(id));
     }
-
     @RequestMapping(value = "/domainbyid/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Domains getDomainById(
