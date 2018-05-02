@@ -2,3 +2,7 @@
 .idea/
 
 src/main/resources/static/libs/
+
+*.xml
+
+.idea/workspace.xml
