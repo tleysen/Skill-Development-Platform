@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,6 +26,8 @@ public class ExperienceCalculation {
 
 
     public int calculateTotalExp(int employee_id){
+        Date uncompletedDate = new Date();
+        uncompletedDate.setTime(0);
         List<EmployeeCourses> wa_emplcourses;
         List<Courses> followedCourses = new ArrayList<>();
         int totalExp = 0;
@@ -33,7 +36,10 @@ public class ExperienceCalculation {
         wa_emplcourses = ecr.findAllByEmployee_Id(employee_id);
         //convert list to courses list
         for (EmployeeCourses ec: wa_emplcourses){
-            totalExp += ec.getCourse().getExp();
+            Date courseDate = ec.getCompletion_date();
+            if(courseDate.after(uncompletedDate)){
+                totalExp += ec.getCourse().getExp();
+            }
         }
         return totalExp;
     }
@@ -41,6 +47,8 @@ public class ExperienceCalculation {
     public int calculateTotalExperiencepoints(int employee_id, int func_id){
 
         int exp = 0;
+        Date uncompletedDate = new Date();
+        uncompletedDate.setTime(0);
         List<FunctionsDomains> boundDomains;
         List<Courses> boundCourses = new ArrayList<>();
         List<Courses> wa_courses;
@@ -59,7 +67,10 @@ public class ExperienceCalculation {
         wa_emplcourses = ecr.findAllByEmployee_Id(employee_id);
         //convert list to courses list
         for (EmployeeCourses ec: wa_emplcourses){
-            followedCourses.add(ec.getCourse());
+            Date courseDate = ec.getCompletion_date();
+            if(courseDate.after(uncompletedDate)) {
+                followedCourses.add(ec.getCourse());
+            }
         }
         //compare 2 lists
         for(Courses c:boundCourses){

@@ -44,8 +44,6 @@ public class MainController {
     @Autowired
     private CoursesRepository coursesRepository;
     @Autowired
-    private CourseRecommendation0 courseRecommendation;
-    @Autowired
     private EmployeesFunctionsRepository employeesFunctionsRepository;
     @Autowired
     private TopSkills topSkills;
@@ -118,13 +116,6 @@ public class MainController {
     Courses getCourseById(
             @PathVariable("id") String id) {
         return coursesRepository.findById(Integer.parseInt(id));
-    }
-
-    @RequestMapping(value = "/coursesbyemployee/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Courses> coursesByEmployee(
-            @PathVariable("id") String id) {
-        return courseRecommendation.FollowedCoursesEmployees(Integer.parseInt(id));
     }
 
     @RequestMapping(value = "/scoresforemployee/{id}", method = RequestMethod.GET)

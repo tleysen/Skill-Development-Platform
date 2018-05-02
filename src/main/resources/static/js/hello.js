@@ -394,10 +394,8 @@ sdp.controller('manageController', function($scope,$http) {
 
 });
 
-sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams) {
+sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams, $timeout) {
 
-    delete $scope.courses;
-    $scope.courses = "";
     var today = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -486,12 +484,40 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
 
     $http({
         method: 'GET',
-        url: '/req/coursesbyemployee/' + $routeParams.emp_id
+        url: '/req/completedcoursesbyemployee/' + $routeParams.emp_id
     }).then(function (success) {
-        $scope.courses = success.data;
+        $scope.completed_courses = success.data;
     }, function (error) {
         console.log(error);
     });
+
+    $http({
+        method: 'GET',
+        url: '/req/incompletedcoursesbyemployee/' + $routeParams.emp_id
+    }).then(function (success) {
+        $scope.incompleted_courses = success.data;
+    }, function (error) {
+        console.log(error);
+    });
+
+    $scope.saveCourseParam = function(id){
+        $scope.selected_course_id = id;
+        console.log($scope.selected_course_id);
+    };
+
+    $scope.completeCourse = function(){
+        completion_date = document.getElementById("inputCompleteDate").value;
+        $.ajax({
+            type: "POST",
+            url: "/req/completecourse",
+            data: {
+                emp_id: $routeParams.emp_id,
+                c_id: $scope.selected_course_id,
+                date: completion_date
+            }
+        });
+        window.location.reload();
+    };
 
     $scope.getCourse = function() {
 
@@ -574,13 +600,6 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
         });
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $scope.alert = true;
-        $scope.loading = ".";
-        for(i = 0; i < 3; i++){
-            $timeout(function () {
-                $scope.loading = $scope.loading + ".";
-            }, 1000)
-        }
-
         $timeout(function () {
             $scope.alert = false;
             location.href = '#!/manage/';

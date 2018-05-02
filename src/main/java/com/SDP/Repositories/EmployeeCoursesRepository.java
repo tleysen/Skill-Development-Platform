@@ -9,5 +9,7 @@ public interface EmployeeCoursesRepository extends CrudRepository<EmployeeCourse
 
     List<EmployeeCourses> findAllByEmployee_Id(int id);
 
+    EmployeeCourses findByEmployee_IdAndCourse_Id(int emp_id, int c_id);
+
 
 }

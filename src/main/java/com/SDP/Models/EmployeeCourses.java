@@ -37,6 +37,22 @@ public class EmployeeCourses {
         return completion_date;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setCourse(Courses course) {
+        this.course = course;
+    }
+
+    public void setEmployee(Employees employee) {
+        this.employee = employee;
+    }
+
+    public void setCompletion_date(Date completion_date) {
+        this.completion_date = completion_date;
+    }
+
     @Override
     public String toString() {
         return "EmployeeCourses{" +

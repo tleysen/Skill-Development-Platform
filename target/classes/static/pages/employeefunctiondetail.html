@@ -1,3 +1,10 @@
+<div class="alert alert-danger top-overlay" role="alert" ng-show="error">
+    <i class="fas fa-times-circle"></i>  Something went wrong! Try again...
+</div>
+<div class="alert alert-success top-overlay" role="alert" ng-show="success">
+    <i class="fas fa-check-circle"></i>  Succes! Refreshing...
+</div>
+
 <div class="container">
 
     <button type="button" class="btn btn-circle bg-stardust font1" ng-click="back(user.id)">
@@ -6,7 +13,6 @@
     </button>
 
     <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Function Details</h1>
-
     <div class="row">
 
         <div class="col-lg-1"></div>
@@ -56,7 +62,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10 sub-content">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" ng-repeat="c in courses">{{c.name}}</li>
+                <li class="list-group-item" ng-repeat="c in completed_courses">{{c.name}} - </li>
             </ul>
         </div>
         <div class="col-lg-1"></div>
@@ -67,13 +73,20 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10 sub-content">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" ng-repeat="c in courses">{{c.name}}</li>
+                <li class="list-group-item" ng-repeat="c in incompleted_courses">{{c.name}}
+                    <i style="font-size: 24px; color:darkred; float:right; padding-left: 3px;" class="fas fa-times-circle"></i>
+                    <span data-toggle="modal" data-target="#modalCompleteCourse">
+                        <i style="font-size: 24px; color:green; float:right;" class="fas fa-check-circle" ng-click="saveCourseParam(c.id)"></i>
+                    </span>
+                </li>
             </ul>
         </div>
         <div class="col-lg-1"></div>
     </div>
 </div>
 
+
+<!-- RECOMMENDATION MODAL -->
 <div class="modal fade" id="modalCourse" tabindex="-1" role="dialog" aria-labelledby="courseModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -93,6 +106,36 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COMPLETE MODAL -->
+<div class="modal fade" id="modalCompleteCourse" tabindex="-1" role="dialog" aria-labelledby="completeCourseModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font1-black" id="completeCourseModalLongTitle">Complete course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font2-black">
+                <!-- FORM -->
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputCompleteDate">Completion date</label>
+                            <input type="text" class="form-control" id="inputCompleteDate" placeholder="2018-01-01" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span data-dismiss="modal" ng-click="completeCourse()">
+                            <i style="font-size: 24px; color:green; float:right;" class="fas fa-check-circle"></i>
+                        </span>
                     </div>
                 </form>
             </div>
