@@ -136,6 +136,52 @@ sdp.controller('coursesController', function($scope, $http) {
         $scope.courses = success.data;
     }, function (error) {
     });
+
+    $http({
+        method: 'GET',
+        url: '/req/alldomains'
+    }).then(function (success) {
+        $scope.domains = success.data;
+    }, function (error) {
+    });
+
+    $scope.newCourse = function(){
+
+        var name = document.getElementById("inputName").value;
+        var exp = document.getElementById("inputExp").value;
+        var radios = document.getElementsByName('radioDomains');
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                var domainid = (radios[i].value);
+                break;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "/req/addCourse",
+            data: {
+                name: name,
+                exp: exp,
+                domainid: domainid
+            }
+        });
+        window.location.reload();
+    };
+
+    $scope.showDetails = function(){
+        alert("ayy");
+    }
+
+    $scope.removeCourse = function(id){
+        $http({
+            method: 'GET',
+            url: '/req/deletecoursebyid/' + id
+        }).then(function (success) {
+        }, function (error) {
+            console.log(error);
+        });
+        window.location.reload();
+    }
 });
 
 sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout, getService) {

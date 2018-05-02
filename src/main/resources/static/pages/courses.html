@@ -5,13 +5,100 @@
     </button>
     <!-- HEADER -->
     <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >Courses</h1>
+
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+            <label style="float:right;"><i class="fas fa-search"></i>  <input id="searchInputMain" ng-change="loadCheckboxes()" ng-model="searchTextMain"></label>
+        </div>
+        <div class="col-lg-1">
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 sub-content">
-            <ul class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action" ng-repeat="c in courses">{{c.name}} - <span style="font-size: 10px;">{{c.exp}} exp</span></a>
+            <ul class="list-group list-group-flush scrollbox" style="height:300px;">
+                <div class="list-group-item list-group-item-action" ng-repeat="c in courses | filter:searchTextMain">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="font2-black" ng-click="showDetails()">
+                                {{c.name}} - <span style="font-size: 10px;">{{c.exp}} exp</span>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button style="float:right;" type="button" class="close" ng-click="removeCourse(c.id)">
+                                <span aria-hidden="true">&times;</span>
+                                <md-tooltip md-direction="top">Remove</md-tooltip>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </ul>
         </div>
         <div class="col-lg-1"></div>
+    </div>
+
+    <!-- MODAL NEW-->
+    <div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="newCourseModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font1-black" id="exampleModalLongTitle">Add a new course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <md-tooltip md-direction="top">Close</md-tooltip>
+                    </button>
+                </div>
+                <div class="modal-body font2-black">
+                    <!-- FORM -->
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="inputName">Course name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Software for dummies" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputExp">Exp reward</label>
+                                <input type="text" class="form-control" id="inputExp" placeholder="100" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="card bg-faded">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h6 class="card-subtitle mb-2 text-muted font2-black">Select the associated domain below</h6>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <div class="row">
+                                                <label><i class="fas fa-search"></i>  <input id="searchInput" ng-model="searchText"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body scrollbox">
+                                    <div class = "row">
+                                        <div class="col-lg-4" ng-repeat="d in domains | filter:searchText">
+                                            <input id={{d.name}} value={{d.id}} name="radioDomains" type="radio" aria-label="" ng-model="domainCheckbox" > {{d.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-circle btn-save font1" ng-click="newCourse()" data-dismiss="modal">
+                                <i class="fas fa-save"></i>
+                                <md-tooltip md-direction="top">Save</md-tooltip>
+                            </button>
+                            <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal">
+                                <i class="fas fa-times"></i>
+                                <md-tooltip md-direction="top">Cancel</md-tooltip>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

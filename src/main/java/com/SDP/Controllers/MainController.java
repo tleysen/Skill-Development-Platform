@@ -299,4 +299,16 @@ public class MainController {
             }
         }
     }
+
+    @RequestMapping(value = "/addCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addNewFunction(
+            @RequestParam("name") String name,
+            @RequestParam("domainid") String domainId,
+            @RequestParam("exp") String exp){
+        Courses c = new Courses();
+        c.setName(name);
+        c.setDomain(domainsRepository.findById(Integer.parseInt(domainId)));
+        c.setExp(Integer.parseInt(exp));
+        coursesRepository.save(c);
+    }
 }

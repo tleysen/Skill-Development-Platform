@@ -27,7 +27,7 @@
             <b>Sex: </b> {{user.sex}}</br>
             <b>Functions: </b> {{user.function.name}}</br>
             <ul>
-                <li ng-repeat="f in employeefunctions"><a ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
+                <li ng-repeat="f in employeefunctions"><a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
             </ul>
             <hr>
             <h3>Overall level: {{expobj.level}}</h3>
