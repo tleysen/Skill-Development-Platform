@@ -139,6 +139,15 @@ public class MainController {
         return employeesFunctionsRepository.findAllByEmployee_Id(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/employeesfunctionsobj/{emp_id}/{func_id}", method = RequestMethod.GET)
+    public @ResponseBody
+    EmployeesFunctions getEmployeesFunctionsObj(
+            @PathVariable("emp_id") String employeeId,
+            @PathVariable("func_id") String functionId){
+        return employeesFunctionsRepository.findByEmployee_IdAndFunction_Id(Integer.parseInt(employeeId), Integer.parseInt(functionId));
+    }
+
+
     //------------------------------------------------------------------------------------------------------------------
     //*****                               PARAMETER GET'S NO RESPONSE                                              *****
     //------------------------------------------------------------------------------------------------------------------

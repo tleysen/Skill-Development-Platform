@@ -18,6 +18,8 @@ public class EmployeesFunctions {
     @JoinColumn(name = "idfunctions")
     Functions function;
 
+    private int expboost;
+
     public Integer getId() {
         return id;
     }
@@ -36,6 +38,14 @@ public class EmployeesFunctions {
 
     public void setFunction(Functions function) {
         this.function = function;
+    }
+
+    public int getExpboost() {
+        return expboost;
+    }
+
+    public void setExpboost(int expboost) {
+        this.expboost = expboost;
     }
 
     @Override

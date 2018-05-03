@@ -3,7 +3,6 @@ package com.SDP.BLL;
 import com.SDP.Models.*;
 import com.SDP.Remaining.PropertyReader;
 import com.SDP.Repositories.*;
-import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +13,8 @@ import java.util.List;
 @Service
 public class ExperienceCalculation {
 
+    @Autowired
+    private EmployeesFunctionsRepository efr;
     @Autowired
     private EmployeeCoursesRepository ecr;
     @Autowired
@@ -28,23 +29,28 @@ public class ExperienceCalculation {
     public int calculateTotalExp(int employee_id){
         Date uncompletedDate = new Date();
         uncompletedDate.setTime(0);
-        List<EmployeeCourses> wa_emplcourses;
-        List<Courses> followedCourses = new ArrayList<>();
+        List<EmployeeCourses> employeeCoursesList;
         int totalExp = 0;
+        List<EmployeesFunctions> employeesFunctionsList;
 
         //All employee courses objects
-        wa_emplcourses = ecr.findAllByEmployee_Id(employee_id);
+        employeeCoursesList = ecr.findAllByEmployee_Id(employee_id);
         //convert list to courses list
-        for (EmployeeCourses ec: wa_emplcourses){
+        for (EmployeeCourses ec: employeeCoursesList){
             Date courseDate = ec.getCompletion_date();
             if(courseDate.after(uncompletedDate)){
                 totalExp += ec.getCourse().getExp();
             }
         }
+
+        employeesFunctionsList = efr.findAllByEmployee_Id(employee_id);
+        for(EmployeesFunctions ef : employeesFunctionsList){
+            totalExp += ef.getExpboost();
+        }
         return totalExp;
     }
 
-    public int calculateTotalExperiencepoints(int employee_id, int func_id){
+    public int calculateTotalExperiencepointsForFunction(int employee_id, int func_id){
 
         int exp = 0;
         Date uncompletedDate = new Date();
@@ -79,6 +85,10 @@ public class ExperienceCalculation {
                 exp += c.getExp();
             }
         }
+        EmployeesFunctions employeesFunction = efr.findByEmployee_IdAndFunction_Id(employee_id, func_id);
+
+        exp += employeesFunction.getExpboost();
+
         return exp;
     }
 
@@ -135,7 +145,7 @@ public class ExperienceCalculation {
 
     public ExperienceObject calculateFunctionProfile(int employee_id, int func_id){
         ExperienceObject calculated_obj = new ExperienceObject();
-        calculated_obj.setTotalExp(calculateTotalExperiencepoints(employee_id, func_id));
+        calculated_obj.setTotalExp(calculateTotalExperiencepointsForFunction(employee_id, func_id));
         return createExpObject(calculated_obj);
 
     }

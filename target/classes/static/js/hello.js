@@ -302,7 +302,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     }
 });
 
-sdp.controller('propertiesController', function($scope,$http) {
+sdp.controller('propertiesController', function($scope) {
 
     $scope.changeExp = function(){
 
@@ -394,7 +394,7 @@ sdp.controller('manageController', function($scope,$http) {
 
 });
 
-sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams, $timeout) {
+sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams) {
 
     var today = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -496,6 +496,15 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
         url: '/req/incompletedcoursesbyemployee/' + $routeParams.emp_id
     }).then(function (success) {
         $scope.incompleted_courses = success.data;
+    }, function (error) {
+        console.log(error);
+    });
+
+    $http({
+        method: 'GET',
+        url: '/req/employeesfunctionsobj/' + $routeParams.emp_id + '/' + $routeParams.func_id
+    }).then(function (success) {
+        $scope.functionObj = success.data;
     }, function (error) {
         console.log(error);
     });

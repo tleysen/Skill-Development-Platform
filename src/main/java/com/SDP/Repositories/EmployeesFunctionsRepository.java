@@ -10,4 +10,6 @@ public interface EmployeesFunctionsRepository extends CrudRepository<EmployeesFu
 
     List<EmployeesFunctions> findAllByEmployee_Id(int id);
 
+    EmployeesFunctions findByEmployee_IdAndFunction_Id(int emp_id, int func_id);
+
 }
