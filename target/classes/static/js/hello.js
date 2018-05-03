@@ -484,7 +484,7 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
 
     $http({
         method: 'GET',
-        url: '/req/completedcoursesbyemployee/' + $routeParams.emp_id
+        url: '/req/completedcoursesbyemployee/' + $routeParams.emp_id + '/' + $routeParams.func_id
     }).then(function (success) {
         $scope.completed_courses = success.data;
     }, function (error) {
@@ -493,7 +493,7 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
 
     $http({
         method: 'GET',
-        url: '/req/incompletedcoursesbyemployee/' + $routeParams.emp_id
+        url: '/req/incompletedcoursesbyemployee/' + $routeParams.emp_id + '/' + $routeParams.func_id
     }).then(function (success) {
         $scope.incompleted_courses = success.data;
     }, function (error) {

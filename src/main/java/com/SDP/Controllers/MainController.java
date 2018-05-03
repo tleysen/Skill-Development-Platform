@@ -173,6 +173,7 @@ public class MainController {
     @RequestMapping(value = "/deletefunctionbyid/{id}", method = RequestMethod.GET)
     public void deleteFunctionsById(@PathVariable("id") String id) {
         functionsRepository.deleteById(Integer.parseInt(id));
+
     }
 
 

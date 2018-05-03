@@ -134,42 +134,6 @@ public class CourseRecommendation0 {
     //----------------------------------------------------------------------------------------------------------------//
     //                            Retrieve the list of domains for the coupled function                               //
     //----------------------------------------------------------------------------------------------------------------//
-    private List<Domains> CoupledDomainsByFunctionid(int id){
-        // empty variables
-        //Init();
-
-        // fill the list with joint objects
-        //
-        //
-        // ############ REFACTORED METHOD, SEE FUNCTIONSDOMAINSREPOSITORY#########
-        //
-        //
-        //
-        //functionsDomainsList = functionsDomainsRepository.findAllByFunction_Id(id);
-
-        // Extract the domain ids from the joint list
-        for (FunctionsDomains functiondomain : functionsDomainsList) {
-            //get the ID and add it to the list on the index of the counter
-            domainid = functiondomain.getDomain().getId().toString();
-            domainsIdList.add(counter, domainid);
-            counter++;
-        }
-
-        //reset counter
-        counter = 0;
-
-        // Extract the domain objects from the domainID list
-        for(String domainid : domainsIdList) {
-            domainsList.add(counter, domainsRepository.findById(Integer.parseInt(domainid)));
-            counter++;
-        }
-
-        //reset counter
-        counter = 0;
-
-        //return result
-        return domainsList;
-    }
 
     //----------------------------------------------------------------------------------------------------------------//
     //                                        CheckIfCourseFollowed                                                   //
@@ -212,26 +176,26 @@ public class CourseRecommendation0 {
     //----------------------------------------------------------------------------------------------------------------//
     //                              Get all possible domains for a single employee                                    //
     //----------------------------------------------------------------------------------------------------------------//
-    public List<Domains> GetDomainsForEmployeeId(int id){
-
-        //empty variables
-        //Init();
-
-        //get Employee object by inserted id
-        Employees selectedEmployee = employeesRepository.findById(id);
-
-
-
-
-        //get Function object from selected Employee object
-                                                                    //employeesFunction = selectedEmployee.getFunction();
-
-        //get id from resulted Function object
-        Integer functionid = employeesFunction.getId();
-
-        //return result
-        return CoupledDomainsByFunctionid(functionid);
-    }
+    //public List<Domains> GetDomainsForEmployeeId(int id){
+//
+    //    //empty variables
+    //    //Init();
+//
+    //    //get Employee object by inserted id
+    //    Employees selectedEmployee = employeesRepository.findById(id);
+//
+//
+//
+//
+    //    //get Function object from selected Employee object
+    //                                                                //employeesFunction = selectedEmployee.getFunction();
+//
+    //    //get id from resulted Function object
+    //    Integer functionid = employeesFunction.getId();
+//
+    //    //return result
+    //    return CoupledDomainsByFunctionid(functionid);
+    //}
 
     //----------------------------------------------------------------------------------------------------------------//
     //                                        AllCoursesByEmployeeId                                                //

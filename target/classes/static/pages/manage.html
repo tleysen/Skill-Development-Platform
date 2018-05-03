@@ -28,7 +28,7 @@
                 <div class="col-lg-4" ng-repeat="f in functions | filter:searchTextFunctions">
                     <div class="card font2 bg-stardust" style="width: 18rem;">
                         <div class="card-body">
-                            <button type="button" class="close" data-toggle="modal" data-target="#modalRemoveFuncCheck">
+                            <button type="button" class="close" ng-click="removeFunction(f.id)">
                                 <span aria-hidden="true">&times;</span>
                                 <md-tooltip md-direction="right">Remove</md-tooltip>
                             </button>
@@ -86,7 +86,7 @@
     <!-- CARD TEMPLATE USED TO SHOW DOMAINS -->
 
     <!-- MODAL FUNCTION -->
-    <div class="modal fade" id="modalNewFunction" tabindex="-1" role="dialog" aria-labelledby="newFunct ionModal" aria-hidden="true">
+    <div class="modal fade" id="modalNewFunction" tabindex="-1" role="dialog" aria-labelledby="newFunctionModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

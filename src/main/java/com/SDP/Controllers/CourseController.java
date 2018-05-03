@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class CourseController {
     @Autowired
     private CourseRecommendation cr;
 
-    @GetMapping(path = "/domainbyemployeeid/{id}")
-    public @ResponseBody
-    List<Domains> getDomainsForEmployeeId(@PathVariable("id") String id) {
-        return courseRecommendation.GetDomainsForEmployeeId(Integer.parseInt(id));
-    }
+    //@GetMapping(path = "/domainbyemployeeid/{id}")
+    //public @ResponseBody
+    //List<Domains> getDomainsForEmployeeId(@PathVariable("id") String id) {
+    //    return courseRecommendation.GetDomainsForEmployeeId(Integer.parseInt(id));
+    //}
 
     @GetMapping(path = "/coursesbydomainid/{id}")
     public @ResponseBody
@@ -46,16 +47,21 @@ public class CourseController {
         return cr.AllCoursesByEmployeeId(Integer.parseInt(id));
     }
 
-    @GetMapping(value= "/completedcoursesbyemployee/{id}")
+    @GetMapping(value= "/completedcoursesbyemployee/{id}/{func_id}")
     public @ResponseBody
-    List<Courses> getCompletedCoursesByEmployee(@PathVariable("id") String id){
-        return cr.GetCompletedCoursesByEmployeeId(Integer.parseInt(id));
+    List<Courses> getCompletedCoursesByEmployee(
+            @PathVariable("id") String id,
+            @PathVariable("func_id") String func_id){
+        return cr.GetCompletedCoursesByEmployeeIdAndFuncId(Integer.parseInt(id), Integer.parseInt(func_id));
     }
 
-    @GetMapping(value= "/incompletedcoursesbyemployee/{id}")
+    @GetMapping(value= "/incompletedcoursesbyemployee/{id}/{func_id}")
     public @ResponseBody
-    List<Courses> getIncompletedCoursesByEmployee(@PathVariable("id") String id){
-        return cr.GetIncompletedCoursesByEmployeeId(Integer.parseInt(id));
+    List<Courses> getIncompletedCoursesByEmployee(
+            @PathVariable("id") String id,
+            @PathVariable("func_id") String func_id
+    ){
+        return cr.GetIncompletedCoursesByEmployeeIdAndFuncId(Integer.parseInt(id), Integer.parseInt(func_id));
     }
 
     @RequestMapping(value = "/completecourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

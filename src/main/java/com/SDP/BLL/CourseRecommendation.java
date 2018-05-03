@@ -27,6 +27,8 @@ public class CourseRecommendation {
     EmployeeCoursesRepository ecr;
     @Autowired
     FunctionsRepository fr;
+    @Autowired
+    DomainsRepository dr;
 
 
 
@@ -105,34 +107,37 @@ public class CourseRecommendation {
         return coursesList;
     }
 
-    public List<Courses> GetCompletedCoursesByEmployeeId(int id){
+    public List<Courses> GetCompletedCoursesByEmployeeIdAndFuncId(int empId, int funcId){
 
         Date uncompletedDate = new Date();
         uncompletedDate.setTime(0);
         List<Courses> completedCourses = new ArrayList<>();
         //All employee courses objects
-        List<EmployeeCourses> wa_emplcourses = ecr.findAllByEmployee_Id(id);
+        List<EmployeeCourses> wa_emplcourses = ecr.findAllByEmployee_Id(empId);
+        List<Domains> domainsInFunction = CoupledDomainsByFunctionid(funcId);
+
         // Check if course completion date is default, if not add to completed list
         for (EmployeeCourses ec: wa_emplcourses){
             Date courseDate = ec.getCompletion_date();
-            if(courseDate.after(uncompletedDate)){
+            if(courseDate.after(uncompletedDate) && domainsInFunction.contains(ec.getCourse().getDomain())){
                 completedCourses.add(cr.findById(ec.getCourse().getId()));
             }
         }
         return completedCourses;
     }
 
-    public List<Courses> GetIncompletedCoursesByEmployeeId(int id){
+    public List<Courses> GetIncompletedCoursesByEmployeeIdAndFuncId(int id, int funcId){
 
         Date uncompletedDate = new Date();
         uncompletedDate.setTime(0);
         List<Courses> incompletedCourses = new ArrayList<>();
+        List<Domains> domainsInFunction = CoupledDomainsByFunctionid(funcId);
         //All employee courses objects
         List<EmployeeCourses> wa_emplcourses = ecr.findAllByEmployee_Id(id);
         // Check if course completion date is default, if not add to completed list
         for (EmployeeCourses ec: wa_emplcourses){
             Date courseDate = ec.getCompletion_date();
-            if(courseDate.before(uncompletedDate)){
+            if(courseDate.before(uncompletedDate) && domainsInFunction.contains(ec.getCourse().getDomain())){
                 incompletedCourses.add(cr.findById(ec.getCourse().getId()));
             }
         }
@@ -145,6 +150,37 @@ public class CourseRecommendation {
             Date dateObj = dateFormat.parse(date);
             ecrObj.setCompletion_date(new java.sql.Date(dateObj.getTime()));
         ecr.save(ecrObj);
+    }
+
+    private List<Domains> CoupledDomainsByFunctionid(int id){
+
+        int counter = 0;
+        List<FunctionsDomains> functionsDomainsList = fdr.findAllByFunction_Id(id);
+
+        // Extract the domain ids from the joint list
+        List<String> domainsIdList = new ArrayList<>() ;
+        for (FunctionsDomains functiondomain : functionsDomainsList) {
+            //get the ID and add it to the list on the index of the counter
+            String domainid = functiondomain.getDomain().getId().toString();
+            domainsIdList.add(counter, domainid);
+            counter++;
+        }
+
+        //reset counter
+        counter = 0;
+
+        List<Domains> domainsList = new ArrayList<>();
+        // Extract the domain objects from the domainID list
+        for(String domainid : domainsIdList) {
+            domainsList.add(counter, dr.findById(Integer.parseInt(domainid)));
+            counter++;
+        }
+
+        //reset counter
+        counter = 0;
+
+        //return result
+        return domainsList;
     }
 
 }
