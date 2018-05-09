@@ -23,7 +23,7 @@
             <h5>{{expobj.title}}</h5>
             <p>
                 <b>Progress:</b> {{expobj.remainingExp}} / {{expobj.requiredExp}} exp</br>
-                <p><b>Boosted by:</b> {{functionObj.expboost}} exp
+                <p><b>Boosted by:</b> {{functionObj.expboost}} exp <span style ="float: right;" data-toggle="modal" data-target="#modalBoost"><i class="fas fa-pencil-alt"></i></span>
             </p>
             <div class="progress">
                 <div id="progressbar" class="progress-bar btn-red" role="progressbar" style="width: 0%; height: 100%;" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -140,3 +140,35 @@
     </div>
 </div>
 
+<!-- BOOSTER MODAL -->
+<div class="modal fade" id="modalBoost" tabindex="-1" role="dialog" aria-labelledby="courseModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font1-black" id="boostModalLongTitle">Booster:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font2-black">
+                <!-- FORM -->
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputBooster">Amount</label>
+                            <input type="text" class="form-control" id="inputBooster" placeholder="1000" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span data-dismiss="modal" ng-click="setBooster()">
+                            <i style="font-size: 24px; color:green; float:right;" class="fas fa-check-circle"></i>
+                        </span>
+                        <span data-dismiss="modal">
+                            <i style="font-size: 24px; color:darkred; float:right; padding-left: 3px;" class="fas fa-times-circle"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,11 +22,12 @@ public class ExperienceCalculation {
     @Autowired
     private CoursesRepository cr;
 
+
     PropertyReader pr = new PropertyReader();
 
 
 
-    public int calculateTotalExp(int employee_id){
+    private int calculateTotalExp(int employee_id){
         Date uncompletedDate = new Date();
         uncompletedDate.setTime(0);
         List<EmployeeCourses> employeeCoursesList;
@@ -50,7 +51,7 @@ public class ExperienceCalculation {
         return totalExp;
     }
 
-    public int calculateTotalExperiencepointsForFunction(int employee_id, int func_id){
+    private int calculateTotalExperiencepointsForFunction(int employee_id, int func_id){
 
         int exp = 0;
         Date uncompletedDate = new Date();
@@ -156,4 +157,5 @@ public class ExperienceCalculation {
         return createExpObject(calculated_obj);
 
     }
+
 }

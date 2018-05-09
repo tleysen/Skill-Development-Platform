@@ -410,7 +410,7 @@ sdp.controller('manageController', function($scope,$http) {
 sdp.controller('employeeFunctionDetailController', function($scope, $http, getService, $routeParams) {
 
     var today = new Date();
-    const monthNames = ["January", "February", "March", "April", "May", "June",
+    var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
     // LINECHART//
@@ -536,6 +536,20 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
                 emp_id: $routeParams.emp_id,
                 c_id: $scope.selected_course_id,
                 date: completion_date
+            }
+        });
+        window.location.reload();
+    };
+
+    $scope.setBooster = function(){
+        booster = document.getElementById("inputBooster").value;
+        $.ajax({
+            type: "POST",
+            url: "/req/boost",
+            data: {
+                e_id: $routeParams.emp_id,
+                f_id: $routeParams.func_id,
+                amount: booster
             }
         });
         window.location.reload();
