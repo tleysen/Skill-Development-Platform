@@ -195,7 +195,6 @@ public class MainController {
         Employees n = new Employees();
         n.setName(name);
         n.setLastname(lastname);
-        //n.setFunction(employeesFunction);
         n.setSex(sex);
 
         try {
@@ -211,8 +210,11 @@ public class MainController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         employeesRepository.save(n);
+        EmployeesFunctions ef = new EmployeesFunctions();
+        ef.setEmployee(n);
+        ef.setFunction(functionsRepository.findById(Integer.parseInt(employee_function)));
+        employeesFunctionsRepository.save(ef);
         System.out.println(n);
     }
     @RequestMapping(value="/modifyEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -252,6 +254,17 @@ public class MainController {
             }
         }
         employeesRepository.save(emp);
+    }
+
+    @RequestMapping(value = "/addFunctionToEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addNewDomain(
+            @RequestParam("emp_id") String empId,
+            @RequestParam("func_id") String funcId){
+        EmployeesFunctions ef = new EmployeesFunctions();
+
+        ef.setEmployee(employeesRepository.findById(Integer.parseInt(empId)));
+        ef.setFunction(functionsRepository.findById(Integer.parseInt(funcId)));
+        employeesFunctionsRepository.save(ef);
     }
 
     @RequestMapping(value = "/addDomain", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

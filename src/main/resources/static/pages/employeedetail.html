@@ -25,7 +25,7 @@
             <b>Birth date:</b> {{user.birth_date}}</br>
             <b>Hiring date:</b> {{user.hiring_date}}</br>
             <b>Sex: </b> {{user.sex}}</br>
-            <b>Functions: </b> {{user.function.name}}</br>
+            <b>Functions: </b> {{user.function.name}}<span style ="float: right;" data-toggle="modal" data-target="#modalFunction"><i class="fas fa-plus-circle"></i></span></br>
             <ul>
                 <li ng-repeat="f in employeefunctions"><a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
             </ul>
@@ -71,12 +71,12 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="inputHiring">Hiringdate</label>
-                            <input type="text" class="form-control" id="inputHiring" placeholder="{{user.hiring_date}}" required>
+                            <label>Birthdate</label>
+                            <md-datepicker style="z-index: 1200;" ng-model="birthDate" md-placeholder="{{user.birth_date}}" ></md-datepicker>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputBirth">Birthdate</label>
-                            <input type="text" class="form-control" id="inputBirth" placeholder="{{user.birth_date}}" required>
+                            <label>Hiringdate</label>
+                            <md-datepicker style="z-index: 1200;" ng-model="hiringDate" md-placeholder="{{user.hiring_date}}" ></md-datepicker>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputSex">Sex</label>
@@ -85,6 +85,39 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-circle btn-save font1" ng-click="editEmployee()" data-dismiss="modal">
+                            <i class="fas fa-save"></i>
+                            <md-tooltip md-direction="top">Back</md-tooltip>
+                        </button>
+                        <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL Function-->
+<div class="modal fade" id="modalFunction" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font1-black" id="modalTitleFunction">Add function</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font2-black">
+                <!-- FORM -->
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="inputFunction">Function</label>
+                            <select class="form-control" id="inputFunction" required>
+                                <option ng-repeat="f in functions" value="{{f.id}}">{{f.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-circle btn-save font1" ng-click="addFunction()" data-dismiss="modal">
                             <i class="fas fa-save"></i>
                             <md-tooltip md-direction="top">Back</md-tooltip>
                         </button>

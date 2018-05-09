@@ -96,8 +96,8 @@ sdp.controller('employeesController', function($scope, $http, getService) {
         var lastname = document.getElementById("inputLastName").value;
         var sex = document.getElementById("inputSex").value;
         var employee_function = document.getElementById("inputFunction").value;
-        var hiring_date = document.getElementById("inputHiring").value;
-        var birth_date = document.getElementById("inputBirth").value;
+        var hiring_date = moment($scope.hiringDate).format('YYYY-MM-DD');
+        var birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
 
         $.ajax({
             type: "POST",
@@ -185,6 +185,14 @@ sdp.controller('coursesController', function($scope, $http) {
 });
 
 sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout, getService) {
+    $http({
+        method: 'GET',
+        url: '/req/allfunctions'
+    }).then(function (success) {
+        $scope.functions = success.data;
+    }, function (error) {
+    });
+
     var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
     getTopScores.then(function (data) {
         var labels_polar = [];
@@ -270,21 +278,12 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     $scope.editEmployee = function(){
 
         var id = $routeParams.param1;
-        //if(document.getElementById("inputFirstName").value){
-            var firstname = document.getElementById("inputFirstName").value;
-        //}
-        //if(document.getElementById("inputLastName").value){
-            var lastname = document.getElementById("inputLastName").value;
-        //}
-        //if(document.getElementById("inputSex").value){
-            var sex = document.getElementById("inputSex").value;
-        //}
-        //if(document.getElementById("inputHiring").value){
-            var hiring_date = document.getElementById("inputHiring").value;
-        //}
-        //if(document.getElementById("inputBirth").value){
-            var birth_date = document.getElementById("inputBirth").value;
-        //}
+        var firstname = document.getElementById("inputFirstName").value;
+        var lastname = document.getElementById("inputLastName").value;
+        var sex = document.getElementById("inputSex").value;
+        var hiring_date = moment($scope.hiringDate).format('YYYY-MM-DD');
+        var birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
+
 
         $.ajax({
             type: "POST",
@@ -296,6 +295,20 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
                 sex: sex,
                 hiring_date: hiring_date,
                 birth_date: birth_date
+            }
+        });
+        window.location.reload();
+    };
+
+    $scope.addFunction = function(){
+        var id = $routeParams.param1;
+        var func_id = document.getElementById("inputFunction").value;
+        $.ajax({
+            type: "POST",
+            url: "/req/addFunctionToEmployee",
+            data: {
+                emp_id: id,
+                func_id: func_id
             }
         });
         window.location.reload();
@@ -612,6 +625,6 @@ sdp.controller('functionDetailController', function($scope, $http, $routeParams,
         $timeout(function () {
             $scope.alert = false;
             location.href = '#!/manage/';
-        }, 3000);
+        }, 1000);
     }
 });
