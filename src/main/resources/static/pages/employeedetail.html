@@ -27,7 +27,13 @@
             <b>Sex: </b> {{user.sex}}</br>
             <b>Functions: </b> {{user.function.name}}<span style ="float: right;" data-toggle="modal" data-target="#modalFunction"><i class="fas fa-plus-circle"></i></span></br>
             <ul>
-                <li ng-repeat="f in employeefunctions"><a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
+                <div class="row">
+                    <li ng-repeat="f in employeefunctions" class="col-lg-12">
+                        <a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}} &nbsp &nbsp</a>
+                        <div class="float-right"><i class="fas fa-times-circle"></i></div>
+                    </li>
+
+                </div>
             </ul>
             <hr>
             <h3>Overall level: {{expobj.level}}</h3>

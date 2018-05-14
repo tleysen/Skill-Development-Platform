@@ -21,6 +21,8 @@ public class ExperienceCalculation {
     private FunctionsDomainsRepository fdr;
     @Autowired
     private CoursesRepository cr;
+    @Autowired
+    private ScoresRepository sr;
 
 
     PropertyReader pr = new PropertyReader();
@@ -156,6 +158,15 @@ public class ExperienceCalculation {
         calculated_obj.setTotalExp(calculateTotalExp(employee_id));
         return createExpObject(calculated_obj);
 
+    }
+
+    public void calculateDomainScoresForEmployeeWithFunctions(int employee_id, int func_id){
+        List<FunctionsDomains> allFunctionDomains = fdr.findAllByFunction_Id(1);
+        List<Domains> allDomains = new ArrayList<>();
+        Scores currentScore = sr.findByEmployee_IdAndDomain_IdOrderByDateDesc(employee_id, func_id).get(0);
+        for(FunctionsDomains fd : allFunctionDomains){
+            allDomains.add(fd.getDomain());
+        }
     }
 
 }

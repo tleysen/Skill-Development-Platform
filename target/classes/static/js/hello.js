@@ -64,6 +64,7 @@ sdp.config(function($routeProvider) {
             templateUrl: 'pages/functiondetail.html',
             controller: 'functionDetailController'
         })
+        .otherwise("/employees")
 });
 
 sdp.controller('mainController', function($scope,$http) {
@@ -111,7 +112,7 @@ sdp.controller('employeesController', function($scope, $http, getService) {
                 birth_date: birth_date
             }
         });
-        window.location.reload();
+
     };
 
     $scope.removeEmployee = function(id){
@@ -127,7 +128,7 @@ sdp.controller('employeesController', function($scope, $http, getService) {
     }
 });
 
-sdp.controller('coursesController', function($scope, $http) {
+sdp.controller('coursesController', function($scope, $http, $timeout, getService) {
 
     $http({
         method: 'GET',
@@ -168,9 +169,39 @@ sdp.controller('coursesController', function($scope, $http) {
         window.location.reload();
     };
 
-    $scope.showDetails = function(){
-        alert("ayy");
-    }
+    $scope.clickCourse = function(course_id){
+        var getCourse = getService.promiseGet('/req/coursebyid/' + course_id);
+        $scope.course_id = course_id;
+        getCourse.then(function(success) {
+            $scope.course = success.data;
+            console.log(success.data);
+            document.getElementById($scope.course.domain.id).checked = true
+        })
+    };
+
+    $scope.editCourse = function(){
+        var id = $scope.course_id;
+        var name = document.getElementById("inputNameEdit").value;
+        var exp = document.getElementById("inputExpEdit").value;
+        var radios = document.getElementsByName('radioDomains');
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                var domainid = (radios[i].value);
+                break;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "/req/modifyCourse",
+            data: {
+                id: id,
+                name: name,
+                exp: exp,
+                domainid: domainid
+            }
+        });
+        window.location.reload();
+    };
 
     $scope.removeCourse = function(id){
         $http({
@@ -399,7 +430,7 @@ sdp.controller('manageController', function($scope,$http) {
         });
 
         window.location.reload();
-    }
+    };
 
     $scope.getDetails = function(func_id){
         location.href = '#!/functiondetail/' + func_id;
@@ -423,7 +454,7 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
         var counter = 0;
         //Fill up the moth array so the graph will display the correct month names
         for (var i = 12; i > 0; i--) {
-            month = today.getMonth() + i;
+            month = today.getMonth() + i ;
             if (month > 11) {
                 month -= 12;
             }
@@ -528,7 +559,7 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
     };
 
     $scope.completeCourse = function(){
-        completion_date = document.getElementById("inputCompleteDate").value;
+        completion_date = moment($scope.dateComplete).format('YYYY-MM-DD');
         $.ajax({
             type: "POST",
             url: "/req/completecourse",
@@ -567,9 +598,21 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
         });
     };
 
+    $scope.selectCourse = function(course_id){
+        $.ajax({
+            type: "POST",
+            url: "/req/followcourse",
+            data: {
+                e_id: $routeParams.emp_id,
+                c_id: course_id
+            }
+        });
+        window.location.reload();
+    };
+
     $scope.back = function(id){
         location.href='#!/employeedetail/' + id;
-    }
+    };
 });
 
 sdp.controller('functionDetailController', function($scope, $http, $routeParams, getService, $timeout){

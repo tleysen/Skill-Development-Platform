@@ -15,8 +15,6 @@
             <b>Birth date:</b> {{user.birth_date}}</br>
             <b>Hiring date:</b> {{user.hiring_date}}</br>
             <b>Sex: </b> {{user.sex}}</br>
-
-
         </div>
         <div class="col-lg-6">
             <h3>{{function.name}} level: {{expobj.level}}</h3>
@@ -59,7 +57,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10 sub-content">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" ng-repeat="c in completed_courses">{{c.name}} - </li>
+                <li class="list-group-item" ng-repeat="c in completed_courses">{{c.name}}</li>
             </ul>
         </div>
         <div class="col-lg-1"></div>
@@ -98,7 +96,7 @@
                 <form>
                     <div class="form-row">
                         <ul class="list-group list-group-flush">
-                            <a ng-repeat="c in recommended" ng-href="/req/coursebyid/{{c.id}}"><li class="list-group-item"><h3>{{c.name}}</h3>{{c.exp}} exp</li></a>
+                            <a ng-repeat="c in recommended" ng-click="selectCourse(c.id)"><li class="list-group-item"><h3>{{c.name}}</h3>{{c.exp}} exp</li></a>
                         </ul>
                     </div>
                     <div class="modal-footer">
@@ -125,8 +123,8 @@
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="inputCompleteDate">Completion date</label>
-                            <input type="text" class="form-control" id="inputCompleteDate" placeholder="2018-01-01" required>
+                            <label>Completion date</label>
+                            <md-datepicker style="z-index: 1200;" ng-model="dateComplete" md-placeholder="Enter date" ></md-datepicker>
                         </div>
                     </div>
                     <div class="modal-footer">

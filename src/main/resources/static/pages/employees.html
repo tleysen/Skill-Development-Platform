@@ -61,15 +61,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputFirstName">First name</label>
-                                <input type="text" class="form-control" id="inputFirstName" placeholder="John" required>
+                                <input type="text" class="form-control required" id="inputFirstName" placeholder="John" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputLastName">Last name</label>
-                                <input type="text" class="form-control" id="inputLastName" placeholder="Doe" required>
+                                <input type="text" class="form-control required" id="inputLastName" placeholder="Doe" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputFunction">Function</label>
-                                <select class="form-control" id="inputFunction" required>
+                                <select class="form-control required" id="inputFunction">
                                     <option ng-repeat="f in functions" value="{{f.id}}">{{f.name}}</option>
                                 </select>
                             </div>
@@ -77,20 +77,20 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Hiringdate</label>
-                                <md-datepicker style="z-index: 1200;" ng-model="hiringDate" md-placeholder="Enter date" ></md-datepicker>
+                                <md-datepicker style="z-index: 1200;" ng-model="hiringDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Birthdate</label>
-                                <md-datepicker style="z-index: 1200;" ng-model="birthDate" md-placeholder="Enter date" ></md-datepicker>
+                                <md-datepicker style="z-index: 1200;" ng-model="birthDate" md-placeholder="Enter date"  md-open-on-focus></md-datepicker>
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputSex">Sex</label>
-                                <input type="text" class="form-control" id="inputSex" placeholder="M/F" required>
+                                <input type="text" class="form-control required" id="inputSex" placeholder="M/F" >
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-circle btn-save font1" ng-click="newEmployee()" data-dismiss="modal"><i class="fas fa-save"></i></button>
-                            <button type="button" class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                            <button type="submit" class="btn btn-circle btn-save font1" ng-click="newEmployee()"><i class="fas fa-save"></i></button>
+                            <button class="btn btn-circle btn-cancel font1" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
                     </form>
                 </div>

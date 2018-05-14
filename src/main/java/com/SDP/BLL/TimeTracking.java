@@ -57,7 +57,7 @@ public class TimeTracking {
         out.add(0);
 
 
-        baseCal.add(baseCal.MONTH, -12);
+        baseCal.add(baseCal.MONTH, -10);
         dateMinusYear = baseCal.getTime();
 
         baseCal = Calendar.getInstance();

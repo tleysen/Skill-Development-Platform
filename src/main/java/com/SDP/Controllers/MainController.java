@@ -257,7 +257,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/addFunctionToEmployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addNewDomain(
+    public void addFunctionToEmployee(
             @RequestParam("emp_id") String empId,
             @RequestParam("func_id") String funcId){
         EmployeesFunctions ef = new EmployeesFunctions();
@@ -314,8 +314,26 @@ public class MainController {
         }
     }
 
+    @RequestMapping(value="/modifyCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void modifyCourse(@RequestParam("id") String id,
+        @RequestParam("name") String name,
+        @RequestParam("domainid") String domainId,
+        @RequestParam("exp") String exp){
+        Courses c = coursesRepository.findById(Integer.parseInt(id));
+        if(!name.equals("")){
+            c.setName(name);
+        }
+        if(!domainId.equals("")){
+            c.setDomain(domainsRepository.findById(Integer.parseInt(domainId)));
+        }
+        if(!exp.equals("")){
+            c.setExp(Integer.parseInt(exp));
+        }
+        coursesRepository.save(c);
+    }
+
     @RequestMapping(value = "/addCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addNewFunction(
+    public void addNewCourse(
             @RequestParam("name") String name,
             @RequestParam("domainid") String domainId,
             @RequestParam("exp") String exp){

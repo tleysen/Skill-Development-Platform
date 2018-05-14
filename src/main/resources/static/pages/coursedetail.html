@@ -1,0 +1,30 @@
+<div class="container">
+
+    <button type="button" class="btn btn-circle bg-stardust font1 btn-right" data-toggle="modal" data-target="#modalNew"><i class="fas fa-plus-circle"></i>
+        <md-tooltip md-direction="top">New</md-tooltip>
+    </button>
+    <!-- HEADER -->
+    <h1 class="font1-black" style="text-align: center; padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid darkgray;" >{{course.name}}</h1>
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <b>Employee:</b> {{user.name}} {{user.lastname}}</br>
+            <b>Birth date:</b> {{user.birth_date}}</br>
+            <b>Hiring date:</b> {{user.hiring_date}}</br>
+            <b>Sex: </b> {{user.sex}}</br>
+            <b>Functions: </b> {{user.function.name}}<span style ="float: right;" data-toggle="modal" data-target="#modalFunction"><i class="fas fa-plus-circle"></i></span></br>
+            <ul>
+                <li ng-repeat="f in employeefunctions"><a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}}</a></li>
+            </ul>
+            <hr>
+            <h3>Overall level: {{expobj.level}}</h3>
+            <h5>{{expobj.title}}</h5>
+            <b>Progress:</b> {{expobj.remainingExp}} / {{expobj.requiredExp}} exp
+            <div class="progress">
+                <div id="progressbar" class="progress-bar btn-red" role="progressbar" style="width: 0%; height: 100%;" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
