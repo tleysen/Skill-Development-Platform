@@ -1,6 +1,7 @@
 package com.SDP.Controllers;
 
 import com.SDP.BLL.CourseRecommendation0;
+import com.SDP.BLL.ExperienceCalculation;
 import com.SDP.BLL.TopSkills;
 import com.SDP.Models.*;
 import com.SDP.Repositories.*;
@@ -47,7 +48,8 @@ public class MainController {
     private EmployeesFunctionsRepository employeesFunctionsRepository;
     @Autowired
     private TopSkills topSkills;
-
+    @Autowired
+    private ExperienceCalculation ec;
     //------------------------------------------------------------------------------------------------------------------
     //*****                                     PARAMLESS GET'S                                                    *****
     //------------------------------------------------------------------------------------------------------------------
@@ -173,7 +175,13 @@ public class MainController {
     @RequestMapping(value = "/deletefunctionbyid/{id}", method = RequestMethod.GET)
     public void deleteFunctionsById(@PathVariable("id") String id) {
         functionsRepository.deleteById(Integer.parseInt(id));
+    }
 
+    @RequestMapping(value = "/deleteemployeefunction/{emp_id}/{func_id}", method = RequestMethod.GET)
+    public void deleteFunctionsById(@PathVariable("emp_id") String employeeId, @PathVariable("func_id") String functionId) {
+        EmployeesFunctions ef = employeesFunctionsRepository.findByEmployee_IdAndFunction_Id(Integer.parseInt(employeeId), Integer.parseInt(functionId));
+        ec.deleteAllScoresForEmployeeAndFunction(Integer.parseInt(employeeId), Integer.parseInt(functionId));
+        employeesFunctionsRepository.delete(ef);
     }
 
 
@@ -343,4 +351,6 @@ public class MainController {
         c.setExp(Integer.parseInt(exp));
         coursesRepository.save(c);
     }
+
+
 }

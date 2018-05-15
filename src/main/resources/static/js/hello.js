@@ -349,6 +349,14 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
             }
         });
         window.location.reload();
+    };
+
+    $scope.removeEmployeeFunction = function(user_id, function_id){
+        $.ajax({
+            type: "GET",
+            url: "/req/deleteemployeefunction/" + user_id + "/" + function_id,
+        });
+        window.location.reload();
     }
 });
 

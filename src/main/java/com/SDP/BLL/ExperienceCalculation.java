@@ -195,4 +195,11 @@ public class ExperienceCalculation {
         return exp;
     }
 
+    public void deleteAllScoresForEmployeeAndFunction(int employeeId, int functionId){
+        List<FunctionsDomains> boundDomains = fdr.findAllByFunction_Id(functionId);
+        for(FunctionsDomains fd : boundDomains){
+            sr.delete(sr.findAllByEmployee_IdAndDomain_Id(employeeId, fd.getDomain().getId()));
+        }
+    }
+
 }

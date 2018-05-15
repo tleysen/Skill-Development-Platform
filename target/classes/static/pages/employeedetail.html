@@ -30,7 +30,7 @@
                 <div class="row">
                     <li ng-repeat="f in employeefunctions" class="col-lg-12">
                         <a class="custom-link font2-black"  ng-href="#!/employeefunctiondetail/{{user.id}}/{{f.function.id}}" >{{f.function.name}} &nbsp &nbsp</a>
-                        <div class="float-right"><i class="fas fa-times-circle"></i></div>
+                        <div class="float-right" ng-click="removeEmployeeFunction(user.id, f.function.id)"><i class="fas fa-times-circle"></i></div>
                     </li>
 
                 </div>

@@ -22,10 +22,12 @@ public class TimeTracking {
     ScoresRepository sr;
     @Autowired
     FunctionsDomainsRepository fdr;
+    @Autowired
+    ExperienceCalculation ec;
 
 
     // WORKING
-    public List<Scores> getScoresForEmployeeWithFunction(int emp_id, int func_id){
+    private List<Scores> getScoresForEmployeeWithFunction(int emp_id, int func_id){
 
         List<FunctionsDomains> functionsDomains = fdr.findAllByFunction_Id(func_id);
         List<Domains> coupledDomains = new ArrayList<>();
@@ -46,20 +48,21 @@ public class TimeTracking {
         return filteredScores;
     }
 
-    public List<Integer> format1DomainScoresTo12Months(List<Scores> list){
+    private List<Integer> format1DomainScoresTo12Months(List<Scores> list){
 
         Date arrayDate = new Date();
         Date dateMinusYear = new Date();
         List<Integer> out = new ArrayList<>();
         List<Scores> filtered = new ArrayList<>();
         Calendar baseCal = Calendar.getInstance();
-        int currentScore;
+        Scores currentScoreObj = new Scores();
         int startingScore;
 
         out.add(0);
 
 
-        baseCal.add(baseCal.MONTH, -10);
+        baseCal.add(Calendar.MONTH, -10);
+        baseCal.set(Calendar.DAY_OF_MONTH, 1);
         dateMinusYear = baseCal.getTime();
 
         baseCal = Calendar.getInstance();
@@ -79,19 +82,22 @@ public class TimeTracking {
 
         arrayDate = dateMinusYear;
 
-        currentScore = startingScore;
+
+        currentScoreObj.setPoints(startingScore);
+        currentScoreObj.setDate(new java.sql.Date(arrayDate.getTime()));
 
 
         for(int i = 0; i < 11; i++){
             for(Scores s : filtered){
-                if(arrayDate.getMonth() == s.getDate().getMonth() && arrayDate.getYear() == s.getDate().getYear()){
-                    currentScore = s.getPoints();
+                if(arrayDate.getMonth() == s.getDate().getMonth() && arrayDate.getYear() == s.getDate().getYear()&& currentScoreObj.getDate().before(s.getDate())){
+                    currentScoreObj.setPoints(s.getPoints());
+                    currentScoreObj.setDate(s.getDate());
                 }
             }
             baseCal.setTime(arrayDate);
-            baseCal.add(baseCal.MONTH, 1);
+            baseCal.add(Calendar.MONTH, 1);
             arrayDate = baseCal.getTime();
-            out.add(currentScore);
+            out.add(currentScoreObj.getPoints());
         }
         return out;
     }
@@ -106,11 +112,13 @@ public class TimeTracking {
         TimeTrackingObject out = new TimeTrackingObject();
 
         for(FunctionsDomains fd : functionsDomains){
+            ec.checkCurrentScoreVsOldScore(emp_id, fd.getDomain().getId());
             for(Scores s : allScoresForEmployee){
                 if(fd.getDomain() == s.getDomain()){
                     input.add(s);
                 }
             }
+
             wa_labelarray.add(fd.getDomain().getName());
             wa_scorearray.add(format1DomainScoresTo12Months(input));
             input.clear();
