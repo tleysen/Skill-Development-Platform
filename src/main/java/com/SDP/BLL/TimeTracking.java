@@ -23,11 +23,13 @@ public class TimeTracking {
     @Autowired
     FunctionsDomainsRepository fdr;
 
+
+    // WORKING
     public List<Scores> getScoresForEmployeeWithFunction(int emp_id, int func_id){
 
         List<FunctionsDomains> functionsDomains = fdr.findAllByFunction_Id(func_id);
         List<Domains> coupledDomains = new ArrayList<>();
-        List<Scores> allScores = sr.findByEmployee_IdOrderByDomainAscDateAsc(emp_id);
+        List<Scores> allScores = sr.findByEmployee_IdOrderByDateDescIdDesc(emp_id);
         List<Scores> filteredScores = new ArrayList<>();
 
 

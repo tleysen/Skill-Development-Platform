@@ -48,6 +48,30 @@ public class Scores {
         return date;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDomain(Domains domain) {
+        this.domain = domain;
+    }
+
+    public void setEmployee(Employees employee) {
+        this.employee = employee;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Scores{" +

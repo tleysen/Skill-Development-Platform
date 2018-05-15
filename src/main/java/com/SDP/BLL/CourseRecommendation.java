@@ -61,12 +61,10 @@ public class CourseRecommendation {
                 followedCourses.add(ec.getCourse()); }//Check if courses are followed by comparing ID's
             for(Courses bc : boundCourses){
                 if(!followedCourses.contains(bc)){
-                    filteredCourses.add(bc); } }//check if a course is found
-            if(filteredCourses.size() > 0){
-                courseFound = true;
-            }
+                    filteredCourses.add(bc); }
+            }//check if a course is found
             domainCounter++;
-        }while(!courseFound);
+        }while(domainCounter < functionsDomainsList.size());
         return filteredCourses;
     }
 

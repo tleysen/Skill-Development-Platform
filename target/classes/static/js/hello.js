@@ -112,7 +112,7 @@ sdp.controller('employeesController', function($scope, $http, getService) {
                 birth_date: birth_date
             }
         });
-
+        window.location.reload();
     };
 
     $scope.removeEmployee = function(id){
@@ -216,6 +216,21 @@ sdp.controller('coursesController', function($scope, $http, $timeout, getService
 });
 
 sdp.controller('detailController', function($scope, $http, $routeParams, $location, $q, $timeout, getService) {
+
+    $scope.loading=true;
+
+    $http({
+        method: 'GET',
+        url: '/req/expforemp/' + $routeParams.param1
+    }).then(function(succes){
+        $scope.expobj = succes.data;
+        var progress = $scope.expobj.remainingExp / $scope.expobj.requiredExp * 100;
+        var elem = document.getElementById("progressbar");
+        elem.style.width = progress + '%';
+    }, function (error){
+        console.log(error);
+    });
+
     $http({
         method: 'GET',
         url: '/req/allfunctions'
@@ -224,66 +239,7 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     }, function (error) {
     });
 
-    var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
-    getTopScores.then(function (data) {
-        var labels_polar = [];
-        var scores_data = [];
-
-        if(data.data.domain1){
-            labels_polar.push(data.data.domain1.name);
-            scores_data.push(data.data.score1.points)
-        }
-        if(data.data.domain2){
-            labels_polar.push(data.data.domain2.name);
-            scores_data.push(data.data.score2.points)
-        }
-        if(data.data.domain3){
-            labels_polar.push(data.data.domain3.name);
-            scores_data.push(data.data.score3.points)
-        }
-        if(data.data.domain4){
-            labels_polar.push(data.data.domain4.name);
-            scores_data.push(data.data.score4.points)
-        }
-        if(data.data.domain5){
-            labels_polar.push(data.data.domain5.name);
-            scores_data.push(data.data.score5.points)
-        }
-
-        var ctxPA = document.getElementById("polarChart").getContext('2d');
-        var myPolarChart = new Chart(ctxPA, {
-            type: 'polarArea',
-            data: {
-                labels: labels_polar,
-                datasets: [
-                    {
-                        data: scores_data,
-                        backgroundColor: [color1_dark, color2_dark, color3_dark, color4_dark, color5_dark],
-                        hoverBackgroundColor: [color1_light, color2_light, color3_light, color4_light, color5_light]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    }, function (reason) {
-        // fail, do something with reason
-    });
-
     loadData = function(){
-
-        $http({
-            method: 'GET',
-            url: '/req/expforemp/' + $routeParams.param1
-        }).then(function(succes){
-            $scope.expobj = succes.data;
-            var progress = $scope.expobj.remainingExp / $scope.expobj.requiredExp * 100;
-            var elem = document.getElementById("progressbar");
-            elem.style.width = progress + '%';
-        }, function (error){
-            console.log(error);
-        });
 
         $http({
             method: 'GET',
@@ -305,6 +261,56 @@ sdp.controller('detailController', function($scope, $http, $routeParams, $locati
     };
 
     loadData();
+
+
+    $timeout(function(){
+        var getTopScores = getService.promiseGet('/req/topscoresforemployee/' + $routeParams.param1);
+        getTopScores.then(function (data) {
+            var labels_polar = [];
+            var scores_data = [];
+
+            if(data.data.domain1){
+                labels_polar.push(data.data.domain1.name);
+                scores_data.push(data.data.score1.points)
+            }
+            if(data.data.domain2){
+                labels_polar.push(data.data.domain2.name);
+                scores_data.push(data.data.score2.points)
+            }
+            if(data.data.domain3){
+                labels_polar.push(data.data.domain3.name);
+                scores_data.push(data.data.score3.points)
+            }
+            if(data.data.domain4){
+                labels_polar.push(data.data.domain4.name);
+                scores_data.push(data.data.score4.points)
+            }
+            if(data.data.domain5){
+                labels_polar.push(data.data.domain5.name);
+                scores_data.push(data.data.score5.points)
+            }
+
+            var ctxPA = document.getElementById("polarChart").getContext('2d');
+            var myPolarChart = new Chart(ctxPA, {
+                type: 'polarArea',
+                data: {
+                    labels: labels_polar,
+                    datasets: [
+                        {
+                            data: scores_data,
+                            backgroundColor: [color1_dark, color2_dark, color3_dark, color4_dark, color5_dark],
+                            hoverBackgroundColor: [color1_light, color2_light, color3_light, color4_light, color5_light]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+            $scope.loading = false;
+        }, function (reason) {
+            // fail, do something with reason
+        });}, 1000);
 
     $scope.editEmployee = function(){
 
@@ -444,6 +450,20 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+
+    $http({
+        method: 'GET',
+        url: '/req/expforempfunc/' + $routeParams.emp_id + '/' + $routeParams.func_id
+    }).then(function(succes){
+        exp_data = succes.data;
+        $scope.expobj = exp_data;
+        var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
+        var elem = document.getElementById("progressbar");
+        elem.style.width = progress + '%';
+    }, function (error){
+        console.log(error);
+    });
+
     // LINECHART//
     var getChartData = getService.promiseGet('/req/timetracking/' + $routeParams.emp_id + '/' + $routeParams.func_id);
     getChartData.then(function (returned_data) {
@@ -494,19 +514,6 @@ sdp.controller('employeeFunctionDetailController', function($scope, $http, getSe
         // fail, do something with reason
     });
 
-
-    $http({
-        method: 'GET',
-        url: '/req/expforempfunc/' + $routeParams.emp_id + '/' + $routeParams.func_id
-    }).then(function(succes){
-        exp_data = succes.data;
-        $scope.expobj = exp_data;
-        var progress = exp_data.remainingExp / exp_data.requiredExp * 100;
-        var elem = document.getElementById("progressbar");
-        elem.style.width = progress + '%';
-    }, function (error){
-        console.log(error);
-    });
 
     $http({
         method: 'GET',

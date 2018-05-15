@@ -11,5 +11,7 @@ public interface ScoresRepository extends CrudRepository<Scores, Long> {
 
     List<Scores> findByEmployee_IdOrderByDomainAscDateAsc(int id);
 
-    List<Scores> findByEmployee_IdAndDomain_IdOrderByDateDesc(int employeeId, int domainId);
+    List<Scores> findByEmployee_IdAndDomain_IdOrderByDateDescIdDesc(int employeeId, int domainId);
+
+    List<Scores> findByEmployee_IdOrderByDateDescIdDesc(int id);
 }

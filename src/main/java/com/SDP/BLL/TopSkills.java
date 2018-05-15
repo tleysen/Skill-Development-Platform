@@ -28,9 +28,10 @@ public class TopSkills {
         Employees emp = employeesRepository.findById(id);
         ScoresObject obj = new ScoresObject();
         obj.setEmp(emp);
-        List<Scores> scores = scoresRepository.findByEmployee_IdOrderByPointsDesc(id);
+        List<Scores> scores = scoresRepository.findByEmployee_IdOrderByDateDescIdDesc(id);
         List<Scores> filtered_scores = new ArrayList<>();
         boolean domainPresent = false;
+
 
         // Check if domain is already present in TOP5 list
         for(Scores s : scores){
@@ -41,7 +42,7 @@ public class TopSkills {
                 }
 
             }
-            if(!domainPresent){
+            if(!domainPresent) {
                 filtered_scores.add(s);
             }
             domainPresent = false;

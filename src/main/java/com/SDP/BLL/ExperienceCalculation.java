@@ -23,11 +23,10 @@ public class ExperienceCalculation {
     private CoursesRepository cr;
     @Autowired
     private ScoresRepository sr;
-
-
-    PropertyReader pr = new PropertyReader();
-
-
+    @Autowired
+    private DomainsRepository dr;
+    @Autowired
+    private EmployeesRepository er;
 
     private int calculateTotalExp(int employee_id){
         Date uncompletedDate = new Date();
@@ -48,56 +47,33 @@ public class ExperienceCalculation {
 
         employeesFunctionsList = efr.findAllByEmployee_Id(employee_id);
         for(EmployeesFunctions ef : employeesFunctionsList){
+            List<FunctionsDomains> allFunctionDomains = fdr.findAllByFunction_Id(ef.getFunction().getId());
+            for(FunctionsDomains fd : allFunctionDomains){
+                checkCurrentScoreVsOldScore(employee_id, fd.getDomain().getId());
+            }
             totalExp += ef.getExpboost();
         }
         return totalExp;
     }
 
     private int calculateTotalExperiencepointsForFunction(int employee_id, int func_id){
-
-        int exp = 0;
-        Date uncompletedDate = new Date();
-        uncompletedDate.setTime(0);
-        List<FunctionsDomains> boundDomains;
-        List<Courses> boundCourses = new ArrayList<>();
-        List<Courses> wa_courses;
-        List<Courses> followedCourses = new ArrayList<>();
-        List<EmployeeCourses> wa_emplcourses;
-
+        int totalExp = 0;
         //All bound domains for given function
-        boundDomains = fdr.findAllByFunction_Id(func_id);
+        List<FunctionsDomains> boundDomains = fdr.findAllByFunction_Id(func_id);
         //find all courses for bound domains
         for(FunctionsDomains fd: boundDomains) {
-            //list of courses bound to fd domain
-            wa_courses = cr.findAllByDomain_Id(fd.getDomain().getId());
-            boundCourses.addAll(wa_courses);
-        }
-        //All employee courses objects
-        wa_emplcourses = ecr.findAllByEmployee_Id(employee_id);
-        //convert list to courses list
-        for (EmployeeCourses ec: wa_emplcourses){
-            Date courseDate = ec.getCompletion_date();
-            if(courseDate.after(uncompletedDate)) {
-                followedCourses.add(ec.getCourse());
-            }
-        }
-        //compare 2 lists
-        for(Courses c:boundCourses){
-            if(followedCourses.contains(c)){
-                //add matching course's exp points to total
-                exp += c.getExp();
-            }
+            checkCurrentScoreVsOldScore(employee_id, fd.getDomain().getId());
+            //calculate the total exp for function
+            totalExp += calculateTotalExpForDomain(employee_id, fd.getDomain().getId());
         }
         EmployeesFunctions employeesFunction = efr.findByEmployee_IdAndFunction_Id(employee_id, func_id);
-
-        exp += employeesFunction.getExpboost();
-
-        return exp;
+        totalExp += employeesFunction.getExpboost();
+        return totalExp;
     }
 
     private ExperienceObject createExpObject(ExperienceObject obj){
 
-        pr.Read();
+        PropertyReader.Read();
 
         double FACTOR = PropertyReader.getExponentialFactor();
         int BASE_EXP = PropertyReader.getBaseExp();
@@ -146,6 +122,12 @@ public class ExperienceCalculation {
         return obj;
     }
 
+    private ExperienceObject calculateDomainProfile(int employee_id, int domain_id){
+        ExperienceObject calculated_obj = new ExperienceObject();
+        calculated_obj.setTotalExp(calculateTotalExpForDomain(employee_id, domain_id));
+        return createExpObject(calculated_obj);
+    }
+
     public ExperienceObject calculateFunctionProfile(int employee_id, int func_id){
         ExperienceObject calculated_obj = new ExperienceObject();
         calculated_obj.setTotalExp(calculateTotalExperiencepointsForFunction(employee_id, func_id));
@@ -160,13 +142,57 @@ public class ExperienceCalculation {
 
     }
 
-    public void calculateDomainScoresForEmployeeWithFunctions(int employee_id, int func_id){
-        List<FunctionsDomains> allFunctionDomains = fdr.findAllByFunction_Id(1);
-        List<Domains> allDomains = new ArrayList<>();
-        Scores currentScore = sr.findByEmployee_IdAndDomain_IdOrderByDateDesc(employee_id, func_id).get(0);
-        for(FunctionsDomains fd : allFunctionDomains){
-            allDomains.add(fd.getDomain());
+    public void checkCurrentScoreVsOldScore(int employee_id, int domain_id) {
+        Date utilDate = new Date();
+        List<Scores> allScores = sr.findByEmployee_IdAndDomain_IdOrderByDateDescIdDesc(employee_id, domain_id);
+        int currentScore;
+        if(allScores.size() != 0){
+            currentScore = sr.findByEmployee_IdAndDomain_IdOrderByDateDescIdDesc(employee_id, domain_id).get(0).getPoints();
+        }else{
+            currentScore = 0;
         }
+        ExperienceObject expObj = calculateDomainProfile(employee_id, domain_id);
+            if (expObj.getLevel() != currentScore) {
+                Scores scoreObj = new Scores();
+                scoreObj.setDomain(dr.findById(domain_id));
+                scoreObj.setEmployee(er.findById(employee_id));
+                scoreObj.setPoints(expObj.getLevel());
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                scoreObj.setDate(sqlDate);
+                sr.save(scoreObj);
+            }
+    }
+
+    private int calculateTotalExpForDomain(int employeeId, int domainId){
+        int exp = 0;
+        Date uncompletedDate = new Date();
+        uncompletedDate.setTime(0);
+        List<Courses> boundCourses = new ArrayList<>();
+        List<Courses> wa_courses;
+        List<Courses> followedCourses = new ArrayList<>();
+        List<EmployeeCourses> wa_emplcourses;
+
+        boundCourses = cr.findAllByDomain_Id(domainId);
+
+        //All employee courses objects
+        wa_emplcourses = ecr.findAllByEmployee_Id(employeeId);
+        //convert list to courses list if it is after the default date
+        for (EmployeeCourses ec: wa_emplcourses){
+            Date courseDate = ec.getCompletion_date();
+            if(courseDate.after(uncompletedDate)) {
+                followedCourses.add(ec.getCourse());
+            }
+        }
+
+        //compare 2 lists
+        for(Courses c:boundCourses){
+            if(followedCourses.contains(c)){
+                //add matching course's exp points to total
+                exp += c.getExp();
+            }
+        }
+
+        return exp;
     }
 
 }
